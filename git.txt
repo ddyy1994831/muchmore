@@ -1,0 +1,67 @@
+############ GitHub
+###################
+
+ 날짜를 적을때엔 YYYY-MM-DD 형식으로
+ 
+ commit 메시지 작성법   1. 제목과 본문을 빈행으로 분리($ git commit -m "message1 엔터/\n를 통해 작성 후"
+			2. 제목 행을 50자로 제한
+			3. 제목 행 첫글자는 대문자
+			4. 제목 행 끝에 마침표를 넣지 않음
+			5. 제목 행에 명령문을 사용(명령이나 설명하듯 말하는것 ex, Clean your room)
+			6. 본문을 72자 단위로 개행함
+			7. 어떻게 보다는 무엇과 왜를 설명(무엇이 바뀌었고 왜 바꿨는지)
+
+############ GitHub 기본
+######################## 
+
+ git config --global user.name "이름"
+ git config --global user.email 이메일
+
+ cd 로컬저장을 원하는 위치로 이동
+  ex) cd /c          : c드라이브로 이동
+      mkdir test     : c드라이브 안에 test라는 폴더 생성
+      cd test        : c드라이브 안 test 폴더로 이동
+
+ git init            : 해당 폴더에 github 연결(숨김파일로 .git 생성됨)
+ 
+ git add *           : github와 연결된 해당폴더에 추가하고자 하는 데이터를 이동시킴
+
+ git status          : 해당 로컬저장소에 변경된 사항 체크
+
+ git commit -m "커밋 메시지"      : github에 메시지와 함께 commit
+ 
+ git remote add origin 로컬저장소와연결된git주소    : 로컬된저장소와연결된git주소를 앞으로 origin이라고 쓰겠다라고 정의(한 git 레퍼토리에 최초 1회 적용)
+
+ git push -u origin master       : 위에서 지정한 git(origin)에 master로 push
+
+
+############ branch 이용 및 merge
+#################################
+
+ git checkout -b branch이름		: branch 생성
+
+ git checkout branch이름                : 해당 branch로 이동
+
+ git merge branch1이름 branch2이름     :  branch1의 위치에서 brach1과 branch2를 합병
+ //여기서 충돌(Conflict)없이 merge가 잘실행되면 프롬프트로 이동
+ //merge 충돌이 생기면 충돌이 난 위치에서 충돌 확인
+ //충돌된 위치로 이동하면 >>>>>>>HEAD가 있음. 위치와 코드 확인 후 >>>>>HEAD제거 후 저장 후 재commit 그리고 똑같이 push 진행
+
+ 충돌시 에러메시지
+ error : you need to resolve your current index first
+ 충돌된 위치: needs merge
+
+
+############ 원격저장소 에러
+############################
+
+ ![rejected] master -> master (fetch first) : 이미 변경된 파일이 원격저장소에 있을 경우 발생 즉, git pull로 서버에 저장된 commit을 받아오지 않았을 경우 발생
+    => 해결 방법 : git pull : 원격저장소의 내용을 가져와 로컬저장소의 내용과 자동으로 병합작업 수행
+ 
+ ! [rejected] master -> master (non-fast-forward) : 현재 작업중인 repository가 서버에 있는 repository보다 오래된 내용일 경우
+    => 해결 방법 : 1. git pull : 기존 작업한 내용과 최근 작업 내용이 합쳐진다. pull 수행 후 message를 보면 합병 후 발생한 문제의 코멘트가 있을것이다. 확인 후 수정해주고 commit 진행
+		   2. git push --force : 다른 사람이 작업한 것까지 덮어쓰기한다.(비추)
+    => 참고 : http://mobicon.tistory.com/162
+
+ git fetch <remote> <branch> : 원격저장소의 내용을 확인만 하고 로컬저장소의 내용과 병합을 수행하지 않음
+ 
