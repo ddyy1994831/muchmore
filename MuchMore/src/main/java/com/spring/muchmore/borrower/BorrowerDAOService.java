@@ -9,9 +9,4 @@ public class BorrowerDAOService implements BorrowerDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public void ppp() {
-		//asfafdafadsfsafsafs
-		//hhhhhhhhhhhhhhhhhhhhhhh
-		//具具具具
-	}
 }

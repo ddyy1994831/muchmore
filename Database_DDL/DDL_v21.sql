@@ -119,7 +119,7 @@ CREATE TABLE board (
 
 -- 대출자정보
 CREATE TABLE borrower (
-	member_id             	VARCHAR2(30) NOT NULL, -- 대출자ID
+	borrower_id             	VARCHAR2(30) NOT NULL, -- 대출자ID
 	borrower_registerdate 	TIMESTAMP    NOT NULL, -- 대출신청일
 	borrower_rate         	NUMBER(4,2)    NOT NULL, -- 대출금리
 	borrower_repay_date   	VARCHAR2(30) NOT NULL, -- 상한일
@@ -140,13 +140,13 @@ CREATE TABLE borrower (
 
 	CONSTRAINT PK_borrower -- 대출자정보 기본키
 	PRIMARY KEY (
-		member_id,             -- 대출자ID
+		borrower_id,             -- 대출자ID
 		borrower_registerdate  -- 대출신청일
 	),
 
 	CONSTRAINT FK_member_TO_borrower -- 회원 -> 대출자정보
 	FOREIGN KEY (
-		member_id -- 대출자ID
+		borrower_id -- 대출자ID
 	)
 	REFERENCES member ( -- 회원
 		member_id -- 회원ID
@@ -177,7 +177,7 @@ CREATE TABLE goods (
 		goods_date   -- 상품등록날짜(대출신청일)
 	)
 	REFERENCES borrower ( -- 대출자정보
-		member_id,             -- 대출자ID
+		borrower_id,             -- 대출자ID
 		borrower_registerdate  -- 대출신청일
 	)
 	ON DELETE CASCADE
