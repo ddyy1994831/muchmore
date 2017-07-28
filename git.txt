@@ -52,16 +52,41 @@
  충돌된 위치: needs merge
 
 
-############ 원격저장소 에러
+############ git 에러
 ############################
 
- ![rejected] master -> master (fetch first) : 이미 변경된 파일이 원격저장소에 있을 경우 발생 즉, git pull로 서버에 저장된 commit을 받아오지 않았을 경우 발생
+ 1. git push시 에러
+
+   ![rejected] master -> master (fetch first) : 이미 변경된 파일이 원격저장소에 있을 경우 발생 즉, git pull로 서버에 저장된 commit을 받아오지 않았을 경우 발생
     => 해결 방법 : git pull : 원격저장소의 내용을 가져와 로컬저장소의 내용과 자동으로 병합작업 수행
  
- ! [rejected] master -> master (non-fast-forward) : 현재 작업중인 repository가 서버에 있는 repository보다 오래된 내용일 경우
+   ! [rejected] master -> master (non-fast-forward) : 현재 작업중인 repository가 서버에 있는 repository보다 오래된 내용일 경우
     => 해결 방법 : 1. git pull : 기존 작업한 내용과 최근 작업 내용이 합쳐진다. pull 수행 후 message를 보면 합병 후 발생한 문제의 코멘트가 있을것이다. 확인 후 수정해주고 commit 진행
 		   2. git push --force : 다른 사람이 작업한 것까지 덮어쓰기한다.(비추)
     => 참고 : http://mobicon.tistory.com/162
 
- git fetch <remote> <branch> : 원격저장소의 내용을 확인만 하고 로컬저장소의 내용과 병합을 수행하지 않음
- 
+   Username for 'https://github.com': ddyy1994831
+   remote: Invalid username or password.
+   fatal: Authentication failed for 'https://github.com/ddyy1994831/muchmore.git/'
+    => 해결방법 : pom.properties부분에 m2e.projectLocation의 위치를 확인 후 그 위치의 주인의 아이디,비밀번호로 push 
+
+
+ 2. git pull origin시 에러
+
+   remote: Counting objects: 25, done.
+   remote: Compressing objects: 100% (13/13), done.
+   remote: Total 25 (delta 6), reused 25 (delta 6), pack-reused 0
+   Unpacking objects: 100% (25/25), done.
+   From https://github.com/ddyy1994831/muchmore
+     37329ef..0338cc8  master     -> origin/master
+   error: Your local changes to the following files would be overwritten by merge:
+       MuchMore/target/m2e-wtp/web-resources/META-INF/maven/com.spring/muchmore/pom.properties
+   Please commit your changes or stash them before you merge.
+   Aborting
+   Updating 37329ef..0338cc8
+    => error부분에 기존의 것들이랑 충돌난 위치가 나와있다. 그 위치로 가서 에러난 부분을 고치면된다. 그 후 다시 push 진행
+
+ 3. git add후 git status 확인 시 혹은 commit 시
+  
+   no changes added to commit이라는 문구가 있다면
+    => 해결방법 : git commit -am "commit 메시지" 로 실행
