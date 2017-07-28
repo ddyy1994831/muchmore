@@ -90,7 +90,12 @@
    -fatal:refusing to merge unrelated histories
     => 해결방법 : git pull origin branchname(자기branch명) --allow-unrelated-histories
 
+    => 해결방법 : http://jybaek.tistory.com/389
+
  3. git add후 git status 확인 시 혹은 commit 시
   
    no changes added to commit이라는 문구가 있다면
     => 해결방법 : git commit -am "commit 메시지" 로 실행
+
+ 4. error: Your local changes to the following files would be overwritten by merge:
+    => 해결방법 : https://gist.github.com/vladimirtsyupko/10964772
