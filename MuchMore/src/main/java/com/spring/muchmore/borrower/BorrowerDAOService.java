@@ -10,20 +10,8 @@ public class BorrowerDAOService implements BorrowerDAO {
 	private SqlSession sqlSession;
 
 	public void ppp() {
-		//efef
-		//efeef
-		//aefefef
-		//aewfawf
-		//efef
-				//efeef
-				//aefefef
-				//aewfawf//efef
-		//efeef
-		//aefefef
-		//aewfawf//efef
-		//efeef
-		//aefefef
-		//aewfawf
-		//绢绢绢钧
+		//asfafdafadsfsafsafs
+		//hhhhhhhhhhhhhhhhhhhhhhh
+		//具具具具
 	}
 }
