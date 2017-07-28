@@ -90,7 +90,7 @@
                         	else {
                      	%>
                      			<li><a href="loginform.do">로그인</a></li>
-                     			<li><a href="joinform1.do">회원가입</a></li>
+                     			<li><a href="join.do">회원가입</a></li>
                      	<%
                         	}
                      	%>
