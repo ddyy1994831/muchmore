@@ -8,4 +8,8 @@ import org.springframework.stereotype.Repository;
 public class BorrowerDAOService implements BorrowerDAO {
 	@Autowired
 	private SqlSession sqlSession;
+
+	public void ppp() {
+		
+	}
 }
