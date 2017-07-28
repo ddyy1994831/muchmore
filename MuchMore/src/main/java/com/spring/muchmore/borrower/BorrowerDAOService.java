@@ -10,11 +10,20 @@ public class BorrowerDAOService implements BorrowerDAO {
 	private SqlSession sqlSession;
 
 	public void ppp() {
-		System.out.println("hello commit");
+		//efef
+		//efeef
+		//aefefef
+		//aewfawf
 		//efef
 				//efeef
 				//aefefef
-				//aewfawf
-				//efef
+				//aewfawf//efef
+		//efeef
+		//aefefef
+		//aewfawf//efef
+		//efeef
+		//aefefef
+		//aewfawf
+		//¾î¾î¾î¾û
 	}
 }
