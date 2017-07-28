@@ -44,8 +44,7 @@ CREATE TABLE account (
 
 	CONSTRAINT PK_account -- 계좌 기본키
 	PRIMARY KEY (
-		member_id,       -- 회원ID
-		account_virtual  -- 가상계좌번호
+		member_id       -- 회원ID
 	),
 	
 	-- 회원 -> 계좌
@@ -59,9 +58,7 @@ CREATE TABLE account (
 -- 입출금내역
 CREATE TABLE moneyinout (
 	moneyinout_holder_id      	VARCHAR2(30) NOT NULL, -- 계좌주인ID
-	moneyinout_holder_virtual 	VARCHAR2(30) NOT NULL, -- 계좌주인가상계좌번호
 	moneyinout_other_id       	VARCHAR2(30) NOT NULL, -- 입출금주체자ID
-	moneyinout_other_virtual  	VARCHAR2(30) NOT NULL, -- 주체자가상계좌번호
 	moneyinout_date           	TIMESTAMP    NOT NULL, -- 입출금날짜
 	moneyinout_money          	NUMBER(8)    NOT NULL, -- 입출금 금액
 	moneyinout_state          	VARCHAR2(30) NOT NULL, -- 상태(입금, 출금)
@@ -69,31 +66,25 @@ CREATE TABLE moneyinout (
 	CONSTRAINT PK_moneyinout -- 입출금내역 기본키
 	PRIMARY KEY (
 		moneyinout_holder_id,      -- 계좌주인ID
-		moneyinout_holder_virtual, -- 계좌주인가상계좌번호
 		moneyinout_other_id,       -- 입출금주체자ID
-		moneyinout_other_virtual,  -- 주체자가상계좌번호
 		moneyinout_date            -- 입출금날짜
 	),
 	
 	CONSTRAINT FK_account_TO_moneyinout -- 계좌 -> 입출금내역
 	FOREIGN KEY (
-		moneyinout_holder_id,      -- 계좌주인ID
-		moneyinout_holder_virtual  -- 계좌주인가상계좌번호
+		moneyinout_holder_id      -- 계좌주인ID
 	)
 	REFERENCES account ( -- 계좌
-		member_id,       -- 회원ID
-		account_virtual  -- 가상계좌번호
+		member_id       -- 회원ID
 	)
 	ON DELETE CASCADE,
 
 	CONSTRAINT FK_account_TO_moneyinout2 -- 계좌 -> 입출금내역2
 	FOREIGN KEY (
-		moneyinout_other_id,      -- 입출금주체자ID
-		moneyinout_other_virtual  -- 주체자가상계좌번호
+		moneyinout_other_id      -- 입출금주체자ID
 	)
 	REFERENCES account ( -- 계좌
-		member_id,       -- 회원ID
-		account_virtual  -- 가상계좌번호
+		member_id       -- 회원ID
 	)
 	ON DELETE CASCADE
 );
@@ -130,7 +121,7 @@ CREATE TABLE board (
 CREATE TABLE borrower (
 	member_id             	VARCHAR2(30) NOT NULL, -- 대출자ID
 	borrower_registerdate 	TIMESTAMP    NOT NULL, -- 대출신청일
-	borrower_rate         	NUMBER(8)    NOT NULL, -- 대출금리
+	borrower_rate         	NUMBER(4,2)    NOT NULL, -- 대출금리
 	borrower_repay_date   	VARCHAR2(30) NOT NULL, -- 상한일
 	borrower_amount       	NUMBER(8)    NOT NULL, -- 총상환액
 	borrower_monthlypay   	NUMBER(8)    NOT NULL, -- 월납입금액
@@ -170,7 +161,7 @@ CREATE TABLE goods (
 	goods_date   	TIMESTAMP    NOT NULL, -- 상품등록날짜(대출신청일)
 	borrower_id  	VARCHAR2(30) NOT NULL, -- 대출자ID
 	goods_sum    	NUMBER(8)    NOT NULL, -- 대출금액
-	goods_rate   	NUMBER(2,2)  NOT NULL, -- 예상수익률
+	goods_rate   	NUMBER(4,2)  NOT NULL, -- 예상수익률
 	goods_object 	VARCHAR2(50) NOT NULL, -- 상품명(대출사유)
 	goods_status 	VARCHAR2(30) DEFAULT '모집중', -- 상품상태
 	goods_invest 	NUMBER(8)    DEFAULT 0, -- 총투자금액
@@ -196,7 +187,7 @@ CREATE TABLE goods (
 
 -- 투자
 CREATE TABLE invest (
-	invest_id     	VARCHAR2(30) NOT NULL, -- 투자자ID
+	member_id     	VARCHAR2(30) NOT NULL, -- 투자자ID
 	goods_num     	NUMBER(3)    NOT NULL, -- 상품번호
 	invest_date   	TIMESTAMP    NOT NULL, -- 투자날짜
 	invest_sum    	NUMBER(8)    NOT NULL, -- 투자금액
@@ -205,7 +196,7 @@ CREATE TABLE invest (
 
 	CONSTRAINT FK_member_TO_invest -- 회원 -> 투자
 	FOREIGN KEY (
-		invest_id -- 투자자ID
+		member_id -- 투자자ID
 	)
 	REFERENCES member ( -- 회원
 		member_id -- 회원ID
