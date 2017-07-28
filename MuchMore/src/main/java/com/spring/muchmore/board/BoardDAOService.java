@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public class BoardDAOService implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
+	
+	//아무거나해해해해해주세요
 }
