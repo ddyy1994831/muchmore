@@ -47,46 +47,45 @@
 	
 	<!-- 2017-07-29 성현 : 회원 가입 -->
 	<insert id="insertMember" parameterType="com.spring.muchmore.member.MemberVO">
-		insert into
-		member(member_id, 
-		member_pw1, 
-		member_pw2, 
-		member_name, 
-		member_phone,
-		member_jumin1,
-		member_jumin2, 
-		member_email, 
-		member_zipcode,
-		member_addr1, 
-		member_addr2, 
-		member_agreement)
-		values(#{member_id},
-		#{member_pw1}, 
-		#{member_pw2},
-		#{member_name}, 
-		#{member_phone},
-		#{member_jumin1}, 
-		#{member_jumin2},
-		#{member_email},
-		#{member_zipcode},
-		#{member_addr1},
-		#{member_addr2},
-		#{member_agreement})
+	INSERT INTO member(member_id,
+	member_pw1,
+	member_pw2,
+	member_name,
+	member_phone,
+	member_jumin1,
+	member_jumin2,
+	member_email,
+	member_zipcode,
+	member_addr1,
+	member_addr2,
+	member_agreement)
+	VALUES(#{member_id},
+	#{member_pw1},
+	#{member_pw2},
+	#{member_name},
+	#{member_phone},
+	#{member_jumin1},
+	#{member_jumin2},
+	#{member_email},
+	#{member_zipcode},
+	#{member_addr1},
+	#{member_addr2},
+	#{member_agreement})
 	</insert>
 	
 	<!-- 2017-07-29 성현 : 회원 가입시 가상계좌 생성 -->
 	<insert id="createVirtualAccount" parameterType="hashmap">
-		insert into
+		INSERT INTO
 		account(member_id, account_virtual)
-		values(#{member_id}, #{account_virtual})
+		VALUES(#{member_id}, #{account_virtual})
 	</insert>
 	
 	<!-- 2017-07-29 성현 : 회원가입 아이디 중복체크 시 회원 중복 체크 -->
 	<select id="checkId" resultType="int" parameterType="String">
-		select
+		SELECT
 		nvl(count(*),0)
-		from member
-		where member_id = #{member_id}
+		FROM member
+		WHERE member_id = #{member_id}
 	</select>
 	 
 	<!-- 2017-07-29 혜림 : 회원 정보 전체 가져오기. -->
@@ -109,5 +108,15 @@
 		FROM member
 		WHERE member_id = #{member_id} and member_name = #{member_name} and member_email = #{member_email}
 	</select>
+	
+	<!-- 2017-07-29 성현 : 회원정보 수정 -->
+	<update id="updateMember" parameterType="MemberVO">
+	UPDATE member
+	SET
+	member_pw1=#{member_pw1}, member_pw2=#{member_pw2}, 
+	member_zipcode=#{member_zipcode}, member_addr1=#{member_addr1}, member_addr2=#{member_addr2},
+	member_email=#{member_email}
+	WHERE member_id=#{member_id}
+	</update>
 		
 </mapper>

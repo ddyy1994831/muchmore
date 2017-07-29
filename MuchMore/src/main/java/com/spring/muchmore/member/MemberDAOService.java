@@ -70,6 +70,14 @@ public class MemberDAOService implements MemberDAO {
 		//데이터베이스에서 찾아온 pw
 		String foundpw = memberMapper.findPw(member);
 		return foundpw;
+	}
+
+	//2017-07-29 성현 : 회원정보 수정
+	@Override
+	public void updateMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		memberMapper.updateMember(member);
 	} 
 
 	

@@ -12,7 +12,7 @@
 %>
 
     <section class = "container">
-    	<div class = "row">
+    	<div class = "row" style="height:100%">
     		<div class = "col-md-6 col-md-offset-3">
     			<p class="text-center"><h3>회원가입이 완료되었습니다.</h3><br/><br/><br/><br/><br/>
     			<p class="text-center"><h5>여러분의 지갑을 불리는</h5><br/>

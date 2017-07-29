@@ -18,6 +18,9 @@ public interface MemberDAO {
 	
 	/*2017-07-29 혜림 : 비밀번호 찾기 : 아이디, 이름, 이메일을 입력하면 비밀번호 return*/
 	public String findPw(MemberVO member);
+	
+	//2017-07-29 성현 : 회원정보 수정
+	public void updateMember(MemberVO member);
 
 }
  
