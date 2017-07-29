@@ -34,4 +34,23 @@ public class BorrowerDAOService implements BorrowerDAO {
 		return rate;
 	}
 
+	/*2017-07-30 혜림 : 대출신청하기 borrower table에 데이터 넣기*/
+	@Override
+	public void insertBorrower(BorrowerVO borrower) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		borrowerMapper.insertBorrower(borrower);
+	}
+
+	/*2017-07-30 혜림 : 대출신청하기 goods table에 데이터 넣기*/
+	@Override
+	public void insertGoods(BorrowerVO borrower) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		borrowerMapper.insertGoods(borrower);
+	}
+
+	
+	
+	
 }

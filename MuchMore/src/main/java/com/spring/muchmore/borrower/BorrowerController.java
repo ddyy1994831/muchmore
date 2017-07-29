@@ -118,7 +118,10 @@ public class BorrowerController {
 		ModelAndView result = new ModelAndView();
 		
 		//borrowe table에 데이터 넣기
+		borrowerDAOService.insertBorrower(borrower);
+		borrowerDAOService.insertGoods(borrower);
 		
+		result.addObject("borrower", borrower);
 		result.setViewName("loan_complete");
 		return result;
 	}

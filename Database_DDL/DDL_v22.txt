@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- 투자
 DROP TABLE invest;
 -- 상품
@@ -133,8 +134,8 @@ CREATE TABLE borrower (
 	borrower_jobname      	VARCHAR2(30) NOT NULL, -- 직업명
 	borrower_jobperiod    	VARCHAR2(30) NOT NULL, -- 재직기간
 	borrower_loanperiod   	NUMBER(2)    NOT NULL, -- 대출기간
-	borrower_startdate    	TIMESTAMP    NOT NULL, -- 대출일
-	borrower_enddate      	TIMESTAMP    NOT NULL, -- 만기일
+	borrower_startdate    	TIMESTAMP,			-- 대출일
+	borrower_enddate      	TIMESTAMP, 			-- 만기일
 	borrower_status       	VARCHAR2(30) DEFAULT '대출신청', 	-- 대출상태
 	borrower_payok        VARCHAR2(30) DEFAULT '미지급', 	-- 대출금지급상태
 	borrower_balance      NUMBER(8)    NOT NULL,  -- 대출상환금 잔액

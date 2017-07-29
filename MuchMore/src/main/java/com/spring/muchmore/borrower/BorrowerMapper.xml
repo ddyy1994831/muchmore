@@ -75,7 +75,8 @@
 			borrower_totalincome,
 			borrower_jobbiz,
 			borrower_jobname,
-			borrower_jobperiod
+			borrower_jobperiod,
+			borrower_loanperiod
 			)
 		VALUES (
 			#{borrower_id},
@@ -89,12 +90,28 @@
 			#{borrower_totalincome},
 			#{borrower_jobbiz},
 			#{borrower_jobname},
-			#{borrower_jobperiod}
+			#{borrower_jobperiod},
+			#{borrower_loanperiod}
 		)
 	</insert>
 	
 	<!-- 2017-07-30 혜림 : 대출신청하기 goods table에 데이터 넣기 -->
 	<insert id = "insertGoods" parameterType="BorrowerVO">
-		INSERT INTO goods
+		INSERT INTO goods(
+			goods_num,
+			goods_sum,
+			goods_rate,
+			goods_object,
+			borrower_id,
+			goods_date
+			)
+		VALUES(
+			goods_sequence.nextval,
+			#{goodsVO.goods_sum},
+			#{goodsVO.goods_rate} * 0.8,
+			#{goodsVO.goods_object},
+			#{borrower_id},
+			sysdate
+			)
 	</insert>
 </mapper>
