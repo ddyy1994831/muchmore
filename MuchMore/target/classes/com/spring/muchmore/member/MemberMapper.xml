@@ -2,5 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.muchmore.member.MemberMapper">
+	<!-- 2017-07-29 혜림 : member 테이블 쿼리 결과반환 -->
+	<resultMap type="MemberVO" id="MemberResultMap">
+		<result property="member_id" column="member_id" />
+		<result property="member_pw1" column="member_pw1" />
+		<result property="member_pw2" column="member_pw2" />
+		<result property="member_name" column="member_name" />
+		<result property="member_phone" column="member_phone" />
+		<result property="member_jumin1" column="member_jumin1" />
+		<result property="member_jumin2" column="member_jumin2" />
+		<result property="member_email" column="member_email" />
+		<result property="member_addr1" column="member_zipcode" />
+		<result property="member_addr1" column="member_addr1" />
+		<result property="member_addr2" column="member_addr2" />
+		<result property="member_agreement" column="member_agreement" />
+		<result property="member_age" column = "member_age"/>
+		<result property="member_gender" column = "member_gender"/>
+		
+		<!-- 대출장 정보 join -->
+		<collection property="com.spring.muchmore.borrower.BorrowerVO" resultMap="BorrowerResultMap"/>
+	</resultMap>
 	
+	<resultMap type="com.spring.muchmore.borrower.BorrowerVO" id="BorrowerResultMap">
+		<result property="borrower_id" column="borrower_id" />
+		<result property="borrower_rate" column="borrower_rate" />
+		<result property="borrower_amount" column="borrower_amount" />
+		<result property="borrower_repay_date" column = "borrower_repay_date"/>
+		<result property="borrower_monthlypay" column="borrower_monthlypay" />
+		<result property="borrower_limit" column="borrower_limit" />
+		<result property="borrower_credit" column="borrower_credit" />
+		<result property="borrower_totalincome" column="borrower_totalincome" />
+		<result property="borrower_jobbiz" column="borrower_jobbiz" />
+		<result property="borrower_jobname" column="borrower_jobname" />
+		<result property="borrower_jobperiod" column="borrower_jobperiod" />
+		<result property="borrower_loanperiod" column="borrower_loanperiod" />
+		<result property="borrower_startdate" column="borrower_startdate" />
+		<result property="borrower_enddate" column="borrower_enddate" />
+		<result property="borrower_status" column="borrower_status" />
+		<result property="borrower_balance" column="borrower_balance" />
+		<result property="borrower_payok" column="borrower_payok" />
+		<result property="borrower_registerdate" column="borrower_registerdate" />
+		
+	</resultMap>
+	
+	<!-- 2017-07-29 혜림 : 회원 정보 전체 가져오기. -->
+	<select id="getMember" resultType="MemberVO" parameterType = "MemberVO">
+		select *
+		from member
+		where member_id = #{member_id}
+	</select>
 </mapper>
