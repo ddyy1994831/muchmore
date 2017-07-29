@@ -12,13 +12,13 @@
 %>
     <script>
 	    function openConfirmId(loginform) {
-			var url = "login_member_find_id.do";
+			var url = "loginFindId.do";
 			open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
 					"scrollbars=no,resizeable=no,width=450px,height=420");
 		}
 	    
 	    function openConfirmPw(loginform) {
-			var url = "login_member_find_pw.do";
+			var url = "loginFindPw.do";
 			open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
 					"scrollbars=no,resizeable=no,width=450px,height=450");
 		}
@@ -69,7 +69,5 @@
 			%>
 		</div>
 	</div>
- 
-	
 </section>
 

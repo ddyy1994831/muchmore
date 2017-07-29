@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-
 import com.spring.muchmore.member.MemberDAOService;
 
 
@@ -104,16 +102,39 @@ public class MemberController {
 		}
 		
 		return result; 
+	}
+	
+	
+	@RequestMapping("loginFindId.do")
+	public String findId() {
+		return "login_find_id";
+	}
+	
+	@RequestMapping("loginFindIdAction.do")
+	public ModelAndView findIdAction(MemberVO member) {
+		ModelAndView result = new ModelAndView();
 		
+		//데이터베이스에서 찾아온 id
+		String foundid = memberDAOService.findId(member);
+		System.out.println("member_name : "+member.getMember_name());
+		System.out.println(foundid);
 		
-		/*PrintWriter writer = response.getWriter();
-		
-		// 아이디가 존재하는지 확인
-		int cnt = memberDAOService.memberExist(member.getMember_id());
+		result.addObject("foundid", foundid);
+		result.setViewName("login_find_id_ok");
+		return result;
+	}
+	
+	@RequestMapping("loginFindPw.do")
+	public String findPw() {
+		return "login_find_pw";
+	}
+	
+	@RequestMapping("loginFindPwAction.do")
+	public ModelAndView findPwAction(MemberVO member) {
+		ModelAndView result = new ModelAndView();		
 
-		
+		/*
 		// 존재하는 id이면
-
 		if (cnt == 1) {
 			// 로그인 form에서 입력받은 아이디로 데이터베이스 검색 후 회원 정보 받아오기
 			MemberVO getmember = memberDAOService.getMember(member.getMember_id());
@@ -136,7 +157,16 @@ public class MemberController {
 			result.addObject("msg", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
 			result.setViewName("loginform");
 		}
-*/	
-	
+		*/
+
+
+		//데이터베이스에 찾아온 비밀번호
+		String foundpw = memberDAOService.findPw(member);
+		
+		result.addObject("foundpw", foundpw);
+		result.setViewName("login_find_pw_ok");
+		return result;
 	}
+
+	
 }
