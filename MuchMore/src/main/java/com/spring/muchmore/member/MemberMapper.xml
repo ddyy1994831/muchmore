@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
 <mapper namespace="com.spring.muchmore.member.MemberMapper">
+	<resultMap type="MemberVO" id="MemberResultMap">
+		<result property="member_id" column="member_id" />
+		<result property="member_pw1" column="member_pw1" />
+		<result property="member_pw2" column="member_pw2" />
+		<result property="member_name" column="member_name" />
+		<result property="member_phone" column="member_phone" />
+		<result property="member_jumin1" column="member_jumin1" />
+		<result property="member_jumin2" column="member_jumin2" />
+		<result property="member_email" column="member_email" />
+		<result property="member_addr1" column="member_zipcode" />
+		<result property="member_addr1" column="member_addr1" />
+		<result property="member_addr2" column="member_addr2" />
+		<result property="member_agreement" column="member_agreement" />
+		<result property="member_age" column="member_age" />
+		<result property="member_gender" column="member_gender" />
+	</resultMap>
+	
+	<!-- 2017-07-29 성현 : 회원 가입 -->
+	<insert id="insertMember" parameterType="com.spring.muchmore.member.MemberVO">
+		insert into
+		member(member_id, 
+		member_pw1, 
+		member_pw2, 
+		member_name, 
+		member_phone,
+		member_jumin1,
+		member_jumin2, 
+		member_email, 
+		member_zipcode,
+		member_addr1, 
+		member_addr2, 
+		member_agreement)
+		values(#{member_id},
+		#{member_pw1}, 
+		#{member_pw2},
+		#{member_name}, 
+		#{member_phone},
+		#{member_jumin1}, 
+		#{member_jumin2},
+		#{member_email},
+		#{member_zipcode},
+		#{member_addr1},
+		#{member_addr2},
+		#{member_agreement})
+	</insert>
+	
+	<!-- 2017-07-29 성현 : 회원 가입시 가상계좌 생성 -->
+	<insert id="createVirtualAccount" parameterType="hashmap">
+		insert into
+		account(member_id, account_virtual)
+		values(#{member_id}, #{account_virtual})
+	</insert>
+	
+	<!-- 2017-07-29 성현 : 회원가입 아이디 중복체크 시 회원 중복 체크 -->
+	<select id="checkId" resultType="int" parameterType="String">
+		select
+		nvl(count(*),0)
+		from member
+		where member_id = #{member_id}
+	</select>
 	
 </mapper>
