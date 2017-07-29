@@ -17,5 +17,5 @@ public class MemberDAOService implements MemberDAO {
 		System.out.println("1111 :" +member.getMember_id());
 		MemberVO result = memberMapper.getMember(member);
 		return result;
-	}
+	} 
 }

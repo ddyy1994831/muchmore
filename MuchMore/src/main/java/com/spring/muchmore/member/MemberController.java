@@ -74,7 +74,7 @@ public class MemberController {
 			}
 		}
 		
-		return result;
+		return result; 
 		
 		
 		/*PrintWriter writer = response.getWriter();

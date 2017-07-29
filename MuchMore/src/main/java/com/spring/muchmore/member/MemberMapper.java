@@ -6,3 +6,4 @@ public interface MemberMapper {
 	public MemberVO getMember(MemberVO member);
 
 }
+ 

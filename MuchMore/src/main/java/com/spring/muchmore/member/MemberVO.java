@@ -18,7 +18,7 @@ public class MemberVO {
 	private int member_agreement;
 	private String member_gender;
 	private String member_age;
-	
+	 
 	//´ëÃâÀÚ
 	private BorrowerVO borrower;
 	
