@@ -133,33 +133,6 @@ public class MemberController {
 	public ModelAndView findPwAction(MemberVO member) {
 		ModelAndView result = new ModelAndView();		
 
-		/*
-		// 존재하는 id이면
-		if (cnt == 1) {
-			// 로그인 form에서 입력받은 아이디로 데이터베이스 검색 후 회원 정보 받아오기
-			MemberVO getmember = memberDAOService.getMember(member.getMember_id());
-			// 받아온 회원정보의 pw와 로그인 form에서 입력받은 pw비교하기
-
-			// 비밀번호가 맞으면
-			if (getmember.getMember_pw1().equals(member.getMember_pw1())) {
-				result.addObject("id", member.getMember_id());
-				session.setAttribute("id", member.getMember_id());
-				result.setViewName("home");
-			}
-
-			else {
-				result.addObject("msg", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
-				result.setViewName("loginform");
-			}
-		}
-
-		if (cnt == 0) {
-			result.addObject("msg", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
-			result.setViewName("loginform");
-		}
-		*/
-
-
 		//데이터베이스에 찾아온 비밀번호
 		String foundpw = memberDAOService.findPw(member);
 		

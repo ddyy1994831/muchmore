@@ -36,4 +36,65 @@
 		<result property="goods_status" column = "goods_status"/>
 		<result property="goods_date" column = "goods_date"/>
 	</resultMap>
+	
+	<!-- 2017-07-29 혜림 : 신용등급 구하기 -->
+	<select id = "creditCheck" resultType="String" parameterType="BorrowerVO">
+		<![CDATA[
+		SELECT distinct CREDITINFO_CREDIT  
+		FROM creditinfo
+		WHERE CREDITINFO_JOBBIZ = #{borrower_jobbiz} 
+			and CREDITINFO_TOTALINCOME1 <= #{borrower_totalincome}
+			and #{borrower_totalincome} <= CREDITINFO_TOTALINCOME2
+		]]> 
+	</select>
+	
+	<!-- 2017-07-30 혜림 : 대출금리 확인하기 -->
+	<select id = "checkBorrowRate" resultType = "double" parameterType="BorrowerVO">
+		<![CDATA[
+		SELECT distinct CREDITINFO_RATE
+		FROM creditinfo
+		WHERE CREDITINFO_JOBBIZ = #{borrower_jobbiz} 
+			and CREDITINFO_TOTALINCOME1 <= #{borrower_totalincome}
+			and #{borrower_totalincome} <= CREDITINFO_TOTALINCOME2
+			and CREDITINFO_CREDIT = #{borrower_credit}
+			and CREDITINFO_LOANPERIOD = #{borrower_loanperiod}
+		]]>
+	</select>
+	
+	<!-- 2017-07-30 혜림 : 대출신청하기 borrower table에 데이터 넣기 -->
+	<insert id = "insertBorrower" parameterType="BorrowerVO">
+		INSERT INTO borrower(
+			borrower_id,
+			borrower_registerdate,
+			borrower_rate,
+			borrower_repay_date,
+			borrower_amount,
+			borrower_monthlypay,
+			borrower_limit,
+			borrower_credit,
+			borrower_totalincome,
+			borrower_jobbiz,
+			borrower_jobname,
+			borrower_jobperiod
+			)
+		VALUES (
+			#{borrower_id},
+			sysdate,
+			#{borrower_rate},
+			#{borrower_repay_date},
+			#{borrower_amount},
+			#{borrower_monthlypay},
+			#{borrower_limit},
+			#{borrower_credit},
+			#{borrower_totalincome},
+			#{borrower_jobbiz},
+			#{borrower_jobname},
+			#{borrower_jobperiod}
+		)
+	</insert>
+	
+	<!-- 2017-07-30 혜림 : 대출신청하기 goods table에 데이터 넣기 -->
+	<insert id = "insertGoods" parameterType="BorrowerVO">
+		INSERT INTO goods
+	</insert>
 </mapper>
