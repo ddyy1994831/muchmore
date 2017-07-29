@@ -69,13 +69,12 @@
 		<!-- 추가정보 입력 받기  -->
 		<form class = "form-horizontal" name = "inputbasic" id = "inputbasic" method = "post"
 			onsubmit = "return check();" action = "loanDetail.do">
-			<!-- hidden 정보들  -->
-			<input type = "hidden" name = "borrower_jobbiz" value = "<%=borrower.getBorrower_jobbiz() %>">
 			<input type = "hidden" name = "borrower_totalincome" value = "<%=borrower.getBorrower_totalincome() %>">
 			<input type = "hidden" name = "borrower_credit" value = "<%=borrower.getBorrower_credit() %>">
 			<input type = "hidden" name = "borrower_limit" value = "<%=borrower.getBorrower_limit() %>">
 			<input type = "hidden" name = "goodsVO.goods_object" value = "<%=borrower.getGoodsVO().getGoods_object() %>">
-			
+			<input type = "hidden" name = "borrower_jobbiz" value = "<%=borrower.getBorrower_jobbiz() %>">
+			<input type = "hidden" name = "borrower_jobperiod" value = "<%=borrower.getBorrower_jobperiod() %>">
 			<fieldset class="col-md-6 col-md-offset-3">
 				<legend>상세 정보 입력</legend>
 				<div class = "form-group">

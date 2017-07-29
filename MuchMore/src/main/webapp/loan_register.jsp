@@ -29,12 +29,16 @@
 		<!-- 대출 정보 입력 페이지 -->
 		<form method="post" name="writeform" class="form-horizontal" action="loanRegisterAction.do">
 			<!-- 대출자 그 전 정보 -->
-			<%-- <input type = "hidden" name="borrower_id" value=<%=id %>>
-			<input type = "hidden" name="borrower_jobbiz" value=<%=borrower.getBorrower_jobbiz() %>>
+			<input type = "hidden" name="borrower_id" value=<%=id %>>
+			<%-- <input type = "hidden" name="borrower_jobbiz" value=<%=borrower.getBorrower_jobbiz() %>>
 			<input type = "hidden" name="borrower_amount" value=<%=borrower.getBorrower_amount() %>>
 			<input type = "hidden" name="borrower_monthlypay" value=<%=borrower.getBorrower_monthlypay() %>>
+			
+			 --%>
 			<input type = "hidden" name="goodsVO.goods_object" value=<%=borrower.getGoodsVO().getGoods_object() %>>
-			<input type = "hidden" name="goodsVO.goods_sum" value=<%=borrower.getGoodsVO().getGoods_sum() %>> --%>  
+			<input type = "hidden" name="goodsVO.goods_sum" value=<%=borrower.getGoodsVO().getGoods_sum() %>>
+			<input type = "hidden" name="borrower_jobname" value=<%=borrower.getBorrower_jobname() %>>
+			<input type = "hidden" name="borrower_jobperiod" value=<%=borrower.getBorrower_jobperiod() %>>
 			<input type = "hidden" name="borrower_credit" value=<%=borrower.getBorrower_credit() %>>
 			<input type = "hidden" name="borrower_limit" value=<%=borrower.getBorrower_limit() %>>
 			<input type = "hidden" name="borrower_totalincome" value=<%=borrower.getBorrower_totalincome() %>>
@@ -76,6 +80,14 @@
 	    		</div>
 	    		
 	    		<div class="form-group">
+					<label for="borrower_loanperiod" class="col-lg-2 control-label">대출 금리 : </label>
+					<div class="col-lg-10">
+						<input type = "text" id = "borrower_loanperiod" name = "borrower_rate"
+							value = "<%=borrower.getBorrower_loanperiod()%>" readonly>
+					</div>
+	    		</div>
+	    		
+	    		<div class="form-group">
 					<label for="borrower_amount" class="col-lg-2 control-label">총 상환액 : </label>
 					<div class="col-lg-10">
 						<input type = "text" id = "borrower_amount" name = "borrower_amount"
@@ -100,7 +112,7 @@
 	    		</div>
 	    		
 	    		<div class="form-group">
-					<label for="borrower_repay_date" class="col-lg-2 control-label">월 납입금액 : </label>
+					<label for="borrower_repay_date" class="col-lg-2 control-label">월 상환일 : </label>
 					<div class="col-lg-10">
 						<input type = "text" id = "borrower_repay_date" name = "borrower_repay_date"
 							value = "<%=borrower.getBorrower_repay_date() %>" readonly>
