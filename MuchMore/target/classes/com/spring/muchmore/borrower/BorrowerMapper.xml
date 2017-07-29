@@ -2,5 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.muchmore.borrower.BorrowerMapper">
-
+	<resultMap type="BorrowerVO" id="BorrowerResultMap">
+		<result property="borrower_id" column="borrower_id" />
+		<result property="borrower_rate" column="borrower_rate" />
+		<result property="borrower_amount" column="borrower_amount" />
+		<result property="borrower_repay_date" column = "borrower_repay_date"/>
+		<result property="borrower_monthlypay" column="borrower_monthlypay" />
+		<result property="borrower_limit" column="borrower_limit" />
+		<result property="borrower_credit" column="borrower_credit" />
+		<result property="borrower_totalincome" column="borrower_totalincome" />
+		<result property="borrower_jobbiz" column="borrower_jobbiz" />
+		<result property="borrower_jobname" column="borrower_jobname" />
+		<result property="borrower_jobperiod" column="borrower_jobperiod" />
+		<result property="borrower_loanperiod" column="borrower_loanperiod" />
+		<result property="borrower_startdate" column="borrower_startdate" />
+		<result property="borrower_enddate" column="borrower_enddate" />
+		<result property="borrower_status" column="borrower_status" />
+		<result property="borrower_balance" column="borrower_balance" />
+		<result property="borrower_payok" column="borrower_payok" />
+		<result property="borrower_registerdate" column="borrower_registerdate" />
+		
+		<!-- 상품 테이블 -->
+		<collection property="goodsVO" resultMap="GoodsResultMap"/>
+	</resultMap>
+	
+	<resultMap type = "GoodsVO" id = "GoodsResultMap">
+		<result property = "goods_num" column = "goods_num"/>
+		<result property = "goods_sum" column="goods_sum"/>
+		<result property="goods_rate" column="goods_rate"/>
+		<result property="goods_object" column="goods_object"/>
+		<result property="borrower_id" column="borrower_id"/>
+		<result property="goods_invest" column = "goods_invest"/>
+		<result property="goods_status" column = "goods_status"/>
+		<result property="goods_date" column = "goods_date"/>
+	</resultMap>
 </mapper>

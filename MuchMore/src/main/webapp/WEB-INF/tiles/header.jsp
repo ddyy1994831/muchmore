@@ -47,7 +47,7 @@
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							<li>
-								<a href="loan_main.do">대출하기</a>
+								<a href="loan.do">대출하기</a>
 							</li>
 							<li>
 								<a href="invest_list.do">투자하기</a>

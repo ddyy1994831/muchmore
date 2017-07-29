@@ -43,6 +43,7 @@
 		<result property="borrower_balance" column="borrower_balance" />
 		<result property="borrower_payok" column="borrower_payok" />
 		<result property="borrower_registerdate" column="borrower_registerdate" />		
+
 	</resultMap>
 	
 	<!-- 2017-07-29 성현 : 회원 가입 -->

@@ -104,12 +104,12 @@ public class MemberController {
 		return result; 
 	}
 	
-	
+	// 2017-07-29 혜림 : 아이디 찾기 페이지로 이동
 	@RequestMapping("loginFindId.do")
 	public String findId() {
 		return "login_find_id";
 	}
-	
+	// 2017-07-29 혜림 : 아이디 찾기 Action
 	@RequestMapping("loginFindIdAction.do")
 	public ModelAndView findIdAction(MemberVO member) {
 		ModelAndView result = new ModelAndView();
@@ -123,12 +123,12 @@ public class MemberController {
 		result.setViewName("login_find_id_ok");
 		return result;
 	}
-	
+	// 2017-07-29 혜림 : 비밀번호 찾기 페이지로 이동
 	@RequestMapping("loginFindPw.do")
 	public String findPw() {
 		return "login_find_pw";
 	}
-	
+	// 2017-07-29 혜림 : 비밀번호 찾기 Action
 	@RequestMapping("loginFindPwAction.do")
 	public ModelAndView findPwAction(MemberVO member) {
 		ModelAndView result = new ModelAndView();		
