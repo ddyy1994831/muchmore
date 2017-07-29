@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
 <mapper namespace="com.spring.muchmore.member.MemberMapper">
+
 	<!-- 2017-07-29 혜림 : member 테이블 쿼리 결과반환 -->
 	<resultMap type="MemberVO" id="MemberResultMap">
 		<result property="member_id" column="member_id" />
@@ -41,9 +42,52 @@
 		<result property="borrower_status" column="borrower_status" />
 		<result property="borrower_balance" column="borrower_balance" />
 		<result property="borrower_payok" column="borrower_payok" />
-		<result property="borrower_registerdate" column="borrower_registerdate" />
-		
+		<result property="borrower_registerdate" column="borrower_registerdate" />		
 	</resultMap>
+	
+	<!-- 2017-07-29 성현 : 회원 가입 -->
+	<insert id="insertMember" parameterType="com.spring.muchmore.member.MemberVO">
+		insert into
+		member(member_id, 
+		member_pw1, 
+		member_pw2, 
+		member_name, 
+		member_phone,
+		member_jumin1,
+		member_jumin2, 
+		member_email, 
+		member_zipcode,
+		member_addr1, 
+		member_addr2, 
+		member_agreement)
+		values(#{member_id},
+		#{member_pw1}, 
+		#{member_pw2},
+		#{member_name}, 
+		#{member_phone},
+		#{member_jumin1}, 
+		#{member_jumin2},
+		#{member_email},
+		#{member_zipcode},
+		#{member_addr1},
+		#{member_addr2},
+		#{member_agreement})
+	</insert>
+	
+	<!-- 2017-07-29 성현 : 회원 가입시 가상계좌 생성 -->
+	<insert id="createVirtualAccount" parameterType="hashmap">
+		insert into
+		account(member_id, account_virtual)
+		values(#{member_id}, #{account_virtual})
+	</insert>
+	
+	<!-- 2017-07-29 성현 : 회원가입 아이디 중복체크 시 회원 중복 체크 -->
+	<select id="checkId" resultType="int" parameterType="String">
+		select
+		nvl(count(*),0)
+		from member
+		where member_id = #{member_id}
+	</select>
 	 
 	<!-- 2017-07-29 혜림 : 회원 정보 전체 가져오기. -->
 	<select id="getMember" resultType="MemberVO" parameterType = "MemberVO">

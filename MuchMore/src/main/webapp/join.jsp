@@ -10,8 +10,11 @@
 		id = (String) session.getAttribute("id");
 	}
 %>
+<!-- 도로명 주소 찾기 -->
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-    
+   
+   	//입력값 예외처리
     	function check(){
     		var id = joinform.member_id.value;
     		var password1 = joinform.member_pw1.value;
@@ -20,11 +23,16 @@
     		var exptext =  /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
     		var phone = joinform.member_phone.value;
     		var	name = joinform.member_name.value;
+    		var jumin1 = document.getElementById("member_jumin1");
+    		var jumin2 = document.getElementById("member_jumin2");
+    		var zipcode = document.getElementById("member_zipcode");
+    		var addr1 = document.getElementById("member_addr1");
+    		var addr2 = document.getElementById("member_addr2");
     		var agreement = joinform.member_agreement.value;
     	
     		var forms = document.getElementById("joinform");
     	
-    		//아이디 체크
+    	//아이디 체크
     		if(id.length < 8 || id.length > 12){
 	    		alert("아이디를 제대로 입력해주세요. (영문, 숫자 포함 8~12자리)");
     			joinform.member_id.focus();
@@ -43,10 +51,10 @@
     			}	
     		}
     	//아이디 중복확인 체크
-    	if(joinform.idDuplication.value != "idCheck"){
-    		alert("아이디 중복체크를 해주세요.");
-    		return false;
-    	}
+    		if(joinform.idDuplication.value != "idCheck"){
+    			alert("아이디 중복체크를 해주세요.");
+    			return false;
+    		}
     		
     	//비밀번호 체크
     		if(password1.length < 6 || password1.length > 10){
@@ -97,6 +105,98 @@
     			return false;
     		}
     	
+    	//주민번호 체크
+     		if (jumin1.value == "") // 빈공백 체크
+    		{
+    			alert("주민번호(앞자리)를 입력하세요!!")
+    			jumin1.focus();
+    			return false;
+    		}
+    		
+    		else if (jumin2.value == "") // 빈공백 체크
+        	{
+    			alert("주민번호(뒷자리)를 입력하세요!!")
+    			jumin2.focus();
+    			return false;
+    		}
+    		
+    		else // 빈공백이 아닐때
+    		{
+    			var str1 = jumin1.value;
+    			var str2 = jumin2.value;
+    			if (str1.length != 6) // 입력 길이 체크
+    			{
+    				alert("주민번호 확인(생년월일 6자리)!!!")
+    				jumin1.focus();
+    				return false;
+    			}
+    			
+    			else if (str2.length != 7) // 입력 길이 체크
+    			{
+    				alert("주민번호 확인(7자리)!!!")
+    				jumin2.focus();
+    				return false;
+    			}
+    			
+    			else // 입력값 길이에 오류가 없을 때
+    			{
+    				str = str1 + str2;
+    				var w = 2, hap = 0, chk;
+    				for (i = 0; i < str.length; i++)
+    				{
+    					ch = str.substring(i, i+1);
+    					if (!(ch >= "0" && ch <= "9")) // 입력문자가 숫자인지 검사 // if()안의 문장을 isNaN(str)로 하고 for문 밖으로 빼놓아도 같은 효과!
+    					{
+    						alert("특수문자가 포함, 다시 입력!");
+    						document.joinform.jumin1.focus();
+    						return false;
+    					}
+    					
+    					else
+    					{
+    						if( i == (str.length-1)) // 마지막은 체크디지트 이므로 합계 계산에서 제외시킴.
+    							continue;
+    						hap += parseInt(ch) * w; // 가중치(w)를 곱해서 합계를 구함
+    						w++;
+    						if (w == 10) // 가중치가 10이면 2로 변경
+    						w = 2;
+    					}
+    				}
+    				
+    				chk = 11 - (hap % 11); // 체크디지트 구함
+    				if (chk == 10)
+    					chk = 0;
+    				else if (chk == 11)
+    					chk = 1;
+    		
+    				if (chk != parseInt(str.substring(str.length-1, str.length)))
+    				{
+    					alert("주민번호 오류, 다시 입력!!!");
+    					document.joinform.jumin1.focus();
+    					return false;
+    				}
+    			}
+    		}
+    		
+    	//우편번호 공백 체크
+    		if (zipcode.value == ""){
+    			alert("우편번호 검색을 실시하세요.");
+    			zipcode.focus();
+    			return false;
+    		}
+    	//기본주소 공백 체크
+    		if (addr1.value == ""){
+    			alert("우편번호 검색을 실시하세요.");
+    			zipcode.focus();
+    			return false;
+    		}
+    	//상세주소 공백 체크
+    		if (addr2.value == ""){
+    			alert("상세주소를 입력하세요.");
+    			addr2.focus();
+    			return false;
+    		}
+    	
     	//개인정보약관 동의 체크
     		if(agreement == "0"){
     			alert("개인정보약관에 동의하지 않으시면 회원가입을 하실 수 없습니다.");
@@ -112,10 +212,10 @@
     	}
     
     //아이디 중복체크
-    	function check_Id(){
+    function check_Id(){
     		var joinform = document.getElementById("joinform");
     		var id = joinform.member_id.value;
-    		var url = "join_chkId.do?member_id=" + id;
+    		var url = "joinCheckId.do?member_id=" + id;
     	
     		if(id.length == 0){
     			alert("아이디를 입력하세요.");
@@ -124,18 +224,62 @@
     		}
     		open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no," + 
     			"scrollbars=no, resizable=no, width=400, height=200");
-    	}
+    }
     
-    //아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다. 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디 입력했을 때 다시 중복체크를 하도록 한다.
+    //아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다. 이렇게 하는 이유는 중복체크 후 아이디 입력란에 새로운 아이디 입력했을 때 다시 중복체크를 하도록 한다.
     function inputIdChk(){
     	document.joinform.idDuplication.value="idUncheck";
     }
-    </script>
+    
+	//우편번호 검색 사용
+	function sample6_execDaumPostcode() {
+		new daum.Postcode({
+	    	oncomplete: function(data) {
+	        	// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	        	// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+		    	// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var fullAddr = ''; // 최종 주소 변수
+				var extraAddr = ''; // 조합형 주소 변수
+	
+	        	// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	        	if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+			        fullAddr = data.roadAddress;
+		    	}
+	        
+	        	else { // 사용자가 지번 주소를 선택했을 경우(J)
+	        		fullAddr = data.jibunAddress;
+	        	}
+	
+				// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+	        	if(data.userSelectedType === 'R'){
+	        		//법정동명이 있을 경우 추가한다.
+	            	if(data.bname !== ''){
+	            		extraAddr += data.bname;
+	            	}
+	            
+	        		// 건물명이 있을 경우 추가한다.
+	            	if(data.buildingName !== ''){
+	            		extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	            	}
+					// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+					fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+				}
+	
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.getElementById("member_zipcode").value = data.zonecode; //5자리 새우편번호 사용
+				document.getElementById("member_addr1").value = fullAddr;
+	
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById("member_addr2").focus();
+			}
+		}).open();
+	}
+</script>
 
 <section class="container">
 	<div class="row">
 		<form id="joinform" name="joinform" class="form-horizontal"
-			action="joinform2.do" method="post" onsubmit="return check()">
+			action="joinAction.do" method="post" onsubmit="return check()">
 			<fieldset>
 				<legend>회원가입</legend>
 				<div class="form-group">
@@ -176,6 +320,21 @@
 							name="member_name" placeholder="이름">
 					</div>
 				</div>
+
+				<div class="form-group">
+					<label for="input_jumin1" class="col-lg-2 control-label">주민번호</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control" id="member_jumin1"
+							name="member_jumin1" placeholder="">
+					</div>
+					<div class="col-lg-1">-</div>
+					<div class="col-lg-4">
+						<input type="password" class="form-control" id="member_jumin2"
+							name="member_jumin2" placeholder="">
+					</div>
+				</div>
+
+
 				<div class="form-group">
 					<label for="member_phone" class="col-lg-2 control-label">휴대폰번호</label>
 					<div class="col-lg-10">
@@ -195,6 +354,26 @@
 				</div>
 
 				<div class="form-group">
+					<label for="input_addr1" class="col-lg-2 control-label">주소</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="member_zipcode"
+							name="member_zipcode" placeholder=""> <input
+							type="button" class="btn btn-primary btn-sm" value="우편번호 검색"
+							onclick="sample6_execDaumPostcode()"><br />
+						<br /> <input type="text" class="form-control" id="member_addr1"
+							name="member_addr1" placeholder="">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="input_addr2" class="col-lg-2 control-label">상세주소</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="member_addr2"
+							name="member_addr2" placeholder="">
+					</div>
+				</div>
+
+				<div class="form-group">
 					<label class="col-lg-2 control-label">개인정보 약관 동의</label>
 					<div class="col-lg-10">
 						<div class="radio">
@@ -208,7 +387,7 @@
 							</label>
 						</div>
 					</div>
-				</div>
+				</div>				
 
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">

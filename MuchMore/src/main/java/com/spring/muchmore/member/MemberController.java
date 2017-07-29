@@ -1,15 +1,20 @@
 package com.spring.muchmore.member;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+
+import com.spring.muchmore.member.MemberDAOService;
+
 
 @Controller
 public class MemberController {
@@ -17,11 +22,35 @@ public class MemberController {
 	@Autowired
 	private MemberDAOService memberDAOService;
 	
+
+	//성현 2017-07-28 : 회원가입 페이지 이동
 	@RequestMapping("join.do")
 	public String join(){
 		return "join";
 	}
 	
+	//성현 2017-07-29 : 회원가입 데이터 입력
+	@RequestMapping("joinAction.do")
+	public String joinAction(Model model, MemberVO member){
+		memberDAOService.insertMember(member);
+		return "join_result";
+	}
+		
+	//성현 2017-07-29 : 회원가입 아이디 중복체크
+	@RequestMapping("joinCheckId.do")
+	public String joinCheckId(Model model, HttpServletRequest request) {
+
+		String id = request.getParameter("member_id");
+
+		int checkId = memberDAOService.checkId(id);
+
+		model.addAttribute("checkId", checkId);
+		model.addAttribute("id", id);
+		return "join_chkId";
+
+	}
+
+
 	// 2017-07-29 혜림 : 로그인 페이지로 이동
 	@RequestMapping("login.do")
 	public String login() {
@@ -107,8 +136,7 @@ public class MemberController {
 			result.addObject("msg", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
 			result.setViewName("loginform");
 		}
-*/
-		
-	}
+*/	
 	
+	}
 }
