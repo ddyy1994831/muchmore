@@ -8,7 +8,7 @@ import com.spring.muchmore.goods.GoodsVO;
 public class BorrowerVO {
 	private String borrower_id;
 	private Date borrower_registerdate;
-	private float borrower_rate;
+	private double borrower_rate;
 	private int borrower_repay_date;
 	private int borrower_amount;
 	private int borrower_monthlypay;
@@ -44,11 +44,12 @@ public class BorrowerVO {
 		this.borrower_registerdate = borrower_registerdate;
 	}
 
-	public float getBorrower_rate() {
+
+	public double getBorrower_rate() {
 		return borrower_rate;
 	}
 
-	public void setBorrower_rate(float borrower_rate) {
+	public void setBorrower_rate(double borrower_rate) {
 		this.borrower_rate = borrower_rate;
 	}
 

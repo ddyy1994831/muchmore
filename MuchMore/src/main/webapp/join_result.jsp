@@ -10,7 +10,6 @@
 		id = (String)session.getAttribute("id");
 	}
 %>
-
     <section class = "container">
     	<div class = "row" style="height:100%">
     		<div class = "col-md-6 col-md-offset-3">
@@ -22,4 +21,4 @@
     		</div>
     	</div>
     </section>
-    
+
