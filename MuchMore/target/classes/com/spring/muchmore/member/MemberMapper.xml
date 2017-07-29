@@ -42,7 +42,6 @@
 		<result property="borrower_balance" column="borrower_balance" />
 		<result property="borrower_payok" column="borrower_payok" />
 		<result property="borrower_registerdate" column="borrower_registerdate" />
-		
 	</resultMap>
 	 
 	<!-- 2017-07-29 혜림 : 회원 정보 전체 가져오기. -->
