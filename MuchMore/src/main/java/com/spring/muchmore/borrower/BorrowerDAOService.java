@@ -1,6 +1,8 @@
 package com.spring.muchmore.borrower;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,8 +51,31 @@ public class BorrowerDAOService implements BorrowerDAO {
 		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
 		borrowerMapper.insertGoods(borrower);
 	}
+	
+	/*2017-07-30 혜림 : mypage_myloan 대출내역에서 해당 회원의 대출 내역 전체 가져오기*/
+	@Override
+	public List<BorrowerVO> getBorrowerList(BorrowerVO borrower) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		List<BorrowerVO> borrower_list = borrowerMapper.getBorrowerList(borrower);
+		return borrower_list;
+	}
 
-	
-	
+	/*2017-07-30 혜림 : 대출자 id와 상품 번호로 조회하여 해당 대출자와 상품에 대한 정보 가져오기*/
+	@Override
+	public BorrowerVO getBorrower(BorrowerVO borrower) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		BorrowerVO result = borrowerMapper.getBorrower(borrower);
+		return result;
+	}
+
+	/*2017-07-30 혜림 : 대출자가 서류를 업로드*/ 
+	@Override
+	public void uploadFile(BorrowerVO borrower) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		borrowerMapper.uploadFile(borrower);
+	}
 	
 }

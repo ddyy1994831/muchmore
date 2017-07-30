@@ -24,6 +24,8 @@ public class BorrowerVO {
 	private String borrower_status;
 	private String borrower_payok;
 	private int borrower_balance;
+	private String borrower_file;
+	private String borrower_stored;
 	
 	//상품정보
 	private GoodsVO goodsVO;
@@ -180,5 +182,23 @@ public class BorrowerVO {
 	public void setGoodsVO(GoodsVO goodsVO) {
 		this.goodsVO = goodsVO;
 	}
+
+	public String getBorrower_file() {
+		return borrower_file;
+	}
+
+	public void setBorrower_file(String borrower_file) {
+		this.borrower_file = borrower_file;
+	}
+
+	public String getBorrower_stored() {
+		return borrower_stored;
+	}
+
+	public void setBorrower_stored(String borrower_stored) {
+		this.borrower_stored = borrower_stored;
+	}
+	
+	
 	
 }
