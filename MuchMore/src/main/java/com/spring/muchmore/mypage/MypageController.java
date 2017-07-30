@@ -3,8 +3,6 @@ package com.spring.muchmore.mypage;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -22,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.muchmore.borrower.BorrowerDAOService;
 import com.spring.muchmore.borrower.BorrowerVO;
 import com.spring.muchmore.goods.GoodsVO;
+import com.spring.muchmore.invest.InvestDAOService;
+import com.spring.muchmore.invest.InvestVO;
 import com.spring.muchmore.member.MemberDAOService;
 import com.spring.muchmore.member.MemberVO;
 
@@ -32,7 +33,10 @@ public class MypageController {
 	private MemberDAOService memberDAOService;
 	
 	@Autowired
-	private BorrowerDAOService borrowerDAOService; 
+	private BorrowerDAOService borrowerDAOService;
+	
+	@Autowired
+	private InvestDAOService investDAOService;
 	
 	//2017-07-29 성현 : 메인화면 이동
 	@RequestMapping("mypage_main.do")
@@ -159,6 +163,20 @@ public class MypageController {
 			borrowerDAOService.uploadFile(borrower);
 		}
 		return "redirect:/mypage_myloan.do";
+	}
+	
+	/*2017-07-29 성현 : 마이페이지 투자내역 으로 이동*/
+	@RequestMapping("mypage_myinvest.do")
+	public ModelAndView mypage_investinfo(Model model, HttpSession session) {
+		ModelAndView result = new ModelAndView();
+		
+		String id = (String) session.getAttribute("id");
+
+		List<InvestVO> invest = investDAOService.getInvestById(id);
+		
+		result.addObject("invest_list", invest);
+		result.setViewName("mypage_myinvest");
+		return result;
 	}
 	
 
