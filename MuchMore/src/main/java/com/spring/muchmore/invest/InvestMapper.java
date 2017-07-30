@@ -1,5 +1,11 @@
 package com.spring.muchmore.invest;
 
-public interface InvestMapper {
+import java.util.List;
 
+import com.spring.muchmore.invest.InvestVO;
+
+public interface InvestMapper {
+	
+	/* 2017-07-30 성현 : 개인 투자  내역 가져오기(List타입) */
+	public List<InvestVO> getInvestById(String id);
 }

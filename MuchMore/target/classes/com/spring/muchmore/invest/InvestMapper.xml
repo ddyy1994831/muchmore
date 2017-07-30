@@ -3,5 +3,34 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.spring.muchmore.invest.InvestMapper">
-
+<!-- 투자 테이블 -->
+	<resultMap type="InvestVO" id="InvestResultMap">
+		<result property="member_id" column="member_id"/>
+		<result property="invest_date" column="invest_date" />
+		<result property="invest_sum" column="invest_sum" />
+		<result property="invest_pay_ok" column="invest_pay_ok"/>
+		<result property="invest_return" column="invest_return" />
+		
+		<!-- 상품 join 테이블 -->
+		<collection property="goodsVO" resultMap="GoodsResultMap"/>
+	</resultMap>
+	
+	<resultMap type = "com.spring.muchmore.goods.GoodsVO" id ="GoodsResultMap">
+		<result property = "goods_num" column="goods_num"/>
+		<result property = "goods_sum" column="goods_sum"/>
+		<result property = "goods_rate" column="goods_rate"/>
+		<result property = "goods_object" column="goods_object"/>
+		<result property = "goods_status" column="goods_status"/>
+		<result property = "borrower_id" column="borrower_id"/>
+		<result property = "goods_invest" column="goods_invest"/>
+		<result property = "goods_date" column="goods_date"/>
+	</resultMap>	
+	
+<!-- 2017-07-30 성현 : 개인 투자  내역 가져오기(List타입) -->
+	<select id="getInvestById" parameterType="String" resultMap="InvestResultMap">
+		SELECT *
+		FROM invest invest, goods goods
+		WHERE invest.goods_num = goods.goods_num 
+		and invest.member_id = #{member_id}
+	</select>
 </mapper>

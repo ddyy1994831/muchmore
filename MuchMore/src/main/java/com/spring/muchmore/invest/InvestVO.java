@@ -2,6 +2,8 @@ package com.spring.muchmore.invest;
 
 import java.sql.Date;
 
+import com.spring.muchmore.goods.GoodsVO;
+
 
 public class InvestVO {
 	private String member_id;
@@ -11,6 +13,15 @@ public class InvestVO {
 	private String invest_pay_ok;
 	private int invest_return;
 	
+	//상품정보
+	private GoodsVO goodsVO;
+	
+	public GoodsVO getGoodsVO() {
+		return goodsVO;
+	}
+	public void setGoodsVO(GoodsVO goodsVO) {
+		this.goodsVO = goodsVO;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

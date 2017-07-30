@@ -4,4 +4,18 @@
 	
 <mapper namespace="com.spring.muchmore.goods.GoodsMapper">
 
+<!-- 2017-07-30 성현 : 상품 테이블 -->
+	<resultMap type = "GoodsVO" id ="GoodsResultMap">
+		<result property = "goods_num" column="goods_num"/>
+		<result property = "goods_sum" column="goods_sum"/>
+		<result property = "goods_rate" column="goods_rate"/>
+		<result property = "goods_object" column="goods_object"/>
+		<result property = "goods_status" column="goods_status"/>
+		<result property = "borrower_id" column="borrower_id"/>
+		<result property = "goods_invest" column="goods_invest"/>
+		<result property = "goods_date" column="goods_date"/>
+	</resultMap>
+	
+	
+	
 </mapper>
