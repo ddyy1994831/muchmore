@@ -102,16 +102,40 @@
 			goods_sum,
 			goods_rate,
 			goods_object,
-			borrower_id,
-			goods_date
+			borrower_id
 			)
 		VALUES(
 			goods_sequence.nextval,
 			#{goodsVO.goods_sum},
-			#{goodsVO.goods_rate} * 0.8,
+			#{goodsVO.goods_rate} ,
 			#{goodsVO.goods_object},
-			#{borrower_id},
-			sysdate
+			#{borrower_id}
 			)
 	</insert>
+	
+	<!-- 2017-07-30 혜림 : mypage_myloan 대출내역에서 해당 회원의 대출 내역 전체 가져오기 -->
+	<select id = "getBorrowerList" parameterType="BorrowerVO" resultMap="BorrowerResultMap">
+		SELECT * 
+		FROM borrower, goods
+		WHERE borrower.borrower_id = goods.borrower_id
+			and borrower.borrower_registerdate = goods.goods_date
+	</select>
+	
+	<!-- 2017-07-30 혜림 : 대출자 id와 상품 번호로 조회하여 해당 대출자와 상품에 대한 정보 가져오기 -->
+	<select id = "getBorrower" parameterType="BorrowerVO" resultMap="BorrowerResultMap">
+		SELECT *
+		FROM borrower, goods
+		WHERE borrower.borrower_id = goods.borrower_id
+			and borrower.borrower_registerdate = goods.goods_date
+			and borrower.borrower_id = #{borrower_id}
+			and goods.goods_num = #{goodsVO.goods_num}
+	</select>
+	
+	<!-- 2017-07-30 혜림 : 대출자가 서류를 업로드 : 파일 업로드와 상태 변경-->
+	<update id = "uploadFile" parameterType="BorrowerVO">
+		UPDATE borrower
+		SET borrower_file = #{borrower_file}, borrower_stored = #{borrower_stored}, borrower_status = #{borrower_status}
+		WHERE borrower_id = #{borrower_id}
+			and borrower_registerdate = #{borrower_registerdate}
+	</update>
 </mapper>
