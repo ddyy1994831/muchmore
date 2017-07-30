@@ -1,6 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
 <mapper namespace="com.spring.muchmore.board.BoardMapper">
-
+	<!-- Board Mapper -->
+	<!-- resultMap이  ResultSet의 역할 -->
+	<resultMap type="BoardVO" id="BoardResultMap">
+		<result property="board_num" column="board_num" />
+		<result property="member_id" column="member_id" />
+		<result property="board_title" column="board_title" />
+		<result property="board_password" column="board_password" />
+		<result property="board_date" column="board_date" />
+		<result property="board_readcount" column="board_readcount" />
+		<result property="board_content" column="board_content" />
+		<result property="board_re_ref" column="board_re_ref" />
+		<result property="board_re_lev" column="board_re_lev" />
+		<result property="board_re_seq" column="board_re_seq" />
+		<result property="board_pw_check" column="board_pw_check" />
+	</resultMap>
+	
+	<select id="getListCount" resultType="int">
+		SELECT count(*)
+		FROM board
+	</select>
+	
+	<select id="getBoardList" resultMap="BoardResultMap" parameterType="hashmap">
+		SELECT *
+		FROM (SELECT rownum rnum, board_num, member_id, board_title, board_password,
+					board_date, board_readcount, board_content, board_re_ref, board_re_lev, board_re_seq, board_pw_check
+			  FROM (SELECT *
+			  		FROM board
+			  		ORDER BY baord_re_ref DESC, board_re_seq ASC))
+		WHERE rnum <![CDATA[ >= ]]> #{startrow, javaType=int} AND rnum <![CDATA[ <= ]]> #{endrow, javaType=int}
+	</select>
+	
+	<select id="getMaxBoardnum" resultType="int">
+		SELECT max(board_num)
+		FROM board
+	</select>
+	
+	<insert id="boardInsert" parameterType="com.spring.muchmore.board.BoardVO">
+		INSERT INTO board(board_num, member_id, board_title, board_password, board_date, board_readcount, board_content,
+							board_re_ref, board_re_lev, board_re_seq, board_pw_check)
+		VALUES (
+				#{board_num, javaType=int},
+				#{member_id, javaType=String},
+				#{board_title, javaType=String},
+				#{board_password, javaType=String},
+				sysdate,
+				#{board_readcount, javaType=int},
+				#{board_content, javaType=String},
+				#{board_num},
+				#{board_re_lev, javaType=int},
+				#{board_re_seq, javaType=int},
+				#{board_pw_check, javaType=int})
+	</insert>
+	
+	<insert id="boardReply" parameterType="com.spring.muchmore.board.BoardVO">
+		INSERT INTO board(board_num, member_id, board_title, board_password, board_date, board_readcount, board_content,
+							board_re_ref, board_re_lev, board_re_seq, board_pw_check)
+		VALUES (
+				#{board_num},
+				#{member_id},
+				#{board_title},
+				#{board_password},
+				sysdate,
+				#{board_readcount},
+				#{board_content},
+				#{board_re_ref},
+				#{board_re_lev},
+				#{board_re_seq},
+				#{board_pw_check})
+	</insert>
+	
+	<delete id="boardDelete">
+		DELETE FROM board
+		WHERE board_num=#{board_num}
+	</delete>
+	
+	<select id="getDetail" resultMap="BoardResultMap" parameterType="com.spring.muchmore.board.boardVO">
+		SELECT *
+		FROM board
+		WHERE board_num=#{board_num}
+	</select>
+	
+	<update id="boardModify" parameterType="com.spring.muchmore.board.BoardVO">
+		UPDATE board
+		SET board_title=#{board_title}, board_password=#{board_password}, board_content=#{board_content}
+		WHERE board_num=#{board_num}
+	</update>
+	
+	<update id="setReadCountUpdate" parameterType="com.spring.muchmore.board.BoardVO">
+		UPDATE board
+		SET board_readcount=#{board_readcount}+1
+		WHERE board_num=#{board_num}
+	</update>
+	
+	<update id="boardReplyUpdate" parameterType="com.spring.muchmore.board.BoardVO">
+		UPDATE board
+		SET board_re_seq=#{board_re_seq}+1
+		WHERE board_re_ref=#{boare_re_ref} AND board_re_seq > #{board_re_seq}
+	</update>
 </mapper>
