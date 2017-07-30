@@ -50,7 +50,7 @@
 								<a href="loan.do">대출하기</a>
 							</li>
 							<li>
-								<a href="invest_list.do">투자하기</a>
+								<a href="invest.do">투자하기</a>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">고객센터 <b class="caret"></b></a>

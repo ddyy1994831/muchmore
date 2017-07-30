@@ -30,5 +30,11 @@ public class InvestController {
 		result.setViewName("mypage_myinvest");
 		return result;
 	}
+	
+	
+	@RequestMapping("invest.do")
+	public String invest(){
+		return "invest";
+	}
 
 }
