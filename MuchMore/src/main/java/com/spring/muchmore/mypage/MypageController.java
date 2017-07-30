@@ -1,7 +1,12 @@
 package com.spring.muchmore.mypage;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,8 +15,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.muchmore.borrower.BorrowerDAOService;
+import com.spring.muchmore.borrower.BorrowerVO;
+import com.spring.muchmore.goods.GoodsVO;
 import com.spring.muchmore.member.MemberDAOService;
 import com.spring.muchmore.member.MemberVO;
 
@@ -19,7 +29,10 @@ import com.spring.muchmore.member.MemberVO;
 public class MypageController {
 	
 	@Autowired
-	public MemberDAOService memberDAOService;
+	private MemberDAOService memberDAOService;
+	
+	@Autowired
+	private BorrowerDAOService borrowerDAOService; 
 	
 	//2017-07-29 성현 : 메인화면 이동
 	@RequestMapping("mypage_main.do")
@@ -68,5 +81,85 @@ public class MypageController {
 		memberDAOService.updateMember(member);
 		return "mypage_memberupdatesuccess";
 	}
+	
+	//2017-07-03 혜림 : 대출 내역 화면으로 이동
+	@RequestMapping("mypage_myloan.do")
+	public ModelAndView mypage_myloan(HttpSession session) {
+		
+		ModelAndView result = new ModelAndView();
+		//현재 로그인한 회원의 대출내역 가져오기
+		//쿼리에 객체를 파라미터로 전달하기 위해 객체 생성
+		BorrowerVO borrower = new BorrowerVO();
+		//생서한 borrower 객체에 id 저장
+		borrower.setBorrower_id((String)session.getAttribute("id"));
+		//현재 로그인한 회원의 대출내역 가져오기
+		List<BorrowerVO> borrower_list = borrowerDAOService.getBorrowerList(borrower);
+		
+		result.addObject("borrower_list", borrower_list);
+		result.setViewName("mypage_myloan");
+		return result;
+	}
+	
+	/*2017-07-03 혜림 : 대출 내역 화면에서 서류제출 페이지로 이동*/
+	@RequestMapping("mypage_myloan_fileUpload.do")
+	public ModelAndView myloanFileUpload(BorrowerVO borrower) {
+		ModelAndView result = new ModelAndView();
+		
+		BorrowerVO getborrower = borrowerDAOService.getBorrower(borrower);
+		System.out.println(getborrower.getBorrower_jobperiod());
+		System.out.println(getborrower.getBorrower_registerdate());
+		System.out.println(getborrower.getGoodsVO().getGoods_num());
+		
+		result.addObject("borrower", getborrower);
+		result.setViewName("mypage_myloan_fileupload");
+		return result;
+	}
+	
+	/*2017-07-03 혜림 : 서류 upload Action*/
+	@RequestMapping("mypage_myloan_fileUploadAction.do")
+	public String myloanFileUploadAction(MultipartHttpServletRequest request) throws Exception {
+		System.out.println("받아오노라 : " +request.getParameter("goods_num"));
+		System.out.println("1212aaa" +request.getParameter("borrower_registerdate"));
+		
+		//borrower에 받아온 데이터 다 넣기
+		int goods_num = Integer.parseInt(request.getParameter("goods_num"));
+		BorrowerVO borrower = new BorrowerVO();
+		borrower.setBorrower_id((String)request.getParameter("borrower_id"));
+		GoodsVO goods = new GoodsVO();
+		goods.setGoods_num(goods_num);
+		borrower.setGoodsVO(goods);
+		
+		borrower = borrowerDAOService.getBorrower(borrower);
+		
+		MultipartFile mf = request.getFile("borrower_file");
+		
+		//첨부파일이 없는 경우
+		if(mf.getSize() == 0) {
+			borrower.setBorrower_file("첨부파일없음");
+			borrower.setBorrower_stored("첨부파일없음");
+		}
+		
+		else {
+			borrower.setBorrower_file(mf.getOriginalFilename());
+			
+			//업로드한 파일이 저장되는 파일
+			String uploadPath = "C:\\hk0327\\upload\\";
+			
+			//파일 이름이 중복되지 않도록 처리
+			String originalFileExtension = mf.getOriginalFilename()
+					.substring(mf.getOriginalFilename().lastIndexOf("."));
+			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+
+			mf.transferTo(new File(uploadPath + storedFileName));
+			
+			borrower.setBorrower_file(mf.getOriginalFilename());
+			borrower.setBorrower_stored(storedFileName);
+			borrower.setBorrower_status("심사중");
+			
+			borrowerDAOService.uploadFile(borrower);
+		}
+		return "redirect:/mypage_myloan.do";
+	}
+	
 
 }
