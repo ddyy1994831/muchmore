@@ -82,9 +82,11 @@ public class BorrowerController {
 		ModelAndView result = new ModelAndView();
 		
 		//"원" 단위 맞추기
-		GoodsVO setGoods = borrower.getGoodsVO();
+		
+		borrower.getGoodsVO().setGoods_sum(borrower.getGoodsVO().getGoods_sum() * 10000);
+		/*GoodsVO setGoods = borrower.getGoodsVO();
 		setGoods.setGoods_sum(borrower.getGoodsVO().getGoods_sum() * 10000);
-		borrower.setGoodsVO(setGoods);
+		borrower.setGoodsVO(setGoods);*/
 		
 		//대출 금리 계산하기
 		double rate = borrowerDAOService.checkBorrowRate(borrower);
@@ -119,12 +121,14 @@ public class BorrowerController {
 		
 		//borrowe table에 데이터 넣기
 		borrowerDAOService.insertBorrower(borrower);
+		borrower.getGoodsVO().setGoods_rate(borrower.getBorrower_rate() * 0.8);
 		borrowerDAOService.insertGoods(borrower);
 		
 		result.addObject("borrower", borrower);
 		result.setViewName("loan_complete");
 		return result;
 	}
+	
 	
 		
 }
