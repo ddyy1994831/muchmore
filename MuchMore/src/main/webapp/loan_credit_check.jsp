@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	request.setCharacterEncoding("EUC-KR");
 	String id = null;
 	if(session.getAttribute("id") != null) {
 		id = (String)session.getAttribute("id");
 	}
-
+	int sum = 0;
 %>
 <!-- 체크박스 정상 체크했는지 확인 및 연봉 정상 입력 확인 -->
 <script type="text/javascript">
@@ -28,6 +27,15 @@
 	    }
 			
 		return true;
+}
+	
+function gNumCheck() {
+	if(event.keyCode >= 48 && event.keyCode <= 57) {
+		return true;
+	}
+	else {
+		event.returnValue = false;
+	}
 }
 </script>
 
@@ -76,15 +84,16 @@
 						<div class="form-group">
 							<label for="borrower_totalincome" class="col-sm-2 control-label"><b>연소득</b></label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control" id="borrower_totalincome" name="borrower_totalincome">
-								<!-- <span class="help-block"></span> -->
+								<input type="text" onkeypress = "gNumCheck()" class="form-control" 
+								id="borrower_totalincome" name="borrower_totalincome" placeholder = "만원단위 입력">
 							</div>
 						</div>
 				    
 						<div class="form-group">
 							<label for="inputEmail" class="col-sm-2 control-label"><b>희망대출금액</b></label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control" id="borrower_amount">
+								<input type="text" onkeypress = "gNumCheck()" class="form-control" id="borrower_amount"
+								placeholder = "만원단위 입력">
 							</div>
 						</div>
 						

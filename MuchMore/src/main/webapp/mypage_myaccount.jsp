@@ -2,6 +2,7 @@
 <%@page import="com.spring.muchmore.moneyinout.MoneyinoutVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String msg = (String)request.getAttribute("msg");
 	String id = null;
@@ -15,11 +16,32 @@
 	
 %>
 
+<script>
+	//혜림 : 입금하기 금액 입력 새 창 
+	function openInputForm() {
+		var url = "mypageMyaccountDeposit.do";
+		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
+				"scrollbars=no,resizeable=no,width=400px,height=300px");
+	}
+	
+	function openRegisterForm() {
+		var url = "mypageRegisterAccount.do";
+		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
+				"scrollbars=no,resizeable=no,width=400px,height=300px");
+	}
+	
+	function openWithdrawForm() {
+		var url = "mypageMyaccountWithdraw.do";
+		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
+				"scrollbars=no,resizeable=no,width=400px,height=300px");
+	}
+</script>
+
 <section class = "container">
 	<div class = "row" style = "height: 100%;">
 		<div class = "col-sm-3" id="menu">
 			<ul class="nav nav-pills nav-stacked">
-				<li class=""><a href="mypage_myaccount.do" id="MyAccount" >My Account</a></li>
+				<li class=""><a href="mypageMyaccount.do" id="MyAccount" >My Account</a></li>
 				<li class=""><a href="mypage_myinvest.do" id="MyInvest">투자내역</a></li>
 				<li class=""><a href="mypage_myloan.do" id="MyLoan">대출내역</a></li>
 				<li class=""><a href="mypage_memberupdate.do" id="MyUpdate" >회원정보수정</a></li>
@@ -57,16 +79,14 @@
 					<div class = "col-md-4 text-right">
 						<br/>
 						<font size = "5">
-						<b><%=member.getAccount().getAccount_balance() %>만원</b>
+						<b><%=member.getAccount().getAccount_balance() %>원</b>
 						<br/><br/>
 						</font>
    					</div>	
     				
-    				<form action = "mypage_myaccount_deposit_input.do" method = "post" name = "depositform" id = "depositform">
-    					<input type = "hidden" name = "member_id" value = "<%=member.getMember_id()%>">
-    					<input type = "hidden" name = "accountVO.account_virtual" value = "<%=member.getAccount().getAccount_virtual() %>">
+    				<form action = "mypageMyaccountDeposit.do" method = "post" name = "depositform" id = "depositform">
     					<div class ="col-md-6 col-md-offset-3 text-center"> 
-    						<input type = "submit" class="btn btn-primary" value = "입금하기">
+    						<input type = "button" onclick = "openInputForm()" class="btn btn-primary" value = "입금하기">
     					</div>
     				</form>
   				</div>
@@ -86,7 +106,7 @@
 	  						</thead>
 	  						<tbody>
 	    						<tr align = "right">
-	      							<td><font size = "5"><%=member.getAccount().getAccount_balance() %>만원</font></td>
+	      							<td><font size = "5"><%=member.getAccount().getAccount_balance() %>원</font></td>
 	      						</tr>
 	      					</tbody>
 	      				</table>
@@ -106,8 +126,9 @@
 	    							<%
 	    							if(member.getAccount().getAccount_real() == null) {
 	    							%>
-	    							<td><a href = "mypage_myaccount_withdraw_register_real_account.do"
-	    									 class = "btn btn-primary">계좌등록</a></td>
+	    							<td>
+	    								<a onclick = "openRegisterForm()" class = "btn btn-primary">계좌등록</a>
+	    							</td>
 	    							<%	
 	    							}
 	    							
@@ -130,13 +151,13 @@
     						<%
 	    					if(member.getAccount().getAccount_real() == null) {
 	    					%>
-	    						<button type = "submit" class = "btn btn-primary" value = "출금하기" disabled>출금하기</button>
+	    						<button class = "btn btn-primary" value = "출금하기" disabled>출금하기</button>
 	    					<%
 	    					}
     						
 	    					else {
 	    					%>
-    						<input type = "submit" class="btn btn-primary" value = "출금하기">
+    						<input type = "button" onclick = "openWithdrawForm()"  class="btn btn-primary" value = "출금하기">
     						<%
 	    					}
     						%>
