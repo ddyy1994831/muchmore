@@ -16,7 +16,7 @@
 
 <script>
 	function replyboard() {
-		if(boardform.board_qna_content.value == ""){
+		if(boardform.board_content.value == ""){
 			alert("내용을 입력하세요.");
 			return false;
 		}
@@ -25,12 +25,13 @@
 	}
 </script>
 
-<section class="container">
+<section class = "container">
+  	<div class = "row" style="height: 100%">
     <form action="BoardReplyAction.do" method="post" name="boardform" id="boardform">
     <input type="hidden" name="board_num" value = "<%=boardVO.getBoard_num() %>">
-    <input type="hidden" name="board_re_ref" value="<%=boardVO.getBoard_ref() %>">
-	<input type="hidden" name="board_re_lev" value="<%=boardVO.getBoard_lev() %>">
-	<input type="hidden" name="board_re_seq" value="<%=boardVO.getBoard_seq() %>">
+    <input type="hidden" name="board_ref" value="<%=boardVO.getBoard_num() %>">
+	<input type="hidden" name="board_lev" value="<%=boardVO.getBoard_lev() %>">
+	<input type="hidden" name="board_seq" value="<%=boardVO.getBoard_seq() %>">
 
     	<table class="table table-hover">
     		<tbody>
@@ -61,8 +62,8 @@
 				<tr>
 					<td align="center">비밀번호</td>
 					<td>
-						<input type="radio" id="board_pw_check" name="board_pw_check" value="<%=boardVO.getBoard_pw_check() %>">비밀글여부
-						&nbsp;&nbsp;
+						<!-- 2017-07-31 다예 : 관리자가 답변을 달땐 회원의 게시글이 비밀글이면 자동으로 비밀글로, 비밀글이 아니라면 비밀글이 아니게 된다. -->
+						<input type="hidden" id="board_pw_check" name="board_pw_check" value="<%=boardVO.getBoard_pw_check() %>">
 						<input type="password" id="board_password" name="board_password" value="<%=boardVO.getBoard_password() %>">
 				</td>
 				<tr>
@@ -76,4 +77,5 @@
 			</tbody>
 		</table>
 	</form>
+	</div>
 </section>

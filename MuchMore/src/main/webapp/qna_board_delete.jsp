@@ -14,7 +14,8 @@
 	int board_num = Integer.parseInt(request.getParameter("board_num"));
 %>
 
-<section class="container">
+<section class = "container">
+  	<div class = "row" style="height: 100%">
    	<form id="deleteForm" name="deleteForm" action="BoardDeleteAction.do" method="post">
 		<input type="hidden" id="board_num" name="board_num" value="<%=board_num %>">
 		<table class="table table-hover">
@@ -32,4 +33,5 @@
 			</tr>
 		</table>
 	</form>
+	</div>
 </section>

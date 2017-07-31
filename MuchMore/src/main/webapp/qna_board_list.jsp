@@ -22,27 +22,17 @@
 	int endpage = ((Integer)request.getAttribute("endpage")).intValue();
 %>
 
-<section class="container">
-	<div class="row">
-		<div class="span12">
+<section class = "container">
+  	<div class = "row" style="height: 100%">
+		<div style="padding-left:120px;padding-right:120px;">
 			<table class="table table-hover">
-				<thead>
+				 <thead>
 					<tr>
-						<th>
-							<div align="center" style="width: 100px">번호</div>
-						</th>
-						<th>
-							<div align="center" style="width: 400px">제목</div>
-						</th>
-						<th>
-							<div align="center" style="width: 200px">작성자</div>
-						</th>
-						<th>
-							<div align="center" style="width: 200px">작성일</div>
-						</th>
-						<th>
-							<div align="center" style="width: 100px">조회수</div>
-						</th>
+						<th style="width: 100px">번호	</th>
+						<th style="width: 400px">제목	</th>
+						<th style="width: 200px">작성자</th>
+						<th style="width: 200px">작성일</th>
+						<th style="width: 100px">조회수</th>
 					</tr>
 				</thead>
 			<%
@@ -54,10 +44,8 @@
 							BoardVO boardVO = (BoardVO)boardList.get(i);
 					%>
 							<tr>
-								<td align="center">
-									<div align="center" style="width: 100px"><%=boardVO.getBoard_num() %></div>
-								</td>
-								<td>
+								<td align="center" style="width: 100px"><%=boardVO.getBoard_num() %></td>
+								<td style="width: 400px">
 								<%
 									if(boardVO.getBoard_lev() != 0) {
 										for(int a=0; a<boardVO.getBoard_lev() * 2; a++) {
@@ -66,38 +54,33 @@
 								<%
 										}
 								%>
- 										&nbsp;&nbsp; 
+										&nbsp;&nbsp;
+								<%
+									}
+									else {
+								%>
+										&nbsp;&nbsp;
 								<%
 									}
 									if(id != null) {
 										//관리자인 경우
 										if(id.equals("muchmore")) {
 								%>
-											<div align="center" style="width: 400px">
 												<a href="BoardDetail.do?board_num=<%=boardVO.getBoard_num() %>"><%=boardVO.getBoard_title() %></a>
-											</div>
 								<%
 										}
 										//일반회원인 경우
 										else {											
 								%>
-											<div align="center" style="width: 400px">
 												<a href="BoardViewCheck.do?board_num=<%=boardVO.getBoard_num() %>"><%=boardVO.getBoard_title() %></a>
-											</div>
 								<%
 										}
 									}
 								%>
 								</td>
-								<td>
-									<div align="center" style="width: 200px"><%=boardVO.getMember_id() %></div>
-								</td>
-								<td>
-									<div align="center" style="width: 200px"><%=boardVO.getBoard_date() %></div>
-								</td>
-								<td>
-									<div align="center" style="width: 100px"><%=boardVO.getBoard_readcount() %></div>
-								</td>
+								<td><%=boardVO.getMember_id() %></td>
+								<td><%=boardVO.getBoard_date() %></td>
+								<td><%=boardVO.getBoard_readcount() %></td>
 							</tr>
 					<%
 						}

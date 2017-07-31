@@ -108,7 +108,6 @@
 	<update id="boardReplyUpdate" parameterType="com.spring.muchmore.board.BoardVO">
 		UPDATE board
 		SET board_seq=#{board_seq}+1
-		WHERE board_ref=#{boare_ref} AND board_re_seq > #{board_seq}
+		WHERE board_ref=#{board_ref} AND board_seq > #{board_seq}
 	</update>
-
 </mapper>

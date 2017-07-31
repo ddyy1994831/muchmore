@@ -29,6 +29,11 @@
 
 	<!-- Custom Fonts -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    
+    <!-- jQuery -->
+    <!-- <script src="./resources/js/jquery.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
 </head>
 
 <body>
@@ -56,7 +61,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">고객센터 <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
 									<li>
-										<a href="faq_layout.do">자주하는 질문</a>
+										<a href="FAQ.do">자주하는 질문</a>
 									</li>
 									<li>
 										<a href="BoardList.do">Q & A</a>

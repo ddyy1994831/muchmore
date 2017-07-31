@@ -282,4 +282,10 @@ public class BoardController {
 		
 		return result;
 	}
+	
+	/*2017-07-31 다예 : faq 이동- 입력받은 데이터처리*/
+	@RequestMapping("FAQ.do")
+	public String faq() {
+		return "faq";
+	}
 }
