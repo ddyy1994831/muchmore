@@ -78,4 +78,13 @@ public class BorrowerDAOService implements BorrowerDAO {
 		borrowerMapper.uploadFile(borrower);
 	}
 	
+	/*2017-07-30 혜림 : mypage_myloan 대출내역에서 해당 회원의 대출 내역 전체 가져오기*/
+	@Override
+	public List<BorrowerVO> getBorrowerListById(BorrowerVO borrower) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		List<BorrowerVO> result = borrowerMapper.getBorrowerListById(borrower);
+		return result;
+	}
+	
 }

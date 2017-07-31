@@ -1,18 +1,17 @@
-package com.spring.muchmore.accout;
+package com.spring.muchmore.account;
 
 public class AccountVO {
 	
-	private String account_id;
+	private String member_id;
 	private String account_virtual;
 	private String account_real;
 	private int account_balance;
 	private int account_case;
-	
-	public String getAccount_id() {
-		return account_id;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setAccount_id(String account_id) {
-		this.account_id = account_id;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	public String getAccount_virtual() {
 		return account_virtual;
@@ -38,6 +37,5 @@ public class AccountVO {
 	public void setAccount_case(int account_case) {
 		this.account_case = account_case;
 	}
-	
 	
 }

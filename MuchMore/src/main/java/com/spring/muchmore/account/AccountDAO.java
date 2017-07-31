@@ -1,4 +1,4 @@
-package com.spring.muchmore.accout;
+package com.spring.muchmore.account;
 
 public interface AccountDAO {
 

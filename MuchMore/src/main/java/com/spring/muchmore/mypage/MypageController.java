@@ -25,6 +25,8 @@ import com.spring.muchmore.invest.InvestDAOService;
 import com.spring.muchmore.invest.InvestVO;
 import com.spring.muchmore.member.MemberDAOService;
 import com.spring.muchmore.member.MemberVO;
+import com.spring.muchmore.moneyinout.MoneyinoutDAOService;
+import com.spring.muchmore.moneyinout.MoneyinoutVO;
 
 @Controller
 public class MypageController {
@@ -37,6 +39,9 @@ public class MypageController {
 	
 	@Autowired
 	private InvestDAOService investDAOService;
+	
+	@Autowired
+	private MoneyinoutDAOService moneyinoutDAOService;
 	
 	//2017-07-29 성현 : 메인화면 이동
 	@RequestMapping("mypage_main.do")
@@ -97,7 +102,7 @@ public class MypageController {
 		//생서한 borrower 객체에 id 저장
 		borrower.setBorrower_id((String)session.getAttribute("id"));
 		//현재 로그인한 회원의 대출내역 가져오기
-		List<BorrowerVO> borrower_list = borrowerDAOService.getBorrowerList(borrower);
+		List<BorrowerVO> borrower_list = borrowerDAOService.getBorrowerListById(borrower);
 		
 		result.addObject("borrower_list", borrower_list);
 		result.setViewName("mypage_myloan");
@@ -179,5 +184,23 @@ public class MypageController {
 		return result;
 	}
 	
+	/*2017-07-30 혜림 : mypage_myaccount로 이동*/
+	@RequestMapping("mypage_myaccount.do")
+	public ModelAndView mypageMyaccount(HttpSession session) {
+		ModelAndView result = new ModelAndView();
+		
+		String member_id = (String)session.getAttribute("id");
+		System.out.println("id = " +member_id);
+		//계좌 정보 불러오기
+		MemberVO getmember = memberDAOService.getMemberAccountById(member_id);
+		System.out.println("id = " +getmember.getAccount().getAccount_virtual());
+		//입출금 내역 불러오기
+		List<MoneyinoutVO> moneyinoutlist = moneyinoutDAOService.selectMoneyinoutById(member_id);
+		
+		result.addObject("getmember", getmember);
+		result.addObject("moneyinoutlist", moneyinoutlist);
+		result.setViewName("mypage_myaccount");
+		return result;
+	}
 
 }
