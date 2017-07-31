@@ -22,5 +22,7 @@ public interface MemberDAO {
 	//2017-07-29 성현 : 회원정보 수정
 	public void updateMember(MemberVO member);
 
+	/*2017-07-30 혜림 : 회원정보와 계좌정보 가져오기*/ 
+	public MemberVO getMemberAccountById(String member_id);
 }
  

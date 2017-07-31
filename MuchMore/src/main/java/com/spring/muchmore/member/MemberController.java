@@ -140,6 +140,17 @@ public class MemberController {
 		result.setViewName("login_find_pw_ok");
 		return result;
 	}
-
 	
+	/* 2017-07-29 메인페이지로 이동*/
+	@RequestMapping("home.do")
+	public String home() {
+		return "home";
+	}
+	
+	/* 2017-07-29 : 혜림 : 로그아웃*/
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("id");
+		return "home";
+	}
 }

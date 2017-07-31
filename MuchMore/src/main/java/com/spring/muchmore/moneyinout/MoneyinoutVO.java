@@ -1,11 +1,10 @@
 package com.spring.muchmore.moneyinout;
 
-import java.security.Timestamp;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class MoneyinoutVO {
 	private String moneyinout_holder_id;
-	private String moneyinout_payer_id;
+	private String moneyinout_other_id;
 	private Timestamp moneyinout_date;
 	private String moneyinout_money;
 	private String moneyinout_state;
@@ -17,10 +16,10 @@ public class MoneyinoutVO {
 		this.moneyinout_holder_id = moneyinout_holder_id;
 	}
 	public String getMoneyinout_payer_id() {
-		return moneyinout_payer_id;
+		return moneyinout_other_id;
 	}
-	public void setMoneyinout_payer_id(String moneyinout_payer_id) {
-		this.moneyinout_payer_id = moneyinout_payer_id;
+	public void setMoneyinout_payer_id(String moneyinout_other_id) {
+		this.moneyinout_other_id = moneyinout_other_id;
 	}
 	public Timestamp getMoneyinout_date() {
 		return moneyinout_date;

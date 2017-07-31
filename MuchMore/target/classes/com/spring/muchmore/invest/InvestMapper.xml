@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.spring.muchmore.invest.InvestMapper">
-<!-- 투자 테이블 -->
+	<!-- 투자 테이블 -->
 	<resultMap type="InvestVO" id="InvestResultMap">
 		<result property="member_id" column="member_id"/>
 		<result property="invest_date" column="invest_date" />
@@ -26,11 +26,47 @@
 		<result property = "goods_date" column="goods_date"/>
 	</resultMap>	
 	
-<!-- 2017-07-30 성현 : 개인 투자  내역 가져오기(List타입) -->
+	<!-- 2017-07-30 성현 : 개인 투자  내역 가져오기(List타입) -->
 	<select id="getInvestById" parameterType="String" resultMap="InvestResultMap">
 		SELECT *
 		FROM invest invest, goods goods
-		WHERE invest.goods_num = goods.goods_num 
+		WHERE invest.goods_num = goods.goods_num
 		and invest.member_id = #{member_id}
 	</select>
+	
+	<!-- 2017-07-31 성현 : 해당 상품에 대한 총 투자금액 -->
+	<select id="getTotalInvestSum" parameterType="int" resultType="int">
+		SELECT
+		nvl(sum(invest_sum), 0)
+		FROM invest
+		WHERE goods_num = #{goods_num}
+	</select>
+	
+	<!-- 2017-07-31 성현 : 사용자의 투자횟수 구하기 -->
+	<select id="getInvestCountById" parameterType="String" resultType="int">
+		select nvl(count(*), 0)
+		from invest
+		where
+		member_id = #{member_id}
+	</select>
+	
+	<!-- 2017-07-31 성현 : 투자테이블에 데이터 추가 -->
+	<insert id="insertInvest" parameterType="com.spring.muchmore.invest.InvestVO">
+		INSERT INTO
+		invest(
+		invest_date, 
+		invest_sum, 
+		member_id, 
+		goods_num, 
+		invest_return)
+		VALUES(
+		sysdate,
+		#{invest_sum}, 
+		#{member_id},
+		#{goodsVO.goods_num}, 
+		#{invest_return}
+		)
+	</insert>
+	
+	
 </mapper>
