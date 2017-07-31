@@ -105,7 +105,8 @@ body {
 	color: #F0AD4E;
 }
 .table-filter .media-photo {
-	width: 35px;
+	width: 110px;
+	height: 40px;
 }
 /* .table-filter .media-body {
     display: block;
@@ -126,10 +127,10 @@ body {
 	font-size: .8em;
 	margin-right: 20px;
 }
-.table-filter .media .title span.onaylanan {
+.table-filter .media .title span.모집중 {
 	color: #5cb85c;
 }
-.table-filter .media .title span.bekleyen {
+.table-filter .media .title span.모집완료 {
 	color: #f0ad4e;
 }
 .table-filter .media .title span.iptal {
