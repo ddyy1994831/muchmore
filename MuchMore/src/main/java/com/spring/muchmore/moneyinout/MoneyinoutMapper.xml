@@ -16,4 +16,5 @@
 		FROM moneyinout
 		WHERE moneyinout_holder_id = #{member_id}
 	</select>
+
 </mapper>

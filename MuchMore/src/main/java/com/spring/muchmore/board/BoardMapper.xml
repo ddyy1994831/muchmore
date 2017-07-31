@@ -110,4 +110,4 @@
 		SET board_seq=#{board_seq}+1
 		WHERE board_ref=#{board_ref} AND board_seq > #{board_seq}
 	</update>
-</mapper>
+  </Mapper>

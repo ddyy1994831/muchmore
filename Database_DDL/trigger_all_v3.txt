@@ -1,0 +1,159 @@
+create or replace trigger account_update_trigger
+after update
+on account
+for each row
+DECLARE
+    case_number number;
+BEGIN
+    case_number := :new.account_case;
+
+    --내 실계좌 ~ 내 가상계좌(입금)
+    IF(case_number = 1) then
+        insert into moneyinout
+        values(:new.member_id, :new.member_id, sysdate, :new.account_balance - :old.account_balance, '입금');
+
+    --내 가상계좌 ~ 내 실계좌(출금)
+    ELSIF(case_number = 2) then
+        insert into moneyinout
+        values(:new.member_id, :new.member_id, sysdate, :new.account_balance - :old.account_balance, '출금');
+
+    -- 가상계좌 ~ admin가상계좌(투자)
+    ELSIF(case_number = 3) then
+        --사용자 : 투자자
+        insert into moneyinout
+        values(:new.member_id, 'muchmore', sysdate, :old.account_balance- :new.account_balance, '출금(투자)');
+        --관리자
+        insert into moneyinout
+        values('muchmore', :new.member_id, sysdate, :old.account_balance - :new.account_balance, '입금(투자)');
+
+    -- 가상계좌 ~ admin가상계좌(대출금 상환)
+    ELSIF(case_number = 4) then
+        --관리자
+        insert into moneyinout
+        values(:new.member_id, 'muchmore', sysdate, :old.account_balance - :new.account_balance, '출금(대출금상환)');
+        --사용자 : 대출자
+        insert into moneyinout
+        values('muchmore', :new.member_id, sysdate, :old.account_balance - :new.account_balance, '입금(대출금상환)');
+
+    -- admin가상계좌 ~ 가상계좌(대출금 지급)
+    ELSIF(case_number = 5) then
+        --사용자 : 대출자
+        insert into moneyinout
+        values(:new.member_id, 'muchmore', sysdate, :new.account_balance - :old.account_balance, '입금(대출금지급)');
+        --관리자
+        insert into moneyinout
+        values('muchmore', :new.member_id,  sysdate, :new.account_balance - :old.account_balance, '출금');
+
+    --admin ~ 가상계좌(투자금 상환)
+    ELSIF(case_number = 6) then
+        --사용자 : 투자자
+        insert into moneyinout
+        values(:new.member_id, 'muchmore', sysdate, :new.account_balance - :old.account_balance, '입금(투자금상환)');
+        --관리자
+        insert into moneyinout
+        values('muchmore', :new.member_id,  sysdate, :new.account_balance - :old.account_balance, '출금');
+    END IF;
+END;
+/
+
+
+create or replace trigger borrower_insert_trigger
+before insert
+on borrower
+for each row
+DECLARE
+
+BEGIN
+	:new.borrower_balance := :new.borrower_amount;
+END;
+/
+
+
+create or replace trigger invest_update_trigger
+after insert
+on invest
+for each row
+DECLARE
+    total_invest    number;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('total_invest : ' || total_invest);
+    update goods
+    set goods_invest = goods_invest + :new.invest_sum
+    where goods_num = :new.goods_num;
+
+    --관리자 계좌
+    update account
+    set account_balance = account_balance + :new.invest_sum
+    where member_id = 'muchmore';
+
+    --투자자 계좌
+    update account
+    set account_balance = account_balance - :new.invest_sum, account_case = 3
+    where member_id = :new.member_id;
+
+END;
+/
+
+
+
+create or replace trigger member_trigger
+before insert
+on member
+for each row
+DECLARE
+    age number;
+    gender  varchar2(30);
+    new_jumin1  varchar2(30);
+    new_jumin2  varchar2(30);
+BEGIN
+    new_jumin1 := :new.member_jumin1;
+    new_jumin2 := :new.member_jumin2;
+
+IF(to_number(substr(new_jumin2, 1, 1)) = 1) then
+        :new.member_gender := '남자';
+        :new.member_age := to_number(to_char(SYSDATE, 'yyyy')) - (1900 + TO_NUMBER(TO_CHAR(SUBSTR(new_jumin1, 1,2))))+1;
+    ELSIF(to_number(substr(new_jumin2, 1, 1)) = 2) then
+        :new.member_gender := '여자';
+        :new.member_age := to_number(to_char(SYSDATE, 'yyyy')) - (1900 + TO_NUMBER(TO_CHAR(SUBSTR(new_jumin1, 1,2))))+1;
+    ELSIF(to_number(substr(new_jumin2, 1, 1)) = 3) then
+        :new.member_gender := '남자';
+        :new.member_age := to_number(to_char(SYSDATE, 'yyyy')) - (2000 + TO_NUMBER(TO_CHAR(SUBSTR(new_jumin1, 1,2))))+1;
+    ELSIF(to_number(substr(new_jumin2, 1, 1)) = 4) then
+        :new.member_gender := '여자';
+        :new.member_age := to_number(to_char(SYSDATE, 'yyyy')) - (2000 + TO_NUMBER(TO_CHAR(SUBSTR(new_jumin1, 1,2))))+1;
+    end if;
+END;
+/
+
+create or replace trigger sysdate_update_trigger
+before insert on goods
+for each row
+
+DECLARE
+  registerdate timestamp;
+BEGIN
+  select borrower_registerdate
+  into registerdate
+  from (select rownum rnum, borrower_id, borrower_registerdate
+        from borrower
+        where borrower_id = :new.borrower_id
+        order by borrower_registerdate desc)
+  where borrower_id = :new.borrower_id and rnum = 1;
+  :new.goods_date := registerdate;
+end;
+/
+
+
+
+create or replace trigger update_goods_status
+before update
+on goods
+for each row
+DECLARE
+
+BEGIN
+    if(:new.goods_invest = :new.goods_sum) then
+    	:new.goods_status := '모집완료';
+    end if;
+END;
+/

@@ -8,4 +8,19 @@
 		<result property="account_real" column="account_real"/>
 		<result property="account_balance" column="account_balance"/>
 	</resultMap> -->
+	
+	<!-- 2017-07-31 혜림 : 가상계좌에 입금하기 -->
+	<update id = "updateAccountDeposit" parameterType="AccountVO">
+		UPDATE account
+		SET account_case = #{account_case}, account_balance = #{account_balance}
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<!-- 2017-07-31 혜림 : 실계좌 등록 -->
+	<update id = "updateAccountRegister" parameterType = "AccountVO">
+		UPDATE account
+		SET account_case = 7, account_real = #{account_real}
+		WHERE member_id = #{member_id}
+	</update>
+	
 </mapper>

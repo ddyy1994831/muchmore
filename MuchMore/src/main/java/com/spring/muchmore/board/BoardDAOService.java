@@ -169,4 +169,5 @@ public class BoardDAOService implements BoardDAO {
 		
 		return  maxBoardnum;
 	}	
+
 }

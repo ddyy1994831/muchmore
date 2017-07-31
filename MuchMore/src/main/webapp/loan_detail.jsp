@@ -41,6 +41,15 @@
 			
 		return true;
 	}
+	
+	function gNumCheck() {
+		if(event.keyCode >= 48 && event.keyCode <= 57) {
+			return true;
+		}
+		else {
+			event.returnValue = false;
+		}
+	}
 </script>
 
 <section class = "container">
@@ -101,7 +110,7 @@
 							<div class = "form-group">
 								<label for = "goodsVO.goods_sum" class = "col-sm-2 control-label"><b>대출금액</b></label>
 								<div class = "col-sm-4">
-									<input type = "text" class = "form-control" id = "goodsVO.goods_sum" name = "goodsVO.goods_sum" required>
+									<input type = "text" onkeypress = "gNumCheck()" class = "form-control" id = "goodsVO.goods_sum" name = "goodsVO.goods_sum" required>
 								</div>
 							</div>
 							
