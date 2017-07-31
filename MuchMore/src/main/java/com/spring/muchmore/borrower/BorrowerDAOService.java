@@ -86,5 +86,14 @@ public class BorrowerDAOService implements BorrowerDAO {
 		List<BorrowerVO> result = borrowerMapper.getBorrowerListById(borrower);
 		return result;
 	}
+
+	/*2017-07-31 성현 : 사용자의 대출횟수 구하기*/
+	@Override
+	public int getBorrowerCountById(String borrower_id) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		int cnt = borrowerMapper.getBorrowerCountById(borrower_id);
+		return cnt;
+	}
 	
 }

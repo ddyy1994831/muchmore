@@ -139,7 +139,6 @@
 			and borrower_registerdate = #{borrower_registerdate}
 	</update>
 	
-	
 	<!-- 2017-07-30 혜림 : mypage_myloan 대출내역에서 해당 회원의 대출 내역 전체 가져오기 -->
 	<select id = "getBorrowerListById" parameterType="BorrowerVO" resultMap="BorrowerResultMap">
 		SELECT * 
@@ -149,4 +148,12 @@
 			and borrower.borrower_id = #{borrower_id}
 	</select>
 	
+
+	<!-- 2017-07-31 성현 : 사용자의 대출횟수 가져오기 -->
+	<select id="getBorrowerCountById" parameterType="String" resultType="int">
+		SELECT nvl(count(*), 0)
+		FROM borrower
+		WHERE borrower_id = #{borrower_id}
+	</select>
+
 </mapper>
