@@ -29,7 +29,8 @@
 	}
 </script>
 
-<section class="container">
+<section class = "container">
+  	<div class = "row" style="height: 100%">
    	<form action="BoardModifyAction.do" method = "post" name = "modifyform" id="modifyform">
 	<input type="hidden" id="board_num" name="board_num" value="<%=boardVO.getBoard_num() %>">
 		<table class="table table-hover">
@@ -80,4 +81,5 @@
 			</tbody>
 		</table>
 	</form>
+	</div>
 </section>
