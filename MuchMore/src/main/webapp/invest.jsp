@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%	
 	request.setCharacterEncoding("euc-kr");
 	
@@ -21,8 +22,7 @@
 <div class="container">
 	<div class="row" style="height:100%">
 		<section class="content">
-			<h1>투자상품 리스트</h1>
-			
+			<h1>투자상품 리스트</h1>			
 					<div class="panel-body">						
 						<div class="table-container">
 							<table class="table table-filter text-center">								
@@ -58,15 +58,15 @@
 										<%} %>
 										<!-- 상품명에 따른 이미지 배치 끝-->
 										
-										<td width="3%"><%=bg.getGoodsVO().getGoods_num() %></td>										
-										<td><h5 class="title"><%=bg.getGoodsVO().getGoods_object() %></h5></td>
+										<td width="3%">제 <%=bg.getGoodsVO().getGoods_num() %>호</td>										
+										<td><h5 class="title"><a href = "invest_detail.do?borrower_id=<%=bg.getBorrower_id() %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num()%>&borrower_registerdate=<%=bg.getBorrower_registerdate()%>"><%=bg.getGoodsVO().getGoods_object() %></a></h5></td>
 										<td><%=bg.getBorrower_credit() %></td>
-										<td width="9%"><%=bg.getGoodsVO().getGoods_rate() %></td>
+										<td width="9%"><%=bg.getGoodsVO().getGoods_rate() %>%</td>
 										<td><%=bg.getBorrower_loanperiod() %></td>
 										<td width="15%">
 											<div class="progress progress-striped active"
 												style="padding-top: 5px; height: 20px; width: 200px; margin: 0;">
-												<div class="progress-bar" style="width:<%=percent%>%;"></div>
+												<div class="progress-bar" style="width:<%=percent%>%;" onmouseover="현재 <%=bg.getGoodsVO().getGoods_sum()%>원 중 <%=bg.getGoodsVO().getGoods_invest()%>원 모집완료"></div>
 											</div>
 										</td>
 										<td><%=bg.getGoodsVO().getGoods_status() %></td>
