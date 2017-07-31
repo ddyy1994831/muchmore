@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -20,15 +19,16 @@ public class BoardController {
 	@Autowired
 	private BoardDAOService boardDAOService;
 	
+	/*2017-07-30 ´Ù¿¹ : Board Å×ÀÌºí¿¡ ÀÖ´Â µ¥ÀÌÅÍ ¸®½ºÆ® ­‹·Â*/
 	@RequestMapping("/BoardList.do")
 	public ModelAndView main(Model model, HttpServletRequest request) {
 		System.out.println("BoardController-/BoardList.do");
-		
+
 		List<BoardVO> boardlist = null;
 		ModelAndView result = new ModelAndView();
 
-		int page = 1; // ÃÊ±â ÆäÀÌÁö
-		int limit = 10; // ÇÑ È­¸é¿¡ Ãâ·ÂµÉ ±ÛÀÇ °³¼ö
+		int page = 1;		 // ÃÊ±â ÆäÀÌÁö
+		int limit = 10; 	 // ÇÑ È­¸é¿¡ Ãâ·ÂµÉ ±ÛÀÇ °³¼ö
 
 		// ÃÖÃÊ·Î È£ÃâÇÏ¸é getPamete("page") == null
 		if (request.getParameter("page") != null) {
@@ -66,7 +66,7 @@ public class BoardController {
 		return result;
 	}
 	
-	//qna_board_list¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ : ±Û¾²±â ÆûÀ¸·Î ÀÌµ¿
+	/*2017-07-30 ´Ù¿¹ : qna_board_list¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ - ±Û¾²±â ÆûÀ¸·Î ÀÌµ¿*/
 	@RequestMapping("/BoardWriteForm.do")
 	public ModelAndView insert_form(HttpSession session) {
 		System.out.println("BoardController-/BoardWriteForm.do");
@@ -83,7 +83,7 @@ public class BoardController {
 		return result;
 	}
 	
-	//qna_board_writer¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ : ±Û¾²±â insert
+	/*2017-07-30 ´Ù¿¹ : qna_board_writer¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ - ±Û¾²±â insert*/
 	@RequestMapping("/BoardWriteAction.do")
 	public String insert(HttpServletRequest request) {
 		System.out.println("BoardController-/BoardWriteAction.do");
@@ -91,25 +91,40 @@ public class BoardController {
 		BoardVO boardVO = new BoardVO();
 		
 		boardVO.setMember_id(request.getParameter("member_id"));
-		boardVO.setBoard_title(request.getParameter("boare_title"));
+		boardVO.setBoard_title(request.getParameter("board_title"));
 		boardVO.setBoard_password(request.getParameter("board_password"));
 		boardVO.setBoard_content(request.getParameter("board_content"));
-		boardVO.setBoard_pw_check((Integer.parseInt(request.getParameter("board_pw_check"))));
-		
+		if(request.getParameter("board_pw_check") == null) {
+			boardVO.setBoard_pw_check(0);
+		}
+		else {
+			boardVO.setBoard_pw_check((Integer.parseInt(request.getParameter("board_pw_check"))));
+		}
+
 		boardDAOService.boardInsert(boardVO);
 		
 		return "redirect:/BoardList.do";
 	}
 	
-	//qna_board_view_check·Î ÀÌµ¿
+	/*2017-07-30 ´Ù¿¹ : qna_board_view_check·Î ÀÌµ¿*/
 	@RequestMapping("/BoardViewCheck.do")
-	public String view_checkForm() {
+	public String view_checkForm(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardViewCheck.do");
 		
-		return "qna_board_view_check";
+		BoardVO getBoard = boardDAOService.getDetail(boardVO);
+		
+		int pw_check = getBoard.getBoard_pw_check();
+		System.out.println("board_check = " + pw_check);
+		
+		if(pw_check == 0) {
+			return "redirect:/BoardDetail.do?board_num=" + boardVO.getBoard_num();
+		}
+		else {
+			return "qna_board_view_check";	
+		}
 	}
 	
-	//qna_board_view_check : ÀÔ·Â¹ŞÀº ºñ¹Ğ¹øÈ£¿Í µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ºñ¹Ğ¹øÈ£ ºñ±³ ÈÄ °Ô½Ã±Û »ó¼¼º¸±â
+	/*2017-07-30 ´Ù¿¹ : qna_board_view_check - ÀÔ·Â¹ŞÀº ºñ¹Ğ¹øÈ£¿Í µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ºñ¹Ğ¹øÈ£ ºñ±³ ÈÄ °Ô½Ã±Û »ó¼¼º¸±â*/
 	@RequestMapping("/BoardViewAction.do")
 	public String viewCheck(BoardVO boardVO, HttpServletResponse response) throws Exception {
 		System.out.println("BoardController-/BoardViewAction.do");
@@ -135,7 +150,7 @@ public class BoardController {
 		}
 	}
 	
-	//°Ô½Ã±Û »ó¼¼º¸±â
+	/*2017-07-30 ´Ù¿¹ : °Ô½Ã±Û »ó¼¼º¸±â*/
 	@RequestMapping("/BoardDetail.do")
 	public ModelAndView detail(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardDetail.do");
@@ -154,7 +169,7 @@ public class BoardController {
 		return result;
 	}
 	
-	//qna_board_delete·Î ÀÌµ¿
+	/*2017-07-30 ´Ù¿¹ : qna_board_delete·Î ÀÌµ¿*/
 	@RequestMapping("/BoardDeleteForm.do")
 	public String delete_form() {
 		System.out.println("BoardController-/BoardDeleteForm.do");
@@ -162,7 +177,7 @@ public class BoardController {
 		return "qna_board_delete";
 	}
 	
-	//qna_board_delete : ÀÔ·Â¹ŞÀº ºñ¹Ğ¹øÈ£¿Í µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ºñ¹Ğ¹øÈ£ ºñ±³ ÈÄ »èÁ¦ Ã³¸®
+	/*2017-07-30 ´Ù¿¹ : qna_board_delete - ÀÔ·Â¹ŞÀº ºñ¹Ğ¹øÈ£¿Í µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ºñ¹Ğ¹øÈ£ ºñ±³ ÈÄ »èÁ¦ Ã³¸®*/
 	@RequestMapping("/BoardDeleteAction.do")
 	public String delete(BoardVO boardVO, HttpServletResponse response) throws Exception {
 		System.out.println("BoardController-/BoardDeleteAction.do");
@@ -190,7 +205,7 @@ public class BoardController {
 		return "redirect:/BoardList.do";
 	}
 	
-	//qna_board_reply·Î ÀÌµ¿
+	/*2017-07-30 ´Ù¿¹ : qna_board_reply·Î ÀÌµ¿*/
 	@RequestMapping("/BoardReplyForm.do")
 	public ModelAndView reply_form(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardReplyForm.do");
@@ -204,7 +219,7 @@ public class BoardController {
 		return result;
 	}
 
-	//qna_board_reply : ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®
+	/*2017-07-30 ´Ù¿¹ : qna_board_reply - ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®*/
 	@RequestMapping("/BoardReplyAction.do")
 	public ModelAndView reply(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardReplyAction.do");
@@ -218,7 +233,7 @@ public class BoardController {
 		return result;
 	}
 	
-	//qna_board_modify·Î ÀÌµ¿
+	/*2017-07-30 ´Ù¿¹ : qna_board_modify·Î ÀÌµ¿*/
 	@RequestMapping("/BoardModifyForm.do")
 	public ModelAndView modify_form(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardModifyForm.do");
@@ -226,13 +241,13 @@ public class BoardController {
 		
 		BoardVO getBoard = boardDAOService.getDetail(boardVO);
 		
-		result.setViewName("qna_board_modify");
 		result.addObject("getBoard", getBoard);
+		result.setViewName("qna_board_modify");
 		
 		return result;
 	}
 	
-	//qna_board_modify : ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®
+	/*2017-07-30 ´Ù¿¹ : qna_board_modify - ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®*/
 	@RequestMapping("/BoardModifyAction.do")
 	public ModelAndView modify(BoardVO boardVO, HttpServletResponse response) throws Exception {
 		System.out.println("BoardController-/BoardModifyAction.do");

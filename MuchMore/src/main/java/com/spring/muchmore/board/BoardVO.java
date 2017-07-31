@@ -10,9 +10,9 @@ public class BoardVO {
 	private Date board_date;
 	private int board_readcount;
 	private String board_content;
-	private int board_re_ref;
-	private int board_re_lev;
-	private int board_re_seq;
+	private int board_ref;
+	private int board_lev;
+	private int board_seq;
 	private int board_pw_check;
 	
 	public int getBoard_num() {
@@ -57,23 +57,23 @@ public class BoardVO {
 	public void setBoard_content(String board_content) {
 		this.board_content = board_content;
 	}
-	public int getBoard_re_ref() {
-		return board_re_ref;
+	public int getBoard_ref() {
+		return board_ref;
 	}
-	public void setBoard_re_ref(int board_re_ref) {
-		this.board_re_ref = board_re_ref;
+	public void setBoard_ref(int board_ref) {
+		this.board_ref = board_ref;
 	}
-	public int getBoard_re_lev() {
-		return board_re_lev;
+	public int getBoard_lev() {
+		return board_lev;
 	}
-	public void setBoard_re_lev(int board_re_lev) {
-		this.board_re_lev = board_re_lev;
+	public void setBoard_lev(int board_lev) {
+		this.board_lev = board_lev;
 	}
-	public int getBoard_re_seq() {
-		return board_re_seq;
+	public int getBoard_seq() {
+		return board_seq;
 	}
-	public void setBoard_re_seq(int board_re_seq) {
-		this.board_re_seq = board_re_seq;
+	public void setBoard_seq(int board_seq) {
+		this.board_seq = board_seq;
 	}
 	public int getBoard_pw_check() {
 		return board_pw_check;
