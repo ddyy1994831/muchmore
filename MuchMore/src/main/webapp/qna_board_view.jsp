@@ -43,9 +43,9 @@
 				</td>
 			</tr>
 			
-	<% 
+<%-- 	<% 
 		if(writer.equals("muchmore")) { 
-	%>
+	%> --%>
 			<tr>
 				<td colspan="2">
 				<%
@@ -70,9 +70,9 @@
     			%>
     			</td>
     		</tr>
-    <%
+<%--     <%
     	}
-    %>
+    %> --%>
     	</tbody>
     </table>
 </section>

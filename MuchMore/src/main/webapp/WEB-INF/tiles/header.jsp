@@ -59,7 +59,7 @@
 										<a href="faq_layout.do">자주하는 질문</a>
 									</li>
 									<li>
-										<a href="qna_board_list.do">Q & A</a>
+										<a href="BoardList.do">Q & A</a>
 									</li>
 								</ul>
 							</li>

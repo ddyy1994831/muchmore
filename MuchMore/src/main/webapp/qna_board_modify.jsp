@@ -11,12 +11,12 @@
 		id = (String)session.getAttribute("id");
 	}
 	
-	BoardVO boardVO = (BoardVO)request.getAttribute("boardVO");
+	BoardVO boardVO = (BoardVO)request.getAttribute("getBoard");
 %>
 
 <script>
 	function modifyboard() {
-		if(modifyform.board_qna_content.value == ""){
+		if(modifyform.board_content.value == ""){
 			alert("내용을 입력하세요.");
 			return false;
 		}
@@ -43,6 +43,14 @@
 					</td>
 				</tr>
 				<tr>
+					<td align="center">작성자</td>
+					<td>
+						<div align="left">
+							<input type="text" class="form-control" id="member_id" name = "member_id" value="<%=boardVO.getMember_id()%>" readonly>
+						</div>
+					</td>
+				</tr>
+				<tr>
 					<td align="center">내  용</td>
 					<td>
 						<div align="left">
@@ -54,9 +62,8 @@
 					<td align="center">비밀번호</td>
     				<td>
     					<div align="left">
-    						<input type="radio" id="board_pw_check" name="board_pw_check" value="1">비밀글여부
-							&nbsp;&nbsp;
-							<input type="password" class="form-control" id="board_password" name = "board_password" value="<%=boardVO.getBoard_password() %>">
+    						<input type="checkbox" id="board_pw_check" name="board_pw_check" value="1">비밀글여부
+							<input type="password" class="form-control" id="board_password" name = "board_password" value="<%= boardVO.getBoard_password() %>">
     					</div>	
     				</td>
     			</tr>

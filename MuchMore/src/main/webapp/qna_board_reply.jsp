@@ -28,9 +28,9 @@
 <section class="container">
     <form action="BoardReplyAction.do" method="post" name="boardform" id="boardform">
     <input type="hidden" name="board_num" value = "<%=boardVO.getBoard_num() %>">
-    <input type="hidden" name="board_re_ref" value="<%=boardVO.getBoard_re_ref() %>">
-	<input type="hidden" name="board_re_lev" value="<%=boardVO.getBoard_re_lev() %>">
-	<input type="hidden" name="board_re_seq" value="<%=boardVO.getBoard_re_seq() %>">
+    <input type="hidden" name="board_re_ref" value="<%=boardVO.getBoard_ref() %>">
+	<input type="hidden" name="board_re_lev" value="<%=boardVO.getBoard_lev() %>">
+	<input type="hidden" name="board_re_seq" value="<%=boardVO.getBoard_seq() %>">
 
     	<table class="table table-hover">
     		<tbody>
