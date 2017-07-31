@@ -41,8 +41,8 @@
 	}
 </script>
 
-<section class="container">
-	<div class="row">
+<section class = "container">
+  	<div class = "row" style="height: 100%">
 		<div class="span12">
 			<form id="boardform" name = "boardform" action="BoardWriteAction.do" method="post" class = "form-horizontal">
 				<fieldset>

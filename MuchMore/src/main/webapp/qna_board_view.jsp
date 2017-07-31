@@ -16,6 +16,7 @@
 %>
 
 <section class = "container">
+  	<div class = "row" style="height: 100%">
     <table class = "table table-hover">
     	<tbody>
     		<tr>
@@ -42,13 +43,10 @@
 					</div>
 				</td>
 			</tr>
-			
-<%-- 	<% 
-		if(writer.equals("muchmore")) { 
-	%> --%>
 			<tr>
 				<td colspan="2">
 				<%
+					/*2017-07-30 다예 : 게시글을 볼때 접속자가 muchmore라면 해당 게시글에 대해 답변, 삭제, 목록이동만 할 수 있다. */
 					if(id.equals("muchmore")) {
 				%>
 						<div class="col-lg-9 col-lg-offset-1 text-center">
@@ -58,21 +56,32 @@
     					</div>
     			<%	
     				}
+					/*2017-07-30 다예 : 게시글을 볼때 접속자가 일반회원이라면  */
 					else {
+						/*2017-07-31 다예 : 게시글이 muchmore의 글이라면 해당 게시글에 대해 삭제, 목록이동만 할 수 있다. */
+						if(writer.equals("muchmore")) {
     			%>
-    					<div class="col-lg-9 col-lg-offset-1 text-center">
-    						<a href="./BoardModifyForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">수정</a>
-    						<a href="./BoardDeleteForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">삭제</a>
-    						<a href="./BoardList.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">목록</a>
-    					</div>
+    						<div class="col-lg-9 col-lg-offset-1 text-center">
+    							<a href="./BoardDeleteForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">삭제</a>
+    							<a href="./BoardList.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">목록</a>
+    						</div>
     			<%
-    				}
+						}
+						/*2017-07-31 다예 : 게시글이 일반회원의 글이라면 해당 게시글에 대해 수정, 삭제, 목록이동만 할 수 있다. */
+						else {
+    			%>
+    						<div class="col-lg-9 col-lg-offset-1 text-center">
+    							<a href="./BoardModifyForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">수정</a>
+    							<a href="./BoardDeleteForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">삭제</a>
+    							<a href="./BoardList.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">목록</a>
+    						</div>
+    			<%
+						}
+					}
     			%>
     			</td>
     		</tr>
-<%--     <%
-    	}
-    %> --%>
     	</tbody>
     </table>
+    </div>
 </section>
