@@ -1,4 +1,4 @@
-package com.spring.muchmore.accout;
+package com.spring.muchmore.account;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -24,4 +24,7 @@ public interface BorrowerMapper {
 	
 	/*2017-07-30 혜림 : 대출자가 서류를 업로드*/ 
 	public void uploadFile(BorrowerVO borrower);
+	
+	/*2017-07-30 혜림 : mypage_myloan 대출내역에서 해당 회원의 대출 내역 전체 가져오기*/
+	public List<BorrowerVO> getBorrowerListById(BorrowerVO borrower);
 }

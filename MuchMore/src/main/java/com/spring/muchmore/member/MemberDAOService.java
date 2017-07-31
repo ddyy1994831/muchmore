@@ -78,7 +78,16 @@ public class MemberDAOService implements MemberDAO {
 		// TODO Auto-generated method stub
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		memberMapper.updateMember(member);
-	} 
+	}
+
+	/*2017-07-30 혜림 : 회원정보와 계좌정보 가져오기*/ 
+	@Override
+	public MemberVO getMemberAccountById(String member_id) {
+		// TODO Auto-generated method stub
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		MemberVO result = memberMapper.getMemberAccountById(member_id);
+		return result;
+	}
 
 	
 }

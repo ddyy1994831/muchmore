@@ -1,6 +1,6 @@
 package com.spring.muchmore.member;
 
-import com.spring.muchmore.accout.AccountVO;
+import com.spring.muchmore.account.AccountVO;
 import com.spring.muchmore.borrower.BorrowerVO;
 
 public class MemberVO {

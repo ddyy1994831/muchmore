@@ -2,5 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.muchmore.moneyinout.MoneyinoutMapper">
-
+	<resultMap type="MoneyinoutVO" id="MoneyinoutResultMap">
+		<result property="moneyinout_holder_id" column="moneyinout_holder_id"/>
+		<result property="moneyinout_other_id" column="moneyinout_other_id"/>
+		<result property="moneyinout_date" column="moneyinout_date"/>
+		<result property="moneyinout_money" column="moneyinout_money"/>
+		<result property="moneyinout_state" column="moneyinout_state"/>
+	</resultMap>
+	
+	<!-- 2017-07-30 혜림 : 회원 입출금 내역 조회 : 파라미터 : id-->
+	<select id = "selectMoneyinoutById" parameterType="String" resultMap="MoneyinoutResultMap">
+		SELECT *
+		FROM moneyinout
+		WHERE moneyinout_holder_id = #{member_id}
+	</select>
 </mapper>
