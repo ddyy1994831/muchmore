@@ -36,7 +36,7 @@ function ajaxTest(url){
    	<div class = "row" style="height:100%">
    		<div class = "col-sm-3" id="menu">
 			<ul class="nav nav-pills nav-stacked">
-				<li class=""><a href="mypage_myaccount.do" id="MyAccount" >My Account</a></li>
+				<li class=""><a href="mypageMyaccount.do" id="MyAccount" >My Account</a></li>
 				<li class=""><a href="mypage_myinvest.do" id="MyInvest">투자내역</a></li>
 				<li class=""><a href="mypage_myloan.do" id="MyLoan">대출내역</a></li>
 				<li class=""><a href="mypage_memberupdate.do" id="MyUpdate" >회원정보수정</a></li>

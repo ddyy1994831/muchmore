@@ -1,5 +1,6 @@
 <%@page import="com.spring.muchmore.borrower.BorrowerVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	//로그인 상태인지 확인
 	System.out.println("loan_input2_detail.jsp");
@@ -41,69 +42,55 @@
 						<input type = "hidden" name="borrower_credit" value=<%=borrower.getBorrower_credit() %>>
 						<input type = "hidden" name="borrower_limit" value=<%=borrower.getBorrower_limit() %>>
 						<input type = "hidden" name="borrower_totalincome" value=<%=borrower.getBorrower_totalincome() %>>
-						<%-- <input type = "hidden" name="borrower_loanperiod" value=<%=borrower.getBorrower_loanperiod() %>>
-			   			<input type = "hidden" name="borrower_rate" value=<%=borrower.getBorrower_rate() %>> --%>
+						<input type = "hidden" id = "borrower_jobbiz" name = "borrower_jobbiz" value = "<%=borrower.getBorrower_jobbiz() %>">
+						<input type = "hidden" id = "borrower_rate" name = "borrower_rate" value = "<%=borrower.getBorrower_rate() %>">
+						<input type = "hidden" id = "borrower_loanperiod" name = "borrower_loanperiod" value = "<%=borrower.getBorrower_loanperiod()%>">
+						<input type = "hidden" id = "borrower_amount" name = "borrower_amount" value = "<%=borrower.getBorrower_amount()%>">
+						<input type = "hidden" id = "borrower_repay_date" name = "borrower_repay_date" value = "<%=borrower.getBorrower_repay_date() %>">
 			   			<table class = "table table-striped">
 			   				<tr>
 			   					<td>직업구분</td>
-			   					<td>
-			   						<input type = "text" id = "borrower_jobbiz" name = "borrower_jobbiz"
-										value = "<%=borrower.getBorrower_jobbiz() %>" readonly>
-			   					</td>
+			   					<td><%=borrower.getBorrower_jobbiz() %></td>
 			   				</tr>
 			   				
 			   				<tr>
 			   					<td>대출사유</td>
-			   					<td>
-			   						<input type = "text" id = "goodVO.goods_object" name = "goodVO.goods_object"
-										value = "<%=borrower.getGoodsVO().getGoods_object() %>" readonly>
-			   					</td>
+			   					<td><%=borrower.getGoodsVO().getGoods_object() %></td>
 			   				</tr>
 			   				
 			  				<tr>
 			  					<td>대출신청 금액</td>
 			  					<td>
-			  						<input type = "text" id = "goodVO.goods_sum" name = "goodVO.goods_sum"
-										value = "<%=borrower.getGoodsVO().getGoods_sum() %>" readonly>원
+			  						<fmt:formatNumber value="<%=borrower.getGoodsVO().getGoods_sum() %>" type="currency" currencySymbol="￦" />
 			  					</td>
 			  				</tr>
 			  				
 			  				<tr>
 			  					<td>대출금리</td>
-			  					<td>
-			  						<input type = "text" id = "goodVO.goods_sum" name = "goodVO.goods_sum"
-										value = "<%=borrower.getBorrower_rate() %>" readonly>%
-			  					</td>
+			  					<td><%=borrower.getBorrower_rate() %>%</td>
 			  				</tr>
 			  				<tr>
 			  					<td>대출 기간</td>
-			  					<td>
-			  						<input type = "text" id = "goodVO.goods_sum" name = "goodVO.goods_sum"
-										value = "<%=borrower.getBorrower_loanperiod() %>" readonly>개월
-			  					</td>
+			  					<td><%=borrower.getBorrower_loanperiod() %>개월</td>
 			  				</tr>
 			  				
 			  				<tr>
 			  					<td>총 상환액</td>
 			  					<td>
-			  						<input type = "text" id = "goodVO.goods_sum" name = "goodVO.goods_sum"
-										value = "<%=borrower.getBorrower_amount() %>" readonly>원
+			  						<fmt:formatNumber value="<%=borrower.getBorrower_amount() %>" type="currency" currencySymbol="￦" />
 			  					</td>
 			  				</tr>
 			  				
 			  				<tr>
 			  					<td>월납입금액</td>
 			  					<td>
-			  						<input type = "text" id = "goodVO.goods_sum" name = "goodVO.goods_sum"
-										value = "<%=borrower.getBorrower_monthlypay() %>" readonly>원
+				  					<fmt:formatNumber value="<%=borrower.getBorrower_monthlypay() %>" type="currency" currencySymbol="￦" />
 			  					</td>
 			  				</tr>
 			  				
 			  				<tr>
 			  					<td>월 상환일</td>
-			  					<td>
-			  						매월<input type = "text" id = "goodVO.goods_sum" name = "goodVO.goods_sum"
-										value = "<%=borrower.getBorrower_repay_date() %>" readonly>일
+			  					<td>매월 <%=borrower.getBorrower_repay_date() %>일
 			  					</td>
 			  				</tr>
 			  				
@@ -114,80 +101,6 @@
 			  					</td>
 			  				</tr>
 			   			</table>
-						<%-- <fieldset>
-							<legend>대출 신청 정보 확인</legend>
-							<div class="form-group">
-								<label for="borrower_jobbiz" class="col-lg-2 control-label">직업구분 : </label>
-								<div class="col-lg-10">
-									<input type = "text" id = "borrower_jobbiz" name = "borrower_jobbiz"
-										value = "<%=borrower.getBorrower_jobbiz() %>" readonly>
-								</div>
-				    		</div>
-				    		
-				    		<div class="form-group">
-								<label for="goodVO.goods_object" class="col-lg-2 control-label">대출 사유 :</label>
-								<div class="col-lg-10">
-									<input type = "text" id = "goodVO.goods_object" name = "goodVO.goods_object"
-										value = "<%=borrower.getGoodsVO().getGoods_object() %>" readonly>
-								</div>
-				    		</div>
-				    		
-				    		<div class="form-group">
-								<label for="goodVO.goods_sum" class="col-lg-2 control-label">대출 신청 금액 :</label>
-								<div class="col-lg-10">
-									<input type = "text" id = "goodVO.goods_sum" name = "goodVO.goods_sum"
-										value = "<%=borrower.getGoodsVO().getGoods_sum() %>" readonly>
-								</div>
-				    		</div>
-				    		
-				    		<div class="form-group">
-								<label for="borrower_rate" class="col-lg-2 control-label">대출 금리 : </label>
-								<div class="col-lg-10">
-									<input type = "text" id = "borrower_rate" name = "borrower_rate"
-										value = "<%=borrower.getBorrower_rate() %>" readonly>
-								</div>
-				    		</div>
-				    		
-				    		<div class="form-group">
-								<label for="borrower_loanperiod" class="col-lg-2 control-label">대출기간 : </label>
-								<div class="col-lg-10">
-									<input type = "text" id = "borrower_loanperiod" name = "borrower_rate"
-										value = "<%=borrower.getBorrower_loanperiod()%>" readonly>
-								</div>
-				    		</div>
-				    		
-				    		<div class="form-group">
-								<label for="borrower_amount" class="col-lg-2 control-label">총 상환액 : </label>
-								<div class="col-lg-10">
-									<input type = "text" id = "borrower_amount" name = "borrower_amount"
-										value = "<%=borrower.getBorrower_amount() %>" readonly>
-								</div>
-				    		</div>
-				    		
-			   				<div class="form-group">
-								<label for="borrower_monthlypay" class="col-lg-2 control-label">월 납입금액 : </label>
-								<div class="col-lg-10">
-									<input type = "text" id = "borrower_monthlypay" name = "borrower_monthlypay"
-										value = "<%=borrower.getBorrower_monthlypay() %>" readonly>
-								</div>
-				    		</div>
-				    		
-				    		<div class="form-group">
-								<label for="borrower_repay_date" class="col-lg-2 control-label">월 상환일 : </label>
-								<div class="col-lg-10">
-									<input type = "text" id = "borrower_repay_date" name = "borrower_repay_date"
-										value = "<%=borrower.getBorrower_repay_date() %>" readonly>
-								</div>
-				    		</div>
-				    	
-				        	<div class="form-group">
-								<div class="col-lg-10 col-lg-offset-2">
-									<button type="reset" class="btn btn-default">취소</button>
-									<button type="submit" class="btn btn-primary">신청하기</button>
-								</div>
-				    		</div> 
-							<br/><br/><br/><br/><br/>
-						</fieldset>--%>
 					</form>
 				</div>
 			</div>

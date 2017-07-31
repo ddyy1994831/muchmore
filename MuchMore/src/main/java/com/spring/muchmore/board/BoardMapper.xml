@@ -78,7 +78,7 @@
 		WHERE board_num=#{board_num}
 	</delete>
 	
-	<select id="getDetail" resultMap="BoardResultMap" parameterType="com.spring.muchmore.board.boardVO">
+	<select id="getDetail" resultMap="BoardResultMap" parameterType="com.spring.muchmore.board.BoardVO">
 		SELECT *
 		FROM board
 		WHERE board_num=#{board_num}

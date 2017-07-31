@@ -3,6 +3,7 @@ package com.spring.muchmore.mypage;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.muchmore.account.AccountDAOService;
+import com.spring.muchmore.account.AccountVO;
 import com.spring.muchmore.borrower.BorrowerDAOService;
 import com.spring.muchmore.borrower.BorrowerVO;
 import com.spring.muchmore.goods.GoodsVO;
@@ -42,6 +45,9 @@ public class MypageController {
 	
 	@Autowired
 	private MoneyinoutDAOService moneyinoutDAOService;
+	
+	@Autowired
+	private AccountDAOService accountDAOService;
 	
 	//2017-07-29 성현 : 메인화면 이동
 	@RequestMapping("mypage_main.do")
@@ -127,8 +133,6 @@ public class MypageController {
 	/*2017-07-03 혜림 : 서류 upload Action*/
 	@RequestMapping("mypage_myloan_fileUploadAction.do")
 	public String myloanFileUploadAction(MultipartHttpServletRequest request) throws Exception {
-		System.out.println("받아오노라 : " +request.getParameter("goods_num"));
-		System.out.println("1212aaa" +request.getParameter("borrower_registerdate"));
 		
 		//borrower에 받아온 데이터 다 넣기
 		int goods_num = Integer.parseInt(request.getParameter("goods_num"));
@@ -185,7 +189,7 @@ public class MypageController {
 	}
 	
 	/*2017-07-30 혜림 : mypage_myaccount로 이동*/
-	@RequestMapping("mypage_myaccount.do")
+	@RequestMapping("mypageMyaccount.do")
 	public ModelAndView mypageMyaccount(HttpSession session) {
 		ModelAndView result = new ModelAndView();
 		
@@ -202,5 +206,105 @@ public class MypageController {
 		result.setViewName("mypage_myaccount");
 		return result;
 	}
+	
+	/*2017-07-31 혜림 : mypage에서 myacccount탭에서 가상계좌로 입금하기 : 금액 입력 페이지로 이동*/
+	@RequestMapping("mypageMyaccountDeposit.do")
+	public String Depoist() {
+		
+		return "mypage_myaccount_deposit_input";
+	}
+	
+	/*2017-07-31 혜림 : 입금하기 기능*/
+	@RequestMapping("mypageMyaccountDepositAction.do")
+	public String DepositAction(HttpServletRequest request, HttpSession session) {
+		
+		//입금할 금액
+		int amount = Integer.parseInt(request.getParameter("amount"));
+		System.out.println(amount);
+		//해당 회원(로그인한 회원)
+		String member_id = (String)session.getAttribute("id");
+		MemberVO getmember = memberDAOService.getMemberAccountById(member_id);
+		
+		//입금하기 계좌 테이블에 넣기
+		AccountVO account= getmember.getAccount();
+		amount = account.getAccount_balance() + amount;
+		account.setAccount_balance(amount);
+		account.setAccount_case(1);
+		
+		accountDAOService.updateAccountDeposit(account);
+		//입출금 내역에 넣기
+		
+		
+		return "redirect:/mypageMyaccount.do";
+	}
+	
+	/*2017-07-31 혜림 : 가상계좌 등록하기 새 창*/
+	@RequestMapping("mypageRegisterAccount.do")
+	public String registerAccount() {
+		return "mypage_myaccount_register_account";
+	}
+	
+	/*2017-07-31 혜림 : 실계좌 등록하기 기능*/
+	@RequestMapping("mypageRegisterAccountAction.do")
+	public String registerAccountAction(HttpSession session, HttpServletRequest request) throws Exception {
+		String bank = (String)request.getParameter("bank");
+		String real_account = (String)request.getParameter("real_account");
+		
+		//은행 구분
+		if(bank.equals("KB")) {
+			bank = "국민은행";
+		}
+		else if(bank.equals("IBK")) {
+			bank = "기업은행";
+		}
+		else if(bank.equals("ShinHan")) {
+			bank = "신한은행";
+		}
+		else if(bank.equals("Woori")) {
+			bank = "우리은행";
+		}
+		else if(bank.equals("Hana")) {
+			bank = "하나은행";
+		}
+		
+		//로그인한 회원의 정보와 계좌 정보 가져오기
+		String member_id = (String)session.getAttribute("id");
+		MemberVO getmember = memberDAOService.getMemberAccountById(member_id);
+		
+		//실계좌 설정
+		
+		getmember.getAccount().setAccount_real(bank+real_account);
+		//실계좌 등록하기
+		accountDAOService.updateAccountRegister(getmember.getAccount());
+		
+		return "redirect:/mypageMyaccount.do";
+	}
+	
+	/*2017-07-31 혜림 : 출금하기 금액 입력 새 창 페이지 이동*/
+	@RequestMapping("mypageMyaccountWithdraw.do")
+	public String Withdraw() {
+		return "mypage_myaccount_withdraw_input";
+	}
 
+	/*2017-07-31 혜림 : 출금하기 기능*/
+	@RequestMapping("mypageMyaccountWithdrawAction.do")
+	public String WithdrawAction(HttpSession session, HttpServletRequest request) {
+		
+		//출금할 금액
+		int amount = Integer.parseInt(request.getParameter("amount"));
+		
+		String member_id = (String)session.getAttribute("id");
+		
+		MemberVO getmember = memberDAOService.getMemberAccountById(member_id);
+		
+		//입금하기 계좌 테이블에 넣기
+		AccountVO account= getmember.getAccount();
+		amount = account.getAccount_balance() - amount;
+		account.setAccount_balance(amount);
+		account.setAccount_case(2);
+		
+		accountDAOService.updateAccountDeposit(account);
+		
+		return "redirect:/mypageMyaccount.do";
+	}
 }
