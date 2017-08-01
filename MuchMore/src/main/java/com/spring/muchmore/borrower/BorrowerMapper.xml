@@ -148,7 +148,6 @@
 			and borrower.borrower_id = #{borrower_id}
 	</select>
 	
-
 	<!-- 2017-07-31 성현 : 사용자의 대출횟수 가져오기 -->
 	<select id="getBorrowerCountById" parameterType="String" resultType="int">
 		SELECT nvl(count(*), 0)
@@ -156,20 +155,37 @@
 		WHERE borrower_id = #{borrower_id}
 	</select>
 	
-	<!-- 2017-08-01 혜림 : 대출자의 상환완료 되지 않은 대출횟수 구하기 -->
-	<select id = "getBorrowerCountByIdNotComplete" parameterType="String" resultType="int">
-		SELECT nvl(count(*), 0)
-		FROM borrower
+	<!-- 2017-08-01 다예 : 대출 상환이 될 때마다 잔액 변경(borrower_balance 변경) -->
+	<update id="updateBorrowerBalance" parameterType="BorrowerVO">
+		UPDATE borrower
+		SET borrower_balance = borrower_balance - (SELECT moneyinout_money 
+													FROM (SELECT rownum rnum, moneyinout_date, moneyinout_holder_id,
+																moneyinout_other_id, moneyinout_money, moneyinout_state
+														  FROM moneyinout
+														  WHERE moneyinout_holder_id = 'muchmore' AND moneyinout_other_id = #{borrower_id}
+														  ORDER BY moneyinout_date DESC)
+													WHERE rnum = 1)
+		WHERE borrower_id = #{borrower_id} AND borrower_registerdate = #{borrower_registerdate}
+	</update>
+	
+	<!-- 2017-08-01 다예 : 대출금 상환시, borrower_status 변경 -->
+	<update id="updateBorrowerStatus" parameterType="String">
+		UPDATE borrower
+		SET borrower_status = DECODE(borrower_balance, 0, '상환완료', '상환중')
 		WHERE borrower_id = #{borrower_id}
-			and borrower_status != '상환완료'
-	</select>
-	<!-- 2017-08-01 성현 : 사용자의 대출 내역 중 borrower_status가 '상환완료'인 횟수 -->
-	<select id="getBorrowerCountByIdComplete" parameterType="String" resultType="int">
-		SELECT nvl(count(*), 0)
+	</update>
+	
+	<!-- 2017-08-01 다예 : 대출 상환시, 월상환금액과 입력된 월납입금액 확인 -->
+	<select id="getMonthlyDeposit" parameterType="String" resultType="int">
+		SELECT borrower_monthlypay
 		FROM borrower
-		WHERE
-		borrower_status = '상환완료' AND
-		borrower_id = #{borrower_id}
+		WHERE borrower_id = #{borrower_id} AND borrower_status != '상환중'
 	</select>
-
+	
+	<!-- 2017-08-01 다예 : 대출 상환시, 월납입금액(borrower_monthlypay)만큼 혹은 그 이상 입금해야하는데 상환해야할 돈(잔고(borrower_balance))이 월납입금액보다 작을 시 입금가능 -->
+	<select id="lessMonthlypay" parameterType="String" resultType="int">
+		SELECT borrower_balance
+		FROM borrower
+		WHERE borrower_id = #{borrower_id} AND borrower_status = '상환중'
+	</select>
 </mapper>

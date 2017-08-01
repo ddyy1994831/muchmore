@@ -25,4 +25,15 @@ public class AccountDAOService implements AccountDAO {
 		accountMapper.updateAccountRegister(account);
 	}
 
+	/*2017-08-01 다예 : 가상계좌 정보 출력*/
+	@Override
+	/*2017-08-01 다예 : 가상계좌 잔액 출력*/
+	public int getAccountBalance(String member_id){
+		// TODO Auto-generated method stub
+		AccountMapper accountMapper = sqlSession.getMapper(AccountMapper.class);
+		
+		int balance = accountMapper.getAccountBalance(member_id);
+		
+		return balance;
+	}
 }

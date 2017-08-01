@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.muchmore.account.AccountMapper">
-<!-- 	<resultMap type="AccountVO" id="AccountResultMap">
+ 	<resultMap type="AccountVO" id="AccountResultMap">
 		<result property="member_id" column="member_id"/>
 		<result property="account_virtual" column="account_virtual"/>
 		<result property="account_real" column="account_real"/>
 		<result property="account_balance" column="account_balance"/>
-	</resultMap> -->
+	</resultMap>
 	
 	<!-- 2017-07-31 혜림 : 가상계좌에 입금하기 -->
 	<update id = "updateAccountDeposit" parameterType="AccountVO">
@@ -23,4 +23,10 @@
 		WHERE member_id = #{member_id}
 	</update>
 	
+	<!-- 2017-08-01 다예 : 가상계좌 잔액 출력-->
+	<select id = "getAccountBalance" parameterType = "String" resultType = "int">
+		SELECT account_balance
+		FROM account
+		WHERE member_id = #{member_id}
+	</select>
 </mapper>
