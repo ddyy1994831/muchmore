@@ -307,4 +307,30 @@ public class MypageController {
 		
 		return "redirect:/mypageMyaccount.do";
 	}
+	
+	/* 2017-08-01 다예 : mypage_myloan에서 대출금 상환 */
+	@RequestMapping("/mypageMyloanDeposit.do")
+	public ModelAndView myloanDeposit(BorrowerVO borrower, HttpSession session) {
+		ModelAndView result = new ModelAndView();
+		
+		//현재 로그인한 사람이 대출자
+		String borrower_id = (String)session.getAttribute("id");
+		//월납입금액
+		int monthly_pay = borrowerDAOService.getMonthlyDeposit(borrower_id);
+		//잔액 : 앞으로 남은 대출금액(borrower_balance)
+		int balance = borrowerDAOService.lessMonthlypay(borrower_id);
+		//나의 가상계좌 잔액
+		int account_virtual_balance = accountDAOService.getAccountBalance(borrower_id);
+		
+		BorrowerVO getBorrower = borrowerDAOService.getBorrower(borrower);
+		
+		result.addObject("monthly_pay", monthly_pay);
+		result.addObject("balance", balance);
+		result.addObject("account_virtual_balance", account_virtual_balance);
+		result.addObject("borrower", getBorrower);
+		
+		result.setViewName("mypage_myloan_deposit");
+		
+		return result;
+	}
 }

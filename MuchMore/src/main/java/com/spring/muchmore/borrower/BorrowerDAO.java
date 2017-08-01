@@ -32,4 +32,15 @@ public interface BorrowerDAO {
 	/*2017-07-31 성현 : 사용자의 대출횟수 가져오기*/
 	public int getBorrowerCountById(String borrower_id);
 
+	/*2017-08-01 다예 : 대출 상환이 될 때마다 잔액 변경(borrower_balance 변경)*/
+	public void updateBorrowerBalance(BorrowerVO borrower);
+	
+	/*2017-08-01 다예 : 대출금 상환시, borrower_status 변경*/
+	public void updateBorrowerStatus(String borrower_id);
+	
+	/*2017-08-01 다예 : 대출 상환시, 월상환금액과 입력된 월납입금액 확인*/
+	public int getMonthlyDeposit(String borrower_id);
+	
+	/*2017-08-01 다예 : 대출 상환시, 월납입금액(borrower_monthlypay)만큼 혹은 그 이상 입금해야하는데 상환해야할 돈(잔고(borrower_balance))이 월납입금액보다 작을 시 입금가능*/
+	public int lessMonthlypay(String borrower_id);
 }

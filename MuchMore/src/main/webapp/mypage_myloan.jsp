@@ -24,7 +24,7 @@
 		</div>
 		<!-- ./col-sm-3 -->
 
-		<div class="col-md-9" id="MyInvest">
+		<div class="col-md-9" id="MyLoan">
 				<fieldset>
 					<legend><b>대출내역</b></legend>
 					<div class="form-group">
@@ -55,30 +55,44 @@
 									<td><%=bg.getBorrower_loanperiod() %></td>
 									<td><%=bg.getBorrower_status() %></td>
 								<%
-								//서류 제출
-								//진행상태가 서류미제출 이면 서류 제출 버튼
-								if(bg.getBorrower_status().equals("서류미제출")) {
+											//서류 제출
+											//진행상태가 서류미제출 이면 서류 제출 버튼
+											if(bg.getBorrower_status().equals("서류미제출")) {
+												
 								%>
-									<td><a href = "mypage_myloan_fileUpload.do?borrower_id=<%=id %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>" class = "btn btn-default btn-md">서류제출</a>
+												<td><a href = "mypage_myloan_fileUpload.do?borrower_id=<%=id %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>" class = "btn btn-default btn-md">서류제출</a>
+												<td><input type="button" class="btn btn-default btn-md" value="입금하기" disabled/></td>
 								<%
-								}
-									
-								else {
+											}
+											else {
 								%>
-									<td>완료</td>
+												<td>완료</td>
 								<%
-								}
-								//진행상태가 대출 
+												/* 2017-08-01 다예 : 대출내역 : 대출금 상환 버튼 disabled */
+												if((bg.getBorrower_status().equals("심사중")) || (bg.getBorrower_status().equals("대출신청"))) {											
 								%>
-									<td><a href = "mypage_loan_deposit.do?borrower_id=<%=bg.getBorrower_id() %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>" class = "btn btn-default btn-md">입금하기</a>
-								</tr>
-								<%		}
-									} else {
+													<td><input type="button" class="btn btn-default btn-md" value="입금하기" disabled/></td>								
+								<%		
+												}
+												else {
+								%>
+													<td><a href="mypageMyloanDeposit.do?borrower_id=<%=bg.getBorrower_id() %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>" class="btn btn-default btn-md">입금하기</a></td>
+								<%
+												} 
+  											}
+  								%>
+  								</tr>
+  								<%
+										}
+									}
+									else {
 								%>
 								<tr>
 									<td colspan="7" align="center">대출 내역이 없습니다.</td>
 								</tr>
-								<%	}%>
+								<%	
+									}
+								%>
 							</tbody>
 						</table>
 					</div>
