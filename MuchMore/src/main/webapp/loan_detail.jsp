@@ -160,7 +160,7 @@ function setComma(inNum){
 				    		</div>	
 						    	
 				    		<div class="form-group">
-								<label class="col-sm-2 control-label"><b>대출 상한일</b></label>
+								<label class="col-sm-2 control-label"><b>대출 상환일</b></label>
 								<div class="col-sm-4">
 									<div class="radio">
 										<label>

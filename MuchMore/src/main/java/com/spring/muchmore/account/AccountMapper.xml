@@ -9,8 +9,8 @@
 		<result property="account_balance" column="account_balance"/>
 	</resultMap>
 	
-	<!-- 2017-07-31 혜림 : 가상계좌에 입금하기 -->
-	<update id = "updateAccountDeposit" parameterType="AccountVO">
+	<!-- 2017-07-31 혜림 : 가상계좌에 입출금하기 -->
+	<update id = "updateAccount" parameterType="AccountVO">
 		UPDATE account
 		SET account_case = #{account_case}, account_balance = #{account_balance}
 		WHERE member_id = #{member_id}
@@ -29,4 +29,11 @@
 		FROM account
 		WHERE member_id = #{member_id}
 	</select>
+	
+	<!-- 2017-08-01 혜림 : 관리자 계좌 입출금-->
+	<update id = "updateAccountAdmin" parameterType="AccountVO">
+		UPDATE account
+		SET account_case = #{account_case}, account_balance = #{account_balance}
+		WHERE member_id = 'muchmore'
+	</update>
 </mapper>

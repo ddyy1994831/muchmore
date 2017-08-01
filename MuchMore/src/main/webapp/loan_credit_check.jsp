@@ -167,10 +167,6 @@ function setComma(inNum){
 										사업상 거래
 								</div>
 								<div class="radio">
-									<input type="radio" name="goodsVO.goods_object" id="optionsRadios4" value="결재">
-										결제
-								</div>
-								<div class="radio">
 									<input type="radio" name="goodsVO.goods_object" id="optionsRadios4" value="학자금">
 										학자금
 								</div>

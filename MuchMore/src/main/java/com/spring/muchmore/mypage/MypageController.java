@@ -230,7 +230,7 @@ public class MypageController {
 		account.setAccount_balance(amount);
 		account.setAccount_case(1);
 		
-		accountDAOService.updateAccountDeposit(account);
+		accountDAOService.updateAccount(account);
 		//입출금 내역에 넣기
 		
 		
@@ -302,7 +302,7 @@ public class MypageController {
 		account.setAccount_balance(amount);
 		account.setAccount_case(2);
 		
-		accountDAOService.updateAccountDeposit(account);
+		accountDAOService.updateAccount(account);
 		
 		return "redirect:/mypageMyaccount.do";
 	}
@@ -332,4 +332,6 @@ public class MypageController {
 		
 		return result;
 	}
+
 }
+
