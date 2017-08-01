@@ -1,6 +1,7 @@
 <%@page import="com.spring.muchmore.borrower.BorrowerVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
 	String id = null;
@@ -13,43 +14,57 @@
 %>    
 
 <script type="text/javascript">
-	function check(){
+function check(){
 		
-		var form = document.getElementById("inputbasic");
+	var form = document.getElementById("inputbasic");
 		
-		var sum = document.getElementById("goodsVO.goods_sum").value;
-		alert(sum);
-		alert(sum * 10000);
-		var borrower_limit = <%=borrower.getBorrower_limit()%>;
-		alert(borrower_limit);
+	var sum = document.getElementById("goodsVO.goods_sum").value;
+	var borrower_limit = <%=borrower.getBorrower_limit()%>;
 		
-		for (i = 0; i < sum.length; i++)
+	for (i = 0; i < sum.length; i++)
+	{
+		ch = sum.substring(i, i+1);
+		if (!(ch >= "0" && ch <= "9")) // 입력문자가 숫자인지 검사 // if()안의 문장을 isNaN(str)로 하고 for문 밖으로 빼놓아도 같은 효과!
 		{
-			ch = sum.substring(i, i+1);
-			if (!(ch >= "0" && ch <= "9")) // 입력문자가 숫자인지 검사 // if()안의 문장을 isNaN(str)로 하고 for문 밖으로 빼놓아도 같은 효과!
-			{
-				alert("특수문자가 포함, 다시 입력!");
-				return false;
-			}
-		}
-		
-		if(sum * 10000 > borrower_limit)
-		{
-			alert("한도 금액을 초과하셨습니다. \n"+borrower_limit+"만원이하로 적어주세요.");
+			alert("특수문자가 포함, 다시 입력!");
 			return false;
 		}
+	}
+		
+	if(sum * 10000 > borrower_limit)
+	{
+		alert("한도 금액을 초과하셨습니다. \n"+borrower_limit+"만원이하로 적어주세요.");
+		return false;
+	}
 			
-		return true;
-	}
+	return true;
+}
+
+//[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
+//[0-9] => \d , [^0-9] => \D
+var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
+var rgx2 = /(\d+)(\d{3})/; 
+//대출금액 "," 찍기
+function getNumber(obj){
 	
-	function gNumCheck() {
-		if(event.keyCode >= 48 && event.keyCode <= 57) {
-			return true;
-		}
-		else {
-			event.returnValue = false;
-		}
-	}
+   var num01;
+   var num02;
+   num01 = obj.value;
+   num02 = num01.replace(rgx1,"");
+   num01 = setComma(num02);
+   document.inputbasic.check_sum.value = num01+"만원";
+}
+
+function setComma(inNum){
+	   
+   var outNum;
+   outNum = inNum;
+   outNum = outNum;
+   while (rgx2.test(outNum)) {
+        outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
+    }
+   return outNum;
+}
 </script>
 
 <section class = "container">
@@ -73,7 +88,8 @@
 	  					</tr>
 						<tr>
 							<td>대출한도금액</td>
-							<td><%=borrower.getBorrower_limit() %>원</td>
+							
+							<td><fmt:formatNumber value="<%=borrower.getBorrower_limit() %>" type="currency" currencySymbol="￦" /></td>
 						</tr>
 					</table>
 	  			</div>
@@ -109,8 +125,12 @@
 								
 							<div class = "form-group">
 								<label for = "goodsVO.goods_sum" class = "col-sm-2 control-label"><b>대출금액</b></label>
-								<div class = "col-sm-4">
-									<input type = "text" onkeypress = "gNumCheck()" class = "form-control" id = "goodsVO.goods_sum" name = "goodsVO.goods_sum" required>
+								<div class = "col-sm-3">
+									<input type = "text" onchange = "getNumber(this)" onkeyup = "getNumber(this)" class = "form-control" id = "goodsVO.goods_sum" name = "goodsVO.goods_sum" required>
+								</div>
+								<div class = "col-sm-3">
+									<input type = "text" class = "form-control" id = "check_sum" name = "check_sum" 
+										placeholder = "금액 확인 " readonly>만원
 								</div>
 							</div>
 							

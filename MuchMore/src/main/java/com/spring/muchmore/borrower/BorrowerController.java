@@ -1,12 +1,13 @@
 package com.spring.muchmore.borrower;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.muchmore.goods.GoodsVO;
 
 @Controller
 public class BorrowerController {
@@ -15,8 +16,25 @@ public class BorrowerController {
 	
 	/*2017-07-29 혜림 : 대출하기 메인페이지 이동*/
 	@RequestMapping("loan.do")
-	public String loan() {
-		return "loan_main";
+	public ModelAndView loan(HttpSession session) {
+		ModelAndView result = new ModelAndView();
+		
+		int borrower_cnt = 0;	//상환완료되지 않은 대출 횟수
+		String msg = null;
+		//현재 대출중인 회원(상환 완료하지 않은 회원)은 대출신청페이지로 이동 불가
+		//상환 완료되지 않은 대출 개수 구하기
+		if(session.getAttribute("id") != null) {
+			borrower_cnt = borrowerDAOService.getBorrowerCountByIdNotComplete((String)session.getAttribute("id"));
+			
+			if(borrower_cnt != 0) {
+				msg = "현재 대출 서비스를 이용중인 회원이므로 대출 신청 서비스를 이용하실 수 없습니다.";
+			}
+		}
+		
+		result.addObject("msg", msg);
+		result.addObject("borrower_cnt", borrower_cnt);
+		result.setViewName("loan_main");
+		return result ;
 	}
 	
 	/*2017-07-29 혜림 : 대출하기 신용 정보 페이이지로 이동*/
@@ -82,12 +100,7 @@ public class BorrowerController {
 		ModelAndView result = new ModelAndView();
 		
 		//"원" 단위 맞추기
-		
 		borrower.getGoodsVO().setGoods_sum(borrower.getGoodsVO().getGoods_sum() * 10000);
-		/*GoodsVO setGoods = borrower.getGoodsVO();
-		setGoods.setGoods_sum(borrower.getGoodsVO().getGoods_sum() * 10000);
-		borrower.setGoodsVO(setGoods);*/
-		
 		//대출 금리 계산하기
 		double rate = borrowerDAOService.checkBorrowRate(borrower);
 		System.out.println("대출금리 계산 결과 : " +rate);
@@ -128,7 +141,5 @@ public class BorrowerController {
 		result.setViewName("loan_complete");
 		return result;
 	}
-	
-	
 		
 }
