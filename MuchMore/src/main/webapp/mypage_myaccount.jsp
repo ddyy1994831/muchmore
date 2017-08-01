@@ -79,7 +79,7 @@
 					<div class = "col-md-4 text-right">
 						<br/>
 						<font size = "5">
-						<b><%=member.getAccount().getAccount_balance() %>원</b>
+						<b><fmt:formatNumber value="<%=member.getAccount().getAccount_balance() %>" type="currency" currencySymbol="￦" />원</b>
 						<br/><br/>
 						</font>
    					</div>	
@@ -106,7 +106,7 @@
 	  						</thead>
 	  						<tbody>
 	    						<tr align = "right">
-	      							<td><font size = "5"><%=member.getAccount().getAccount_balance() %>원</font></td>
+	      							<td><font size = "5"><fmt:formatNumber value="<%=member.getAccount().getAccount_balance() %>" type="currency" currencySymbol="￦" />원</font></td>
 	      						</tr>
 	      					</tbody>
 	      				</table>
@@ -200,7 +200,7 @@
 	      							<td><%=mv.getMoneyinout_date() %></td>
 	      							<td><%=mv.getMoneyinout_holder_id() %></td>
 	      							<td><%=mv.getMoneyinout_payer_id() %></td>
-	      							<td><%=mv.getMoneyinout_money()%></td>
+	      							<td><fmt:formatNumber value="<%=mv.getMoneyinout_money()%>" type="currency" currencySymbol="￦" /></td>
 	      							<td><%=mv.getMoneyinout_state() %></td>
 	      	
 	      						</tr>

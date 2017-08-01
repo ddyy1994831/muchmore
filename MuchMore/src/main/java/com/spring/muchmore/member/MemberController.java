@@ -68,7 +68,7 @@ public class MemberController {
 		System.out.println("login.jsp로 부터 입력받은 pw : " +member.getMember_pw1());
 		
 		//데이터베이스에서 조회하기
-		MemberVO getmember = memberDAOService.getMember(member);
+		MemberVO getmember = memberDAOService.getMember(member.getMember_id());
 		
 		//아이디나 비밀번호를 잘못 입력한 경우 처리
 		

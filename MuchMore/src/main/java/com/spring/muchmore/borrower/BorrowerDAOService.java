@@ -53,10 +53,10 @@ public class BorrowerDAOService implements BorrowerDAO {
 	
 	/*2017-07-30 혜림 : mypage_myloan 대출내역에서 해당 회원의 대출 내역 전체 가져오기*/
 	@Override
-	public List<BorrowerVO> getBorrowerList(BorrowerVO borrower) {
+	public List<BorrowerVO> getBorrowerList() {
 		// TODO Auto-generated method stub
 		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
-		List<BorrowerVO> borrower_list = borrowerMapper.getBorrowerList(borrower);
+		List<BorrowerVO> borrower_list = borrowerMapper.getBorrowerList();
 		return borrower_list;
 	}
 
@@ -127,5 +127,14 @@ public class BorrowerDAOService implements BorrowerDAO {
 		int pay = borrowerMapper.lessMonthlypay(borrower_id);
 		
 		return pay;
+	}
+	
+	/*2017-08-01 혜림 : 대출자의 상환완료 되지 않은 대출횟수 구하기 */ 
+	@Override
+	public int getBorrowerCountByIdNotComplete(String borrower_id) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		int cnt = borrowerMapper.getBorrowerCountByIdNotComplete(borrower_id);
+		return cnt;
 	}
 }

@@ -53,7 +53,7 @@ function getNumber1(obj){
    num01 = obj.value;
    num02 = num01.replace(rgx1,"");
    num01 = setComma(num02);
-   document.borrowerinfo.check_totalincome.value = num01+"만원";
+   document.borrowerinfo.check_totalincome.value = "￦" +num01+"만원";
 
 }
 
@@ -65,7 +65,7 @@ function getNumber2(obj){
    num01 = obj.value;
    num02 = num01.replace(rgx1,"");
    num01 = setComma(num02);
-   document.borrowerinfo.check_amount.value = num01+"만원";
+   document.borrowerinfo.check_amount.value = "￦" +num01+"만원";
 
 }
 

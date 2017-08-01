@@ -12,7 +12,7 @@ public interface MemberDAO {
 	public int checkId(String id);
 
 	/*2017-07-29 혜림 : 회원 정보 전체 가져오기.*/
-	public MemberVO getMember(MemberVO member);
+	public MemberVO getMember(String member_id);
 
 	/*2017-07-29 혜림 : 아이디 찾기 : 이름과 이메일을 입력하면 아이디 return*/
 	public String findId(MemberVO member);

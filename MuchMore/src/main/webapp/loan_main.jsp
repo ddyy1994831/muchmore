@@ -7,7 +7,12 @@
 		id = (String)session.getAttribute("id");
 	}
 	
-	int borrower_cnt = 0;
+	int borrower_cnt = (Integer)request.getAttribute("borrower_cnt");
+	String msg = null;
+	if(borrower_cnt != 0) {
+		msg = (String)request.getAttribute("msg");	
+	}
+	
 %>
 
 <script>
@@ -34,7 +39,7 @@
 	}
 </script>
 <section class = "container">
-	<div class = "row" style = "height: 100%;">
+	<div class = "row">
     	<!-- 대출 메인 페이지 -->
 	    <div class="jumbotron text-center">
 			<h1>머치모어 대출 신청</h1>
@@ -90,11 +95,26 @@
 			<br/><br/>
 		<%
     	if(id != null) {
+    		//상환완료하지 않은 회원
+    		if( borrower_cnt != 0) {
     	%>
-
-			<button type="button" class="btn btn-primary btn-lg" onclick="enter_check()">대출/한도 확인하기</button>
-		
-		<%
+    			<button type="button" class="btn btn-primary btn-lg" disabled>대출/한도 확인하기</button>
+    			<br/><br/>
+    			<div class="text-center text-danger" style="font-size: 13pt;padding-top:25px;padding-bottom:50px">
+					<strong><%=msg%></strong>
+				</div>
+				
+    			
+    	<%
+    		}
+    		
+    		//상환 완료 한 회원 or 대출 서비스 이용이 처음인 회원
+    		else {
+    	%>
+    			<button type="button" class="btn btn-primary btn-lg" onclick="enter_check()">대출/한도 확인하기</button>
+    			
+    	<%
+    		}
 		}
 	
 		else{
