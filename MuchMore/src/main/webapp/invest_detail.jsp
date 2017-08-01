@@ -158,7 +158,7 @@
 					</div>
 					<div class="panel-footer" align="center">
 						<button type="button" class="btn btn-default"
-							onclick="location.href='history.go(-1)'">뒤로</button>
+							onclick="history.go(-1);">뒤로</button>
 						<%
 							if ( id == null || bg.getGoodsVO().getGoods_status().equals("모집완료")) {
 						%>
@@ -184,8 +184,7 @@
 				      	%>
 				      	<button type="submit" class="btn btn-primary" disabled>투자하기</button>
 				      	<%
-				   			}
-				      							
+				   			}				      							
 				      	}
 				      	%>
 					</div>
