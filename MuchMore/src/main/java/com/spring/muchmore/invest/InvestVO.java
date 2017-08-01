@@ -10,7 +10,7 @@ public class InvestVO {
 	private int goods_num;
 	private Date invest_date;
 	private int invest_sum;
-	private String invest_pay_ok;
+	private String invest_payok;
 	private int invest_return;
 	
 	//상품정보
@@ -46,11 +46,11 @@ public class InvestVO {
 	public void setInvest_sum(int invest_sum) {
 		this.invest_sum = invest_sum;
 	}
-	public String getInvest_pay_ok() {
-		return invest_pay_ok;
+	public String getInvest_payok() {
+		return invest_payok;
 	}
-	public void setInvest_pay_ok(String invest_pay_ok) {
-		this.invest_pay_ok = invest_pay_ok;
+	public void setInvest_payok(String invest_payok) {
+		this.invest_payok = invest_payok;
 	}
 	public int getInvest_return() {
 		return invest_return;

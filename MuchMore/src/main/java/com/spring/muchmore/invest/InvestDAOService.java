@@ -34,10 +34,19 @@ public class InvestDAOService implements InvestDAO {
 
 	/*2017-07-31 성현 : 사용자의 투자횟수 구하기*/
 	@Override
-	public int getInvestCountById(String member_id) {
+	public int getInvestCountById(String id) {
 		// TODO Auto-generated method stub
 		InvestMapper investMapper = sqlSession.getMapper(InvestMapper.class);
-		int cnt = investMapper.getInvestCountById(member_id);
+		int cnt = investMapper.getInvestCountById(id);
+		return cnt;
+	}
+	
+	/*2017-08-01 성현 : 사용자의 투자횟수 중 투자금 지급이 완료된 횟수*/
+	@Override
+	public int getInvestCountByIdComplete(String id) {
+		// TODO Auto-generated method stub
+		InvestMapper investMapper = sqlSession.getMapper(InvestMapper.class);
+		int cnt = investMapper.getInvestCountByIdComplete(id);
 		return cnt;
 	}
 	
@@ -47,5 +56,7 @@ public class InvestDAOService implements InvestDAO {
 		// TODO Auto-generated method stub
 		InvestMapper investMapper = sqlSession.getMapper(InvestMapper.class);
 		investMapper.insertInvest(invest);
-	}	
+	}
+
+		
 }

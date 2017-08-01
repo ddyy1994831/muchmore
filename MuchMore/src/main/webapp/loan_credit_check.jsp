@@ -39,6 +39,50 @@ function gNumCheck() {
 }
 </script>
 
+<script type="text/javascript">
+//[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
+//[0-9] => \d , [^0-9] => \D
+var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
+var rgx2 = /(\d+)(\d{3})/; 
+
+//총 소득 "," 찍기
+function getNumber1(obj){
+	
+   var num01;
+   var num02;
+   num01 = obj.value;
+   num02 = num01.replace(rgx1,"");
+   num01 = setComma(num02);
+   document.borrowerinfo.check_totalincome.value = num01+"만원";
+
+}
+
+//대출희망금액 "," 찍기
+function getNumber2(obj){
+	
+   var num01;
+   var num02;
+   num01 = obj.value;
+   num02 = num01.replace(rgx1,"");
+   num01 = setComma(num02);
+   document.borrowerinfo.check_amount.value = num01+"만원";
+
+}
+
+function setComma(inNum){
+   
+   var outNum;
+   outNum = inNum;
+   outNum = outNum;
+   while (rgx2.test(outNum)) {
+        outNum = outNum.replace(rgx2, '$1' + ',' + '$2');
+    }
+   return outNum;
+
+}
+
+</script>
+
 	
 <section class="container">
 	<div class = "row">
@@ -83,17 +127,26 @@ function gNumCheck() {
 						
 						<div class="form-group">
 							<label for="borrower_totalincome" class="col-sm-2 control-label"><b>연소득</b></label>
-							<div class="col-sm-4">
-								<input type="text" onkeypress = "gNumCheck()" class="form-control" 
-								id="borrower_totalincome" name="borrower_totalincome" placeholder = "만원단위 입력">
+							<div class="col-sm-3">
+								<input type="text" onchange = "getNumber1(this);" onkeyup = "getNumber1(this);" class="form-control" 
+								id="borrower_totalincome" name="borrower_totalincome" placeholder = "만원단위 입력" required style="text-align:right;">
+							</div>
+							<div class="col-sm-3">
+								<input type = "text" class="form-control" name="check_totalincome" id="check_totalincome" 
+									placeholder = "금액 확인" style="text-align:right;" readonly>
 							</div>
 						</div>
+						
 				    
 						<div class="form-group">
 							<label for="inputEmail" class="col-sm-2 control-label"><b>희망대출금액</b></label>
-							<div class="col-sm-4">
-								<input type="text" onkeypress = "gNumCheck()" class="form-control" id="borrower_amount"
-								placeholder = "만원단위 입력">
+							<div class="col-sm-3">
+								<input type="text" onchange = "getNumber2(this);" onkeyup = "getNumber2(this);" class="form-control" id="borrower_amount"
+								placeholder = "만원단위 입력" required style="text-align:right;">
+							</div>
+							<div class="col-sm-3">
+								<input type="text"  class="form-control" id="check_amount" name = "check_amount" 
+									placeholder = "금액 확인"style="text-align:right;" readonly>
 							</div>
 						</div>
 						

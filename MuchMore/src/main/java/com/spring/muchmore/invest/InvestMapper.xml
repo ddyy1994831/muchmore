@@ -8,7 +8,7 @@
 		<result property="member_id" column="member_id"/>
 		<result property="invest_date" column="invest_date" />
 		<result property="invest_sum" column="invest_sum" />
-		<result property="invest_pay_ok" column="invest_pay_ok"/>
+		<result property="invest_payok" column="invest_payok"/>
 		<result property="invest_return" column="invest_return" />
 		
 		<!-- 상품 join 테이블 -->
@@ -44,10 +44,17 @@
 	
 	<!-- 2017-07-31 성현 : 사용자의 투자횟수 구하기 -->
 	<select id="getInvestCountById" parameterType="String" resultType="int">
-		select nvl(count(*), 0)
-		from invest
-		where
+		SELECT nvl(count(*), 0)
+		FROM invest
+		WHERE
 		member_id = #{member_id}
+	</select>
+	
+	<!-- 2017-08-01 성현 : 사용자의 투자횟수 중 투자금 지급이 완료된 횟수 -->
+	<select id="getInvestCountByIdComplete" resultType="int" parameterType="String">
+		SELECT nvl(count(*), 0)
+		FROM invest
+		WHERE invest_payok = '지급완료' AND member_id = #{member_id}
 	</select>
 	
 	<!-- 2017-07-31 성현 : 투자테이블에 데이터 추가 -->
