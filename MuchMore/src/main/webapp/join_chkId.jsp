@@ -29,7 +29,7 @@
 			</tr>
 		</table>
 
-		<form action="join_chkId.do" method="post" name="checkForm">
+		<form action="joinCheckId.do" method="post" name="checkForm">
 			<table width="360" border="0" cellspacing="0" cellpadding="5">
 				<tr>
 					<td align="center"><font size="2">다른 아이디를 선택하세요.</font>

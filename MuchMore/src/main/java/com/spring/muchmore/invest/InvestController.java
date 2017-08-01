@@ -149,15 +149,15 @@ public class InvestController {
 			out.println("alert('잔액이 부족합니다. 잔액 충전이 필요합니다.');");
 			out.println("history.go(-1);");
 			out.println("</script>");
+			out.close();			
+		}
+		else if((invest.getInvest_sum()) > (goods_sum - goods_invest)) {
+			out.println("<script>");
+			out.println("alert('투자 가능금액보다 많은 금액을 투자할 수 없습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
 			out.close();
-			if((invest.getInvest_sum()) > (goods_sum - goods_invest)) {
-				out.println("<script>");
-				out.println("alert('투자 가능금액보다 많은 금액을 투자할 수 없습니다.');");
-				out.println("history.go(-1);");
-				out.println("</script>");
-				out.close();
-			}
-		}		
+		}
 		else {
 			BorrowerVO getborrower = borrowerDAOService.getBorrower(borrower);
 

@@ -48,4 +48,8 @@ public interface BorrowerMapper {
 	
 	/*2017-08-01 혜림 : 대출금을 지급 받으면 대출자 상태 바꾸기 */
 	public void updateBorrowerPayBack(BorrowerVO borrower);
+
+	/*2017-08-01 성현 : 사용자의 대출 내역 중 borrower_status가 '상환완료'인 횟수*/
+	public int getBorrowerCountByIdComplete(String id);
+
 }
