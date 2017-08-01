@@ -1,8 +1,12 @@
 package com.spring.muchmore.admin;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -132,7 +136,7 @@ public class AdminController {
 		
 		//관리자 계좌에서 출금하기
 		admin.getAccount().setAccount_case(7);
-		admin.getAccount().setAccount_balance(admin.getAccount().getAccount_balance() + amount);
+		admin.getAccount().setAccount_balance(admin.getAccount().getAccount_balance() - amount);
 		accountDAOService.updateAccountAdmin(admin.getAccount());
 		
 		//대출자 상태 바꾸기
@@ -143,4 +147,82 @@ public class AdminController {
 		borrowerDAOService.updateBorrowerPayBack(member.getBorrower());
 		return "redirect:/adminLoanList.do";
 	}
+	
+	/* 2017-08-01 혜림 : 대출금 지급페이지 회원아이디 클릭 : 자세히 보기 */
+	@RequestMapping("adminLoanDetail.do")
+	public ModelAndView loanDetail(BorrowerVO borrower) {
+		ModelAndView result = new ModelAndView();
+		
+		System.out.println("ddd:" +borrower.getBorrower_id());
+		
+		MemberVO member = memberDAOService.getMemberAccountById(borrower.getBorrower_id());
+		member.setBorrower(borrowerDAOService.getBorrower(borrower));
+		
+		result.addObject("borrower", member);
+		result.setViewName("admin_loan_detail");
+		return result;
+	}
+	
+	/* 2017-08-01 혜림 : 제출 서류 다운로드 */
+	@RequestMapping("loanFileDownload.do")
+	public void loanFileDownloadAction(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("EUC-KR");
+
+		String of = request.getParameter("of"); // 서버에 업로드되면서 바뀐 파일 이름
+		String of2 = request.getParameter("of2"); // 실제 업로드할 때 사용했던 파일 이름
+		// System.out.println("/fileDownload?of=" + of);
+		// System.out.println(of);
+
+		// 웹사이트 루트디렉토리의 실제 디스크상의 경로 알아내기.
+		// String uploadPath =
+		// request.getSession().getServletContext().getRealPath("/upload");
+		// String fullPath = uploadPath + "/" + of;
+		String uploadPath = "C:\\hk0327\\upload\\";
+		String fullPath = uploadPath + of;
+
+		// System.out.println("path : " + uploadPath);
+		// System.out.println("fullPath :" + fullPath);
+		File downloadFile = new File(fullPath);
+
+		// 파일 다운로드를 위해 컨텐츠 타입을 application/download 설정
+		response.setContentType("application/download; charset=UTF-8");
+
+		// 파일 사이즈 지정
+		response.setContentLength((int) downloadFile.length());
+
+		// 다운로드 창을 띄우기 위한 헤더 조작
+		response.setHeader("Content-Disposition", "attachment;filename=" + new String(of2.getBytes(), "ISO8859-1"));
+
+		response.setHeader("Content-Transfer-Encoding", "binary");
+
+		// Content-dispostion 속성
+		// 1) "Content-disposition: attachment" 브라우저 인식 파일 확장자를 포함해 모든 확장자의 파일들에
+		// 대해 다운로드 시 무조건 "파일 다운로드" 대화상자가 뜨도록 하는 헤더 속성.
+		// 2) "Content-disposition: inline" 브라우저 인식 파일확장자를 가진 파일들에 대해서는 웹 브라우저
+		// 상에서 바로 파일을 열고 그 외의 파일들에 대해서는 "파일 다운로드" 대화상자가 뜨도록 하는 헤더 속성.
+
+		FileInputStream fin = new FileInputStream(downloadFile);
+		ServletOutputStream sout = response.getOutputStream();
+
+		byte[] buf = new byte[1024];
+		int size = -1;
+
+		while ((size = fin.read(buf, 0, buf.length)) != -1) {
+			sout.write(buf, 0, size);
+		}
+		fin.close();
+		sout.close();
+	}
+	
+	/*2017-08-01 혜림 : 대출 서류 심사 승인하기 */
+	@RequestMapping("loanApproval.do")
+	public String loanApprovalAction(BorrowerVO borrower) {
+		
+		BorrowerVO getborrower = borrowerDAOService.getBorrower(borrower);
+		getborrower.setBorrower_status("대출신청");
+		borrowerDAOService.updateBorrowerStatusByAdmin(getborrower);
+		
+		return "redirect:/adminLoanList.do";
+	}
+	
 }

@@ -48,4 +48,8 @@ public interface BorrowerMapper {
 	
 	/*2017-08-01 혜림 : 대출금을 지급 받으면 대출자 상태 바꾸기 */
 	public void updateBorrowerPayBack(BorrowerVO borrower);
+	
+	/*2017-08-01 혜림 : 대출 상태 변경*/
+	public void updateBorrowerStatusByAdmin(BorrowerVO borrower);
+	
 }

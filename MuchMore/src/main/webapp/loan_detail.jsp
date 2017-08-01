@@ -112,7 +112,6 @@ function setComma(inNum){
 						<input type = "hidden" name = "borrower_limit" value = "<%=borrower.getBorrower_limit() %>">
 						<input type = "hidden" name = "goodsVO.goods_object" value = "<%=borrower.getGoodsVO().getGoods_object() %>">
 						<input type = "hidden" name = "borrower_jobbiz" value = "<%=borrower.getBorrower_jobbiz() %>">
-						<input type = "hidden" name = "borrower_jobperiod" value = "<%=borrower.getBorrower_jobperiod() %>">
 						<fieldset style = "padding-left: 100px">
 							<!-- <legend>상세 정보 입력</legend> -->
 							<div class = "form-group">
@@ -130,7 +129,7 @@ function setComma(inNum){
 								</div>
 								<div class = "col-sm-3">
 									<input type = "text" class = "form-control" id = "check_sum" name = "check_sum" 
-										placeholder = "금액 확인 " readonly>만원
+										placeholder = "금액 확인 " readonly>
 								</div>
 							</div>
 							

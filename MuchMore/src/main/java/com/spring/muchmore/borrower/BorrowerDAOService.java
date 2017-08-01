@@ -146,5 +146,13 @@ public class BorrowerDAOService implements BorrowerDAO {
 		borrowerMapper.updateBorrowerPayBack(borrower);
 	}
 
+	/*2017-08-01 혜림 : 대출 상태 변경*/
+	@Override
+	public void updateBorrowerStatusByAdmin(BorrowerVO borrower) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		borrowerMapper.updateBorrowerStatusByAdmin(borrower);
+	}
+
 	
 }

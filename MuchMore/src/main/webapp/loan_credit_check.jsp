@@ -95,7 +95,7 @@ function setComma(inNum){
 	</div>
 	
 	<br/><br/>
-	
+	<!-- padding-left:200px;padding-right:200px; -->
 	<div class = "row" style = "padding-left:200px;padding-right:200px;">
 	    <!-- 대출 정보 입력 페이지 -->
 	    <div class = "panel panel-primary">
