@@ -95,5 +95,13 @@ public class BorrowerDAOService implements BorrowerDAO {
 		int cnt = borrowerMapper.getBorrowerCountById(borrower_id);
 		return cnt;
 	}
+
+	@Override
+	public int getBorrowerCountByIdNotComplete(String borrower_id) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		int cnt = borrowerMapper.getBorrowerCountByIdNotComplete(borrower_id);
+		return cnt;
+	}
 	
 }
