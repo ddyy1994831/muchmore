@@ -89,10 +89,10 @@ public class BorrowerDAOService implements BorrowerDAO {
 
 	/*2017-07-31 성현 : 사용자의 대출횟수 구하기*/
 	@Override
-	public int getBorrowerCountById(String borrower_id) {
+	public int getBorrowerCountById(String id) {
 		// TODO Auto-generated method stub
 		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
-		int cnt = borrowerMapper.getBorrowerCountById(borrower_id);
+		int cnt = borrowerMapper.getBorrowerCountById(id);
 		return cnt;
 	}
 
@@ -104,4 +104,12 @@ public class BorrowerDAOService implements BorrowerDAO {
 		return cnt;
 	}
 	
+	/*2017-08-01 성현 : 사용자의 대출 내역 중 borrower_status가 '상환완료'인 횟수*/
+	@Override
+	public int getBorrowerCountByIdComplete(String id) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		int cnt = borrowerMapper.getBorrowerCountByIdComplete(id);
+		return 0;
+	}	
 }
