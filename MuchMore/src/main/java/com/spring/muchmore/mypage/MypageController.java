@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -315,9 +316,9 @@ public class MypageController {
 		//현재 로그인한 사람이 대출자
 		String borrower_id = (String)session.getAttribute("id");
 		//월납입금액
-		int monthly_pay = borrowerDAOService.getMonthlyDeposit(borrower_id);
+		int monthly_pay = borrowerDAOService.getMonthlyDeposit(borrower);
 		//잔액 : 앞으로 남은 대출금액(borrower_balance)
-		int balance = borrowerDAOService.lessMonthlypay(borrower_id);
+		int balance = borrowerDAOService.lessMonthlypay(borrower);
 		//나의 가상계좌 잔액
 		int account_virtual_balance = accountDAOService.getAccountBalance(borrower_id);
 		
@@ -331,6 +332,38 @@ public class MypageController {
 		result.setViewName("mypage_myloan_deposit");
 		
 		return result;
+	}
+	
+	/*2017-08-01 성현 : 대출금 상환 action*/
+	@RequestMapping("/mypageMyloanDepositAction.do")
+	public String mypage_loan_income_result(HttpSession session, HttpServletRequest request, BorrowerVO borrower) {
+		
+		ModelAndView result = new ModelAndView();
+		
+		BorrowerVO getborrower = borrowerDAOService.getBorrower(borrower);
+
+		// 입금 금액
+		int amount = Integer.parseInt(request.getParameter("deposit_amount"));
+		// 입금 금액 삽입 후 계좌 테이블 수정(사용자)
+		MemberVO getmember = memberDAOService.getMemberAccountById((String)session.getAttribute("id"));		
+		AccountVO account= getmember.getAccount();
+		amount = account.getAccount_balance() - amount;
+		account.setAccount_balance(amount);
+		account.setAccount_case(4);		
+		accountDAOService.updateAccount(account);
+		// 입금 금액 삽입 후 계좌 테이블 수정(관리자)
+		MemberVO muchmore = memberDAOService.getMemberAccountById("muchmore");
+		AccountVO muchmore_account= muchmore.getAccount();
+		amount = muchmore_account.getAccount_balance() + amount;
+		muchmore_account.setAccount_balance(amount);
+		muchmore_account.setAccount_case(7);
+		accountDAOService.updateAccount(muchmore_account);
+		
+		//잔액, 상태 수정
+		borrowerDAOService.updateBorrowerBalance(getborrower);
+		borrowerDAOService.updateBorrowerStatus(borrower.getBorrower_id());
+
+		return "redirect:/mypage_myloan.do";
 	}
 
 }

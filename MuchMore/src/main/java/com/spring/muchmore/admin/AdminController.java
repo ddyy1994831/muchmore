@@ -49,7 +49,7 @@ public class AdminController {
 		
 		//사용자의 총 대출횟수와 대출내역 중 '상환완료'인 대출횟수 구하기(탈퇴가능여부 비교 위해)
 		int borrower_id_total = borrowerDAOService.getBorrowerCountById(id);
-		//int borrower_id_complete = borrowerDAOService.getBorrowerCountByIdComplete(id);
+		int borrower_id_complete = borrowerDAOService.getBorrowerCountByIdComplete(id);
 		//사용자의 총 투자횟수와 투자내역 중 '지급완료'인 투자횟수 구하기(탈퇴가능여부 비교 위해) 
 		int invest_id_total = investDAOService.getInvestCountById(id);
 		int invest_id_complete = investDAOService.getInvestCountByIdComplete(id);
@@ -62,7 +62,7 @@ public class AdminController {
 		List<InvestVO> invest_list = (List<InvestVO>) investDAOService.getInvestById(id);
 
 		result.addObject("borrower_id_total", borrower_id_total);
-		//result.addObject("borrower_id_complete", borrower_id_complete);
+		result.addObject("borrower_id_complete", borrower_id_complete);
 		result.addObject("invest_id_total", invest_id_total);
 		result.addObject("invest_id_complete", invest_id_complete);
 		result.addObject("borrower_list", borrower_list);

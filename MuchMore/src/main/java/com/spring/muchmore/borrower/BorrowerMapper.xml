@@ -177,17 +177,21 @@
 	</update>
 	
 	<!-- 2017-08-01 다예 : 대출 상환시, 월상환금액과 입력된 월납입금액 확인 -->
-	<select id="getMonthlyDeposit" parameterType="String" resultType="int">
-		SELECT borrower_monthlypay
-		FROM borrower
-		WHERE borrower_id = #{borrower_id} AND borrower_status != '상환중'
+	<select id="getMonthlyDeposit" parameterType="BorrowerVO" resultType="int">
+		SELECT borrower.borrower_monthlypay
+		FROM borrower, goods
+		WHERE borrower.borrower_id = #{borrower_id} 
+			AND borrower.borrower_status = '상환중'
+			AND goods.goods_num = #{goodsVO.goods_num}
 	</select>
 	
 	<!-- 2017-08-01 다예 : 대출 상환시, 월납입금액(borrower_monthlypay)만큼 혹은 그 이상 입금해야하는데 상환해야할 돈(잔고(borrower_balance))이 월납입금액보다 작을 시 입금가능 -->
-	<select id="lessMonthlypay" parameterType="String" resultType="int">
-		SELECT borrower_balance
-		FROM borrower
-		WHERE borrower_id = #{borrower_id} AND borrower_status = '상환중'
+	<select id="lessMonthlypay" parameterType="BorrowerVO" resultType="int">
+		SELECT borrower.borrower_balance
+		FROM borrower, goods
+		WHERE borrower.borrower_id = #{borrower_id} 
+			AND borrower.borrower_status = '상환중'
+			AND goods.goods_num = #{goodsVO.goods_num}
 	</select>
 	
 	<!-- 2017-08-01 혜림 : 대출자의 상환완료 되지 않은 대출횟수 구하기 -->

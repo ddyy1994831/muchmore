@@ -48,7 +48,7 @@ public class InvestVO {
 	}
 	public String getInvest_payok() {
 		return invest_payok;
-	}
+	}	
 	public void setInvest_payok(String invest_payok) {
 		this.invest_payok = invest_payok;
 	}

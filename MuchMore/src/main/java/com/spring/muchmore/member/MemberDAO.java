@@ -28,5 +28,8 @@ public interface MemberDAO {
 	
 	/*2017-08-01 성현 : 회원목록 가져오기(List타입)*/
 	public List<MemberVO> getMemberList();
+	
+	/*2017-08-01 성현 : 회원삭제*/
+	public void deleteMember(String id);
 }
  

@@ -99,5 +99,13 @@ public class MemberDAOService implements MemberDAO {
 		return memberlist;
 	}
 
+	/*2017-08-01 성현 : 회원삭제*/
+	@Override
+	public void deleteMember(String id) {
+		// TODO Auto-generated method stub
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		memberMapper.deleteMember(id);		
+	}
+
 	
 }
