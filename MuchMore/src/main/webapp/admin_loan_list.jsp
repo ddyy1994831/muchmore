@@ -20,6 +20,7 @@
 <section class = "container">
 	<div class = "row" style = "height:100%">
    		<div class = "span12">
+   			<legend><b>대출 리스트</b></legend>
    			<table class="table table-striped table-condensed table-hover ">
  				<thead>
    					<tr>
@@ -29,7 +30,7 @@
    						<th>모집금액</th>
    						<th>대출금액</th>
    						<th>모집여부</th>
-   						<th>지급하기</th>
+   						<th>승인/지급하기</th>
    					</tr>
  				</thead>
  				<tbody>
@@ -40,25 +41,39 @@
  					<tr>
   						<td><%=bg.getGoodsVO().getGoods_date() %></td>
   						<td><%=bg.getGoodsVO().getGoods_num() %></td>
-   						<td><a href = "admin_loan_detail.do?borrower_id=<%=bg.getBorrower_id() %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>"><%=bg.getGoodsVO().getBorrower_id() %></a></td>
+   						<td><a href = "adminLoanDetail.do?borrower_id=<%=bg.getBorrower_id() %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>"><%=bg.getGoodsVO().getBorrower_id() %></a></td>
   						<td><fmt:formatNumber value="<%=bg.getGoodsVO().getGoods_invest() %>" type="currency" currencySymbol="￦" /></td>
    						<td><fmt:formatNumber value="<%=bg.getGoodsVO().getGoods_sum() %>" type="currency" currencySymbol="￦" /></td>
    						<td><%=bg.getGoodsVO().getGoods_status()%></td>
+   						<td>
    						<%
    						if(bg.getGoodsVO().getGoods_status().equals("모집완료") && !(bg.getBorrower_payok().equals("지급완료"))) {
    						%>
-   						<td><input type = "button" class="btn btn-primary btn-xs" 
-   							onclick = "openSend('<%=bg.getBorrower_id() %>','<%=bg.getGoodsVO().getGoods_num() %>')" value = "지급하기"></td>
+   							<input type = "button" class="btn btn-primary btn-xs" 
+   								onclick = "openSend('<%=bg.getBorrower_id() %>','<%=bg.getGoodsVO().getGoods_num() %>')" value = "지급하기">
    						<%
    						}
    						
    						else {
+   							if(bg.getBorrower_status().equals("심사중")) {
    						%>
-   						<td><input type = "button" class="btn btn-primary btn-xs" value = "지급하기" disabled></td>
+   								<a href = "adminLoanDetail.do?borrower_id=<%=bg.getBorrower_id() %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>"
+   								class = "btn btn-warning btn-xs">승인하기</a>
    						<%
+   							}
+   							else if(bg.getBorrower_payok().equals("지급완료")){
+   						%>
+   							 	<%=bg.getBorrower_payok() %>
+   						<%
+   							}
+   							else {
+   						%>
+   								<%=bg.getBorrower_status() %>
+   						<%
+   							}
    						}
    						%>
-
+						</td>
  					</tr>
 				<%
 					

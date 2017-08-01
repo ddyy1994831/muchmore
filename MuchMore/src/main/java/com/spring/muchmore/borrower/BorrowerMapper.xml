@@ -21,6 +21,8 @@
 		<result property="borrower_balance" column="borrower_balance" />
 		<result property="borrower_payok" column="borrower_payok" />
 		<result property="borrower_registerdate" column="borrower_registerdate" />
+		<result property="borrower_file" column="borrower_file" />
+		<result property="borrower_stored" column="borrower_stored" />
 		
 		<!-- 상품 테이블 -->
 		<collection property="goodsVO" resultMap="GoodsResultMap"/>
@@ -222,4 +224,12 @@
  			AND borrower_status = '상환완료'
  		
  	</select>
+	
+	<!-- 2017-08-01 혜림 : 대출 상태 변경 -->
+	<update id = "updateBorrowerStatusByAdmin" parameterType="BorrowerVO">
+		UPDATE borrower
+		SET borrower_status = #{borrower_status}
+		WHERE borrower_id = #{borrower_id}
+			and borrower_registerdate = #{borrower_registerdate}
+	</update>
 </mapper>

@@ -52,4 +52,7 @@ public interface BorrowerMapper {
 	/*2017-08-01 성현 : 사용자의 대출 내역 중 borrower_status가 '상환완료'인 횟수*/
 	public int getBorrowerCountByIdComplete(String id);
 
+	/*2017-08-01 혜림 : 대출 상태 변경*/
+	public void updateBorrowerStatusByAdmin(BorrowerVO borrower);
+	
 }

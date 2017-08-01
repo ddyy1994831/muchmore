@@ -39,7 +39,7 @@
 	}
 </script>
 <section class = "container">
-	<div class = "row">
+	<div class = "row" >
     	<!-- 대출 메인 페이지 -->
 	    <div class="jumbotron text-center">
 			<h1>머치모어 대출 신청</h1>
@@ -126,5 +126,6 @@
     	
 		</div>
 	</div>
+	<br/><br/>
 </section>
 
