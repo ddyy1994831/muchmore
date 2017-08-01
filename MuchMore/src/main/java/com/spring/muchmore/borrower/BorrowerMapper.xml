@@ -114,7 +114,7 @@
 	</insert>
 	
 	<!-- 2017-07-30 혜림 : mypage_myloan 대출내역에서 모든회원의 대출 내역 가져오기-->
-	<select id = "getBorrowerList" parameterType="BorrowerVO" resultMap="BorrowerResultMap">
+	<select id = "getBorrowerList" resultMap="BorrowerResultMap">
 		SELECT * 
 		FROM borrower, goods
 		WHERE borrower.borrower_id = goods.borrower_id

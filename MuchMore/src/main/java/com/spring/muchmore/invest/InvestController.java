@@ -45,7 +45,7 @@ public class InvestController {
 		BorrowerVO borrower = new BorrowerVO();
 		borrower.setBorrower_id(id);
 		// 상품 리스트 불러오기
-		List<BorrowerVO> invest_list = borrowerDAOService.getBorrowerList(borrower);
+		List<BorrowerVO> invest_list = borrowerDAOService.getBorrowerList();
 		result.addObject("invest_list", invest_list);
 		result.setViewName("invest");
 		return result;
@@ -64,9 +64,9 @@ public class InvestController {
 		// 모집률 계산을 위해 총 투자금액 가져오기 : 파라미터 대출 상품 아이디
 		int total_invest = investDAOService.getTotalInvestSum(get_borrowerVO.getGoodsVO().getGoods_num());
 		// 대출자에 대한 정보 : 파라미터 대출자 아이디
-		MemberVO vo = new MemberVO();
-		vo.setMember_id(borrower.getBorrower_id());
-		MemberVO member = memberDAOService.getMember(vo);
+		
+		
+		MemberVO member = memberDAOService.getMember(borrower.getBorrower_id());
 		// 20170710 성현 - 대출횟수 가져오기
 		int borrowerCount = borrowerDAOService.getBorrowerCountById(get_borrowerVO.getBorrower_id());
 		// 20170710 성현 - 투자횟수 가져오기

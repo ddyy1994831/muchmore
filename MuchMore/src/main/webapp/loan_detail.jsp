@@ -52,7 +52,7 @@ function getNumber(obj){
    num01 = obj.value;
    num02 = num01.replace(rgx1,"");
    num01 = setComma(num02);
-   document.inputbasic.check_sum.value = num01+"만원";
+   document.inputbasic.check_sum.value = "￦" +num01+"만원";
 }
 
 function setComma(inNum){

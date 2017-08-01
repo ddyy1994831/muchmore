@@ -47,6 +47,8 @@
 						<input type = "hidden" id = "borrower_loanperiod" name = "borrower_loanperiod" value = "<%=borrower.getBorrower_loanperiod()%>">
 						<input type = "hidden" id = "borrower_amount" name = "borrower_amount" value = "<%=borrower.getBorrower_amount()%>">
 						<input type = "hidden" id = "borrower_repay_date" name = "borrower_repay_date" value = "<%=borrower.getBorrower_repay_date() %>">
+						<input type = "hidden" id = "borrower_monthlypay" name = "borrower_monthlypay" value = "<%=borrower.getBorrower_monthlypay() %>">
+			   			
 			   			<table class = "table table-striped">
 			   				<tr>
 			   					<td>직업구분</td>

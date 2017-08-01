@@ -68,11 +68,10 @@ public class MypageController {
 		
 		String id = (String)session.getAttribute("id");
 		//getMember함수쓰기 위해 member에 session값 저장.
-		member.setMember_id(id);
 		String password = request.getParameter("member_pw1");
 		
 
-		MemberVO vo = memberDAOService.getMember(member);
+		MemberVO vo = memberDAOService.getMember(id);
 		if (!(password.equals(vo.getMember_pw1()))) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -97,7 +96,7 @@ public class MypageController {
 		return "mypage_memberupdatesuccess";
 	}
 	
-	//2017-07-03 혜림 : 대출 내역 화면으로 이동
+	//2017-07-30 혜림 : 대출 내역 화면으로 이동
 	@RequestMapping("mypage_myloan.do")
 	public ModelAndView mypage_myloan(HttpSession session) {
 		
@@ -115,7 +114,7 @@ public class MypageController {
 		return result;
 	}
 	
-	/*2017-07-03 혜림 : 대출 내역 화면에서 서류제출 페이지로 이동*/
+	/*2017-07-30 혜림 : 대출 내역 화면에서 서류제출 페이지로 이동*/
 	@RequestMapping("mypage_myloan_fileUpload.do")
 	public ModelAndView myloanFileUpload(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();
@@ -130,7 +129,7 @@ public class MypageController {
 		return result;
 	}
 	
-	/*2017-07-03 혜림 : 서류 upload Action*/
+	/*2017-07-30 혜림 : 서류 upload Action*/
 	@RequestMapping("mypage_myloan_fileUploadAction.do")
 	public String myloanFileUploadAction(MultipartHttpServletRequest request) throws Exception {
 		

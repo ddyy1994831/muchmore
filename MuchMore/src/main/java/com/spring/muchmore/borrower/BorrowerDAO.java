@@ -17,7 +17,7 @@ public interface BorrowerDAO {
 	public void insertGoods(BorrowerVO borrower);
 	
 	/*2017-07-30 혜림 : mypage_myloan 대출내역에서 해당 회원의 대출 내역 전체 가져오기*/
-	public List<BorrowerVO> getBorrowerList(BorrowerVO borrower);
+	public List<BorrowerVO> getBorrowerList();
 	
 	/*2017-07-30 혜림 : 대출자 id와 상품 번호로 조회하여 해당 대출자와 상품에 대한 정보 가져오기*/
 	public BorrowerVO getBorrower(BorrowerVO borrower);

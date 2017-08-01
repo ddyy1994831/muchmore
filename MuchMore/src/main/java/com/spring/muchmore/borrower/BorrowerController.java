@@ -116,8 +116,9 @@ public class BorrowerController {
 		denominator = A * B * Math.pow((1 + B), borrower.getBorrower_loanperiod());
 		numerator = Math.pow((1 + B), borrower.getBorrower_loanperiod()) - 1;
 		
+		System.out.println((int)(Math.floor(denominator / numerator)));
 		//월 상환액
-		borrower.setBorrower_monthlypay((int) (Math.floor(denominator / numerator)));
+		borrower.setBorrower_monthlypay((int)(Math.floor(denominator / numerator)));
 		//총 상환액
 		borrower.setBorrower_amount(borrower.getBorrower_monthlypay() * borrower.getBorrower_loanperiod());
 		
