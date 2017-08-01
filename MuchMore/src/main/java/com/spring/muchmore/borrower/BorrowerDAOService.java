@@ -137,4 +137,13 @@ public class BorrowerDAOService implements BorrowerDAO {
 		int cnt = borrowerMapper.getBorrowerCountByIdNotComplete(borrower_id);
 		return cnt;
 	}
+	
+	/*2017-08-01 성현 : 사용자의 대출 내역 중 borrower_status가 '상환완료'인 횟수*/
+	@Override
+	public int getBorrowerCountByIdComplete(String id) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		int cnt = borrowerMapper.getBorrowerCountByIdComplete(id);
+		return cnt;
+	}
 }

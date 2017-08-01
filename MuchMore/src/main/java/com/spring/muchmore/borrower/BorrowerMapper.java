@@ -45,4 +45,7 @@ public interface BorrowerMapper {
 	
 	/*2017-08-01 혜림 : 대출자의 상환완료 되지 않은 대출횟수 구하기 */ 
 	public int getBorrowerCountByIdNotComplete(String borrower_id);
+	
+	/*2017-08-01 성현 : 사용자의 대출 내역 중 borrower_status가 '상환완료'인 횟수*/
+	public int getBorrowerCountByIdComplete(String id);
 }

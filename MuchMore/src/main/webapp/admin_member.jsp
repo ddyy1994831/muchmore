@@ -20,7 +20,7 @@ function dropout(member_id){
 	var url = "admin_memberdropout.do?member_id=" + member_id;
 	
 	open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no," + 
-	"scrollbars=no, resizable=no, width=400, height=500, left=400, top=150");	
+	"scrollbars=no, resizable=no, width=550, height=500, left=400, top=150");	
 }
 </script>
 

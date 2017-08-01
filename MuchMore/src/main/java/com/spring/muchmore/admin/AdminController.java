@@ -96,4 +96,41 @@ public class AdminController {
 		result.setViewName("admin_loan_send");
 		return result;
 	}
+	
+	/* 성현 admin page : 회원관리 페이지 - 탈퇴 open url */
+	@RequestMapping("admin_memberdropout.do")
+	public ModelAndView adminmemberdropout(MemberVO member, Model model) {
+		ModelAndView result = new ModelAndView();
+		String id = member.getMember_id();
+
+		//사용자의 총 대출횟수와 대출내역 중 '상환완료'인 대출횟수 구하기(탈퇴가능여부 비교 위해)
+		int borrower_id_total = borrowerDAOService.getBorrowerCountById(id);
+		int borrower_id_complete = borrowerDAOService.getBorrowerCountByIdComplete(id);
+		//사용자의 총 투자횟수와 투자내역 중 '지급완료'인 투자횟수 구하기(탈퇴가능여부 비교 위해) 
+		int invest_id_total = investDAOService.getInvestCountById(id);
+		int invest_id_complete = investDAOService.getInvestCountByIdComplete(id);
+
+		String member_id = member.getMember_id();
+
+		result.addObject("member_id", member_id);
+		result.addObject("borrower_id_total", borrower_id_total);
+		result.addObject("borrower_id_complete", borrower_id_complete);
+		result.addObject("invest_id_total", invest_id_total);
+		result.addObject("invest_id_complete", invest_id_complete);
+		
+		result.setViewName("admin_memberdropout");
+
+		return result;
+	}
+
+	/* 성현 admin page : 탈퇴 버튼 클릭 후 탈퇴 작동 */
+	@RequestMapping("admin_member_dropoutAction.do")
+	public String adminmemberdropoutaction(HttpServletRequest request, Model model) {
+
+		String id = request.getParameter("member_id");
+
+		memberDAOService.deleteMember(id);
+
+		return "redirect:/admin_member.do";
+	}
 }

@@ -23,14 +23,12 @@
 	int invest_id_complete = (Integer) request.getAttribute("invest_id_complete");
 %>
 
-
-
 <script type="text/javascript">
 	function dropout(member_id) {
-		var url = "admin_member_dropout.do?member_id=" + member_id;
+		var url = "admin_memberdropout.do?member_id=" + member_id;
 
 		open( url, "confirm", "toolbar=no, location=no, status=no, menubar=no,"
-			+ "scrollbars=no, resizable=no, width=500, height=300, left=400, top=150");
+			+ "scrollbars=no, resizable=no, width=550, height=500, left=400, top=150");
 	}
 </script>
 <section class="container">
@@ -133,7 +131,7 @@
 						<%
 							//총 투자건과 상환완료가 같지 않은 경우 투자중이므로 탈퇴 불가
 							//통 대출건과 상환완료가 같지 않는 경우 대출중/상환중이므로 탈퇴 불가
-							if( ((borrower_id_total != borrower_id_complete) || (invest_id_total != invest_id_complete))) {
+							if((borrower_id_total != borrower_id_complete) || (invest_id_total != invest_id_complete)) {
 						%>
 							<input type="button" class="btn btn-primary" value="탈퇴" disabled>
 						<%
