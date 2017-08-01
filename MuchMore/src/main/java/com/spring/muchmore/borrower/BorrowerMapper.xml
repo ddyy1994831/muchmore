@@ -155,5 +155,14 @@
 		FROM borrower
 		WHERE borrower_id = #{borrower_id}
 	</select>
+	
+	<!-- 2017-08-01 성현 : 사용자의 대출 내역 중 borrower_status가 '상환완료'인 횟수 -->
+	<select id="getBorrowerCountByIdComplete" parameterType="String" resultType="int">
+		SELECT nvl(count(*), 0)
+		FROM borrower
+		WHERE
+		borrower_status = '상환완료' AND
+		borrower_id = #{borrower_id}
+	</select>
 
 </mapper>

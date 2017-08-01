@@ -1,6 +1,7 @@
 package com.spring.muchmore.member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,15 @@ public class MemberDAOService implements MemberDAO {
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		MemberVO result = memberMapper.getMemberAccountById(member_id);
 		return result;
+	}
+
+	/*2017-08-01 성현 : 회원목록 가져오기(List타입)*/
+	@Override
+	public List<MemberVO> getMemberList() {
+		// TODO Auto-generated method stub
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		List<MemberVO> memberlist = memberMapper.getMemberList();
+		return memberlist;
 	}
 
 	

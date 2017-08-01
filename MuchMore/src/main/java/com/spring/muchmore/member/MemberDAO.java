@@ -1,6 +1,7 @@
 package com.spring.muchmore.member;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface MemberDAO {
 	
@@ -24,5 +25,8 @@ public interface MemberDAO {
 
 	/*2017-07-30 혜림 : 회원정보와 계좌정보 가져오기*/ 
 	public MemberVO getMemberAccountById(String member_id);
+	
+	/*2017-08-01 성현 : 회원목록 가져오기(List타입)*/
+	public List<MemberVO> getMemberList();
 }
  

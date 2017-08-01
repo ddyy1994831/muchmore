@@ -30,6 +30,9 @@ public interface BorrowerDAO {
 	public List<BorrowerVO> getBorrowerListById(BorrowerVO borrower);
 
 	/*2017-07-31 성현 : 사용자의 대출횟수 가져오기*/
-	public int getBorrowerCountById(String borrower_id);
+	public int getBorrowerCountById(String id);
+	
+	/*2017-08-01 성현 : 사용자의 대출 내역 중 borrower_status가 '상환완료'인 횟수*/
+	public int getBorrowerCountByIdComplete(String id);
 
 }

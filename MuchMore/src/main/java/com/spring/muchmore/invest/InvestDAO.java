@@ -11,7 +11,10 @@ public interface InvestDAO {
 	public int getTotalInvestSum(int goods_num);
 	
 	/*2017-07-31 성현 : 사용자의 투자횟수 구하기*/
-	public int getInvestCountById(String member_id);
+	public int getInvestCountById(String id);
+	
+	/*2017-08-01 성현 : 사용자의 투자횟수 중 투자금 지급이 완료된 횟수*/
+	public int getInvestCountByIdComplete(String id);
 	
 	/*2017-07-31 성현 : 투자테이블에 데이터 추가*/
 	public void insertInvest(InvestVO invest);
