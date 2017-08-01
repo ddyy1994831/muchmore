@@ -137,4 +137,14 @@ public class BorrowerDAOService implements BorrowerDAO {
 		int cnt = borrowerMapper.getBorrowerCountByIdNotComplete(borrower_id);
 		return cnt;
 	}
+
+	/*2017-08-01 혜림 : 대출금을 지급 받으면 대출자 상태 바꾸기 */
+	@Override
+	public void updateBorrowerPayBack(BorrowerVO borrower) {
+		// TODO Auto-generated method stub
+		BorrowerMapper borrowerMapper = sqlSession.getMapper(BorrowerMapper.class);
+		borrowerMapper.updateBorrowerPayBack(borrower);
+	}
+
+	
 }

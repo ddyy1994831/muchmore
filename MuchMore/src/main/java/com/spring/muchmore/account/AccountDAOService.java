@@ -11,10 +11,10 @@ public class AccountDAOService implements AccountDAO {
 
 	/*2017-07-31 혜림 : 가상계좌에 입금하기*/
 	@Override
-	public void updateAccountDeposit(AccountVO account) {
+	public void updateAccount(AccountVO account) {
 		// TODO Auto-generated method stub
 		AccountMapper accountMapper = sqlSession.getMapper(AccountMapper.class);
-		accountMapper.updateAccountDeposit(account);
+		accountMapper.updateAccount(account);
 	}
 	
 	/*2017-07-31 혜림 : 실계좌 등록*/
@@ -31,9 +31,16 @@ public class AccountDAOService implements AccountDAO {
 	public int getAccountBalance(String member_id){
 		// TODO Auto-generated method stub
 		AccountMapper accountMapper = sqlSession.getMapper(AccountMapper.class);
-		
 		int balance = accountMapper.getAccountBalance(member_id);
 		
 		return balance;
+	}
+
+	/* 2017-08-01 혜림 : 관리자 계좌 입출금 */
+	@Override
+	public void updateAccountAdmin(AccountVO account) {
+		// TODO Auto-generated method stub
+		AccountMapper accountMapper = sqlSession.getMapper(AccountMapper.class);
+		accountMapper.updateAccountAdmin(account);
 	}
 }

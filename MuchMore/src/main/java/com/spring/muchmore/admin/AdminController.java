@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.muchmore.account.AccountDAOService;
 import com.spring.muchmore.borrower.BorrowerDAOService;
 import com.spring.muchmore.borrower.BorrowerVO;
 import com.spring.muchmore.invest.InvestDAOService;
@@ -21,11 +22,16 @@ import com.spring.muchmore.member.MemberVO;
 public class AdminController {
 	
 	@Autowired
-	public MemberDAOService memberDAOService;
+	private MemberDAOService memberDAOService;
+	
 	@Autowired
-	public BorrowerDAOService borrowerDAOService;
+	private BorrowerDAOService borrowerDAOService;
+	
 	@Autowired
-	public InvestDAOService investDAOService;
+	private InvestDAOService investDAOService;
+	
+	@Autowired
+	private AccountDAOService accountDAOService;
 	
 	/*2017-08-01 성현 : admin - 회원관리 페이지 이동 */
 	@RequestMapping("admin_member.do")
@@ -43,7 +49,7 @@ public class AdminController {
 		
 		//사용자의 총 대출횟수와 대출내역 중 '상환완료'인 대출횟수 구하기(탈퇴가능여부 비교 위해)
 		int borrower_id_total = borrowerDAOService.getBorrowerCountById(id);
-		int borrower_id_complete = borrowerDAOService.getBorrowerCountByIdComplete(id);
+		//int borrower_id_complete = borrowerDAOService.getBorrowerCountByIdComplete(id);
 		//사용자의 총 투자횟수와 투자내역 중 '지급완료'인 투자횟수 구하기(탈퇴가능여부 비교 위해) 
 		int invest_id_total = investDAOService.getInvestCountById(id);
 		int invest_id_complete = investDAOService.getInvestCountByIdComplete(id);
@@ -56,7 +62,7 @@ public class AdminController {
 		List<InvestVO> invest_list = (List<InvestVO>) investDAOService.getInvestById(id);
 
 		result.addObject("borrower_id_total", borrower_id_total);
-		result.addObject("borrower_id_complete", borrower_id_complete);
+		//result.addObject("borrower_id_complete", borrower_id_complete);
 		result.addObject("invest_id_total", invest_id_total);
 		result.addObject("invest_id_complete", invest_id_complete);
 		result.addObject("borrower_list", borrower_list);
@@ -83,7 +89,7 @@ public class AdminController {
 	
 	/*2017-08-01 혜림 : 대출금 지급 새로운 창 띄우기*/
 	@RequestMapping("adminLoanSend.do")
-	public ModelAndView loanSend(HttpServletRequest request, BorrowerVO borrower) {
+	public ModelAndView loanSend(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();
 		
 		//대출자 아이디 받아오기
@@ -91,9 +97,50 @@ public class AdminController {
 		//해당 대출자의 상품 번호 받아오기
 		System.out.println("대출금 지급 : 대출 상품 번호 : "+borrower.getGoodsVO().getGoods_num());
 		
-		MemberVO member = memberDAOService.getMember(borrower.getBorrower_id());
+		//대출자 계좌정보 가져오기
+		MemberVO member = memberDAOService.getMemberAccountById(borrower.getBorrower_id());
+		//대출중인 상품 가져오기
+		member.setBorrower(borrowerDAOService.getBorrower(borrower));
 		
+		result.addObject("borrower", member);
 		result.setViewName("admin_loan_send");
 		return result;
+	}
+	
+	/* 2017-08-01 혜림 : 대출금 지급 Action */
+	@RequestMapping("adminLoanSendAction.do")
+	public String loanSendAction(BorrowerVO borrower) {
+		
+		System.out.println("대출금 지급 : " +borrower.getBorrower_id());
+		System.out.println("대출금 지급 : " +borrower.getGoodsVO().getGoods_num());
+		
+		
+		//대출자 정보 가져오기
+		MemberVO member = memberDAOService.getMemberAccountById(borrower.getBorrower_id());
+		member.setBorrower(borrowerDAOService.getBorrower(borrower));
+
+		//관리자 정보 가져오기
+		MemberVO admin = memberDAOService.getMemberAccountById("muchmore");
+		
+		//지급액
+		int amount = member.getBorrower().getGoodsVO().getGoods_sum();
+		
+		//대출자 계좌에 입금하기
+		member.getAccount().setAccount_case(5);
+		member.getAccount().setAccount_balance(member.getAccount().getAccount_balance() + amount);
+		accountDAOService.updateAccount(member.getAccount());
+		
+		//관리자 계좌에서 출금하기
+		admin.getAccount().setAccount_case(7);
+		admin.getAccount().setAccount_balance(admin.getAccount().getAccount_balance() + amount);
+		accountDAOService.updateAccountAdmin(admin.getAccount());
+		
+		//대출자 상태 바꾸기
+		//borrower_startdate : sysdate, borrower_enddate = sysdate + loanperiod
+		//borrower_payok : 지급완료, borrower_status : 상환중
+		member.getBorrower().setBorrower_status("상환중");
+		member.getBorrower().setBorrower_payok("지급완료");
+		borrowerDAOService.updateBorrowerPayBack(member.getBorrower());
+		return "redirect:/adminLoanList.do";
 	}
 }

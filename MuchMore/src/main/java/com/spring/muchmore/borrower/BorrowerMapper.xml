@@ -196,4 +196,15 @@
 		WHERE borrower_id = #{borrower_id}
 			and borrower_status != '상환완료'
 	</select>
+	
+	<!-- 2017-08-01 혜림 : 대출금을 지급 받으면 대출자 상태 바꾸기 -->
+	<update id = "updateBorrowerPayBack" parameterType="BorrowerVO">
+		UPDATE borrower
+		SET borrower_payok = #{borrower_payok}, 
+			borrower_status = #{borrower_status},
+			borrower_startdate = sysdate,
+			borrower_enddate = add_months(sysdate, #{borrower_loanperiod})
+		WHERE borrower_id = #{borrower_id}
+			and borrower_registerdate = #{borrower_registerdate}
+	</update>
 </mapper>

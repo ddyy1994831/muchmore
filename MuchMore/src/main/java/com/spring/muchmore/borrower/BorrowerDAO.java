@@ -45,4 +45,7 @@ public interface BorrowerDAO {
 	
 	/*2017-08-01 혜림 : 대출자의 상환완료 되지 않은 대출횟수 구하기 */ 
 	public int getBorrowerCountByIdNotComplete(String borrower_id);
+	
+	/*2017-08-01 혜림 : 대출금을 지급 받으면 대출자 상태 바꾸기 */
+	public void updateBorrowerPayBack(BorrowerVO borrower);
 }
