@@ -45,31 +45,41 @@
    						<td><fmt:formatNumber value="<%=bg.getGoodsVO().getGoods_sum() %>" type="currency" currencySymbol="￦" /></td>
    						<td>
    						<%
-   						if(bg.getGoodsVO().getGoods_status().equals("모집완료") && !(bg.getBorrower_payok().equals("지급완료"))) {
-   						%>
-   							<input type = "button" class="btn btn-primary btn-xs" 
-   								onclick = "openSend('<%=bg.getBorrower_id() %>','<%=bg.getGoodsVO().getGoods_num() %>')" value = "지급하기">
-   						<%
-   						}
-   						
-   						else {
+   						//심사중 
+   						if(bg.getGoodsVO().getGoods_status() == null) {
    							if(bg.getBorrower_status().equals("심사중")) {
    						%>
    								<a href = "adminLoanDetail.do?borrower_id=<%=bg.getBorrower_id() %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>"
    								class = "btn btn-warning btn-xs">승인하기</a>
    						<%
    							}
-   							else if(bg.getBorrower_payok().equals("지급완료")){
-   						%>
-   							 	<%=bg.getBorrower_payok() %>
-   						<%
-   							}
+   							
    							else {
    						%>
-   								<%=bg.getBorrower_status() %>
-   						<%
+   							<%=bg.getBorrower_status() %>
+   	   					<%
    							}
    						}
+   							
+   						else {
+   							if(bg.getGoodsVO().getGoods_status().equals("모집완료")) { 
+	   							if(bg.getBorrower_payok().equals("지급완료")) {
+	   						%>
+	   								<%=bg.getBorrower_payok() %>
+	   						<%
+	   							}
+	   							
+	   							else {
+	   						%>
+	   								<input type = "button" class="btn btn-primary btn-xs" 
+	   	   							onclick = "openSend('<%=bg.getBorrower_id() %>','<%=bg.getGoodsVO().getGoods_num() %>')" value = "지급하기">
+	   						<%
+	   							}
+   							}
+   							
+   							
+   						}
+   						
    						%>
 						</td>
  					</tr>

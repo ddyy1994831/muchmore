@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.muchmore.account.AccountDAOService;
 import com.spring.muchmore.borrower.BorrowerDAOService;
 import com.spring.muchmore.borrower.BorrowerVO;
+import com.spring.muchmore.goods.GoodsDAOService;
+import com.spring.muchmore.goods.GoodsVO;
 import com.spring.muchmore.invest.InvestDAOService;
 import com.spring.muchmore.invest.InvestVO;
 import com.spring.muchmore.member.MemberDAOService;
@@ -41,6 +43,9 @@ public class AdminController {
 	
 	@Autowired
 	private MoneyinoutDAOService moneyinoutDAOService;
+	
+	@Autowired
+	private GoodsDAOService goodsDAOService;
 	
 	/*2017-08-01 성현 : admin - 회원관리 페이지 이동 */
 	@RequestMapping("admin_member.do")
@@ -262,11 +267,17 @@ public class AdminController {
 	@RequestMapping("loanApproval.do")
 	public String loanApprovalAction(BorrowerVO borrower) {
 		
+		//서류 제출하면 심사중으로 대출 상태 바꾸기
 		BorrowerVO getborrower = borrowerDAOService.getBorrower(borrower);
 		getborrower.setBorrower_status("대출신청");
-		borrowerDAOService.updateBorrowerStatusByAdmin(getborrower);
 		
-		return "redirect:/adminLoanList.do";
+		//대출 신청 상태가 되면 상품 상태가 모집중으로 바뀌기
+		borrowerDAOService.updateBorrowerStatusByAdmin(getborrower);
+		getborrower.setGoodsVO(goodsDAOService.getGoods(getborrower.getGoodsVO()));
+		getborrower.getGoodsVO().setGoods_status("모집중");
+		goodsDAOService.updateGoodsStatus(getborrower.getGoodsVO());
+		
+		return "redirect:/adminLoanDetail.do?borrower_id="+borrower.getBorrower_id()+"&goodsVO.goods_num="+borrower.getGoodsVO().getGoods_num();
 	}
 	
 	/*2017-08-01 다예 : 관리자페이지 -입출금내역*/
@@ -281,4 +292,55 @@ public class AdminController {
 
 		return result;
 	}
+	
+
+	/*2017-08-02 혜림 : 투자금 지급하기 페이지 이동*/
+	@RequestMapping("adminInvestList.do")
+	public ModelAndView investList() {
+		ModelAndView result = new ModelAndView();
+		
+		List<BorrowerVO> borrower_list = borrowerDAOService.getBorrowerList();
+		
+		result.addObject("list", borrower_list);
+		result.setViewName("admin_invest_list");
+		return result;
+	}
+	
+	/*2017-08-02 혜림 : 해당 상품에 투자한 회원들 리스트 페이지로 이동*/
+	@RequestMapping("adminInvestMemberList.do")
+	public ModelAndView investMemberList(GoodsVO goods) {
+		ModelAndView result = new ModelAndView();
+		
+		List<InvestVO> invest_memberlist = investDAOService.getInvestListByGoodsNum(goods.getGoods_num());
+		
+		result.addObject("invest_memberlist", invest_memberlist);
+		result.setViewName("admin_invest_detail");
+		return result;
+	}
+	
+	/*2017-08-02 혜림 : 투자금 상환하기*/
+	@RequestMapping("adminInvestSendAction.do")
+	public String investSendAction(InvestVO invest) {
+		
+		//투자 상환 금액 갸져오기
+		InvestVO getinvest = investDAOService.getInvestByIdGoodsNum(invest);
+		//지급 상태 바꾸기
+		invest.setInvest_payok("지급완료");
+		investDAOService.updateInvest(invest);
+		//투자자 계좌에 입금
+		//투자자
+		MemberVO investor = memberDAOService.getMemberAccountById(invest.getMember_id());
+		investor.getAccount().setAccount_balance(investor.getAccount().getAccount_balance() + getinvest.getInvest_return());
+		investor.getAccount().setAccount_case(6);
+		accountDAOService.updateAccount(investor.getAccount());
+		
+		//관리자 계좌에서 출금
+		MemberVO admin = memberDAOService.getMemberAccountById("muchmore");
+		admin.getAccount().setAccount_balance(admin.getAccount().getAccount_balance() - getinvest.getInvest_return());
+		admin.getAccount().setAccount_case(7);
+		accountDAOService.updateAccountAdmin(admin.getAccount());
+		
+		return "redirect:/adminInvestMemberList.do?goods_num="+invest.getGoods_num();
+	}
+	
 }

@@ -67,5 +67,22 @@ public class InvestDAOService implements InvestDAO {
 		return result;
 	}
 
+	/*2017-08-02 혜림 : 투자금 반환 상태 업데이트*/
+	@Override
+	public void updateInvest(InvestVO invest) {
+		// TODO Auto-generated method stub
+		InvestMapper investMapper = sqlSession.getMapper(InvestMapper.class);
+		investMapper.updateInvest(invest);
+	}
+
+	/*2017-08-02 혜림 : 해당 회원이 해당 상품에 투자한 정보 가져오기*/
+	@Override
+	public InvestVO getInvestByIdGoodsNum(InvestVO invest) {
+		// TODO Auto-generated method stub
+		InvestMapper investMapper = sqlSession.getMapper(InvestMapper.class);
+		InvestVO result = investMapper.getInvestByIdGoodsNum(invest);
+		return result;
+	}
+
 		
 }

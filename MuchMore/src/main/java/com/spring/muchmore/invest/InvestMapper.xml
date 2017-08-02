@@ -82,4 +82,21 @@
 		WHERE invest.goods_num = goods.goods_num
 			and goods.goods_num = #{goods_num}
 	</select>
+	
+	<!-- 2017-08-02 혜림 : 투자금 반환 상태 업데이트 -->
+	<update id = "updateInvest" parameterType="InvestVO">
+		UPDATE invest
+		SET invest_payok = #{invest_payok}
+		WHERE member_id = #{member_id}
+			and goods_num = #{goods_num}
+	</update>
+	
+	
+	<!-- 2017-08-02 혜림 : 해당 회원이 해당 상품에 투자한 정보 가져오기 -->
+	<select id="getInvestByIdGoodsNum" parameterType="InvestVO" resultMap="InvestResultMap">
+		SELECT *
+		FROM invest
+		WHERE goods_num = #{goods_num}
+			and member_id = #{member_id}
+	</select>
 </mapper>

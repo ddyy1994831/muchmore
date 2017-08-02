@@ -89,8 +89,8 @@
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon"><b>입금 금액</b></span>
-											<input type="text" class="form-control" id="deposit_amount" name="deposit_amount" placeholder="만원단위">
-											<fmt:formatNumber value="deposit_amount" type="currency" currencySymbol="￦" />
+											<input type="number" class="form-control" id="deposit_amount" name="deposit_amount" placeholder="만원단위">
+											<%-- <fmt:formatNumber value="deposit_amount" type="currency" currencySymbol="￦" /> --%>
 										<span class="input-group-btn">
 											<button type="submit" class="btn btn-default">입금하기</button>
 										</span>

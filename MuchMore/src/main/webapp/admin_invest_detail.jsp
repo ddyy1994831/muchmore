@@ -17,7 +17,7 @@
 	
 <!-- body 부분 -->
 <section class = "container">
-   	<div class = "row">
+   	<div class = "row" style = "height:100%;">
    		<div class = "span12">
    			<table class="table table-striped table-hover table-condensed">
  				<thead>
@@ -61,7 +61,8 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<a href = "adminInvestSendAction.do?goodsVO.goods_num=<%=invest.getGoodsVO().getGoods_num()%>&invest_id=<%=invest.getMember_id()%>"></a>
+										<a href = "adminInvestSendAction.do?goods_num=<%=invest.getGoodsVO().getGoods_num()%>&member_id=<%=invest.getMember_id()%>"
+										class = "btn btn-default">상환하기</a>
 									</div>
 								</div>
 							</div>

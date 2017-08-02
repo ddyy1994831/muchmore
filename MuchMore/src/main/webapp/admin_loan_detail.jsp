@@ -171,7 +171,7 @@
 					//1.지급완료 된 경우
 					//2.모집중인 경우 (모집 완료 되지 않은 경우)
 					//3.서류 제출을 하지 않은 경우
-					if(borrower.getBorrower().getBorrower_payok().equals("지급완료") || borrower.getBorrower().getGoodsVO().getGoods_status().equals("모집중")) {
+					//if(borrower.getBorrower().getBorrower_payok().equals("지급완료") || borrower.getBorrower().getGoodsVO().getGoods_status() != null) {
 						//서류 제출을 하지 않았거나. 이미 승인된 경우
 						if((borrower.getBorrower().getBorrower_status().equals("심사중"))) {
 					%>
@@ -180,9 +180,10 @@
 					<%
 							
 						}
-					}
+						
+					//}
 					
-					else {
+					else if(borrower.getBorrower().getGoodsVO().getGoods_status().equals("모집완료")) {
 					%>
 						<button type="submit" class="btn btn-primary"
 						onclick="openSend('<%=borrower.getBorrower().getBorrower_id() %>','<%=borrower.getBorrower().getGoodsVO().getGoods_num() %>')">지급하기</button>
