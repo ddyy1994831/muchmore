@@ -8,7 +8,6 @@
 		id = (String)session.getAttribute("id");
 	}
 %>
-
 <!DOCTYPE html>
 <html>
 
@@ -33,6 +32,8 @@
     <!-- jQuery -->
     <!-- <script src="./resources/js/jquery.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    
+    
     </script>
 </head>
 
@@ -48,8 +49,7 @@
 					<!-- ./navigation-header -->
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse"
-						id="bs-example-navbar-collapse-1">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							<li>
 								<a href="loan.do">대출하기</a>
@@ -101,7 +101,7 @@
 				</div>
 			</div>
 		</header>
-	</div>
+	</div>	
 	
 	<!-- 메뉴바 -->
     <!-- Navigation -->
