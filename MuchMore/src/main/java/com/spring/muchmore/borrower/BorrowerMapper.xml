@@ -141,7 +141,7 @@
 		WHERE borrower_id = #{borrower_id}
 			and borrower_registerdate = #{borrower_registerdate}
 	</update>
-	
+	 
 	<!-- 2017-07-30 혜림 : mypage_myloan 대출내역에서 해당 회원의 대출 내역 전체 가져오기 -->
 	<select id = "getBorrowerListById" parameterType="BorrowerVO" resultMap="BorrowerResultMap">
 		SELECT * 
@@ -222,7 +222,6 @@
  		WHERE
  			borrower_id = #{borrower_id}
  			AND borrower_status = '상환완료'
- 		
  	</select>
 	
 	<!-- 2017-08-01 혜림 : 대출 상태 변경 -->
@@ -232,4 +231,5 @@
 		WHERE borrower_id = #{borrower_id}
 			and borrower_registerdate = #{borrower_registerdate}
 	</update>
+
 </mapper>

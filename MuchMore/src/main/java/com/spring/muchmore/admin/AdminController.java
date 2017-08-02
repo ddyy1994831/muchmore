@@ -21,6 +21,8 @@ import com.spring.muchmore.invest.InvestDAOService;
 import com.spring.muchmore.invest.InvestVO;
 import com.spring.muchmore.member.MemberDAOService;
 import com.spring.muchmore.member.MemberVO;
+import com.spring.muchmore.moneyinout.MoneyinoutDAOService;
+import com.spring.muchmore.moneyinout.MoneyinoutVO;
 
 @Controller
 public class AdminController {
@@ -37,10 +39,13 @@ public class AdminController {
 	@Autowired
 	private AccountDAOService accountDAOService;
 	
+	@Autowired
+	private MoneyinoutDAOService moneyinoutDAOService;
+	
 	/*2017-08-01 성현 : admin - 회원관리 페이지 이동 */
 	@RequestMapping("admin_member.do")
 	public String adminmember(Model model) {
-		List<MemberVO> member = memberDAOService.getMemberList();
+		List<MemberVO> member = memberDAOService.getMemberList(); 
 		model.addAttribute("member", member);
 		return "admin_member";
 	}
@@ -264,4 +269,16 @@ public class AdminController {
 		return "redirect:/adminLoanList.do";
 	}
 	
+	/*2017-08-01 다예 : 관리자페이지 -입출금내역*/
+	@RequestMapping("/adminAccount.do")
+	public ModelAndView AccountList(HttpServletRequest request, MoneyinoutVO moneyinout) {
+		ModelAndView result = new ModelAndView();
+		
+		List<MoneyinoutVO> moneyinout_list = moneyinoutDAOService.getAdimList();
+		
+		result.addObject("moneyinout_list", moneyinout_list);
+		result.setViewName("admin_account");
+
+		return result;
+	}
 }
