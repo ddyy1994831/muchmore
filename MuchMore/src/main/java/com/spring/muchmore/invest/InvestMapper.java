@@ -23,4 +23,10 @@ public interface InvestMapper {
 	
 	/*2017-08-02 혜림 : 하나의 상품에 투자한 회원들 리스트*/
 	public List<InvestVO> getInvestListByGoodsNum(int goods_num);
+	
+	/*2017-08-02 혜림 : 투자금 반환 상태 업데이트*/
+	public void updateInvest(InvestVO invest);
+	
+	/*2017-08-02 혜림 : 해당 회원이 해당 상품에 투자한 정보 가져오기*/
+	public InvestVO getInvestByIdGoodsNum(InvestVO invest);
 }

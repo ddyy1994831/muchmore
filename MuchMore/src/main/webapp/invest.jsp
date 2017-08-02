@@ -39,7 +39,10 @@
 									</tr>														
 									<%							
   									for(int i = 0; i < invest_list.size(); i++) {
-  										BorrowerVO bg = (BorrowerVO)invest_list.get(i);  										
+  										BorrowerVO bg = (BorrowerVO)invest_list.get(i);
+  										//서류 미제출이면 건너뛰기 == 서류 미제출이면 goods_status가 null인 상태임
+  										if(bg.getGoodsVO().getGoods_status() == null)
+  											continue;
   										double percent = ((float)bg.getGoodsVO().getGoods_invest() / (float)bg.getGoodsVO().getGoods_sum()) * 100;  										
   									%>
 									<tr>
@@ -71,7 +74,7 @@
 										</td>
 										<td><%=bg.getGoodsVO().getGoods_status() %></td>
 										<%
-										if ( id == null || bg.getGoodsVO().getGoods_status().equals("모집완료")) {
+										if ( id == null || bg.getGoodsVO().getGoods_status() != null) {
 										%>
 										<td><input type="button" class="btn btn-primary btn-xs" value="투자하기" disabled></td>
 										<%
