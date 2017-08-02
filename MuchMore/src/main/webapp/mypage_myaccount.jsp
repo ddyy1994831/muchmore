@@ -199,7 +199,7 @@
 	  							<tr>
 	      							<td><%=mv.getMoneyinout_date() %></td>
 	      							<td><%=mv.getMoneyinout_holder_id() %></td>
-	      							<td><%=mv.getMoneyinout_payer_id() %></td>
+	      							<td><%=mv.getMoneyinout_other_id() %></td>
 	      							<td><fmt:formatNumber value="<%=mv.getMoneyinout_money()%>" type="currency" currencySymbol="£Ü" /></td>
 	      							<td><%=mv.getMoneyinout_state() %></td>
 	      	

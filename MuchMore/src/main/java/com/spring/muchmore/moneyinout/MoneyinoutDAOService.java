@@ -1,5 +1,6 @@
 package com.spring.muchmore.moneyinout;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,6 +18,16 @@ public class MoneyinoutDAOService implements MoneyinoutDAO {
 		// TODO Auto-generated method stub
 		MoneyinoutMapper moneyinoutMapper = sqlSession.getMapper(MoneyinoutMapper.class);
 		List<MoneyinoutVO> result = moneyinoutMapper.selectMoneyinoutById(id);
+		return result;
+	}
+	
+	/*2017-08-01 다예 : 관리자페이지 - muchmore 입출금내역 출력*/
+	@Override
+	public List<MoneyinoutVO> getAdimList() {
+		// TODO Auto-generated method stub
+		MoneyinoutMapper moneyinoutMapper = sqlSession.getMapper(MoneyinoutMapper.class);
+		List<MoneyinoutVO> result = moneyinoutMapper.getAdimList();
+		
 		return result;
 	}
 }

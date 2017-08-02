@@ -81,8 +81,8 @@
 								</tr>
 							</table>
 						</div>
-						
-						<form class="form-horizontal" action="mypageMyloanDepositAction.do" id="loanDepositform" name="loanDepositform" method="post">
+						<!-- action="mypageMyloanDepositAction.do" -->
+						<form class="form-horizontal" id="loanDepositform" name="loanDepositform" method="post">
 						<input type="hidden" id="borrower_id" name="borrower_id" value="<%=borrower.getBorrower_id() %>">
 						<input type="hidden" id="goods_num" name="goods_num" value="<%=borrower.getGoodsVO().getGoods_num()%>">
 							<fieldset>

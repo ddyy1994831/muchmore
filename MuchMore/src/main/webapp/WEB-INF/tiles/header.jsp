@@ -80,7 +80,7 @@
                      	<%
                         			if (id.equals("muchmore")) {
                      	%>
-                     					<li><a href="admin_account.do">입출금내역</a></li>
+                     					<li><a href="adminAccount.do">입출금내역</a></li>
                      					<li><a href="admin_invest.do">투자금지급</a></li>
                      					<li><a href="adminLoanList.do">대출금지급</a></li>
                      					<li><a href="admin_member.do">회원관리</a></li>
