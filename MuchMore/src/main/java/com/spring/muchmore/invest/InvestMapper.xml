@@ -75,5 +75,11 @@
 		)
 	</insert>
 	
-	
+	<!-- 2017-08-02 혜림 : 하나의 상품에 투자한 회원들 리스트 -->
+	<select id = "getInvestListByGoodsNum" parameterType="int" resultMap = "InvestResultMap">
+		SELECT *
+		FROM invest, goods
+		WHERE invest.goods_num = goods.goods_num
+			and goods.goods_num = #{goods_num}
+	</select>
 </mapper>

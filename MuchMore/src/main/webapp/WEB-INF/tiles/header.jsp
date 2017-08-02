@@ -74,15 +74,11 @@
                     	<!-- 로그인 하면 바뀌기 -->
                      	<%
                         	if (id != null) {
-                     	%>
-
-                     			<li><a href="logout.do">로그아웃</a></li>
-                     	<%
                         			if (id.equals("muchmore")) {
                      	%>
                      					<li><a href="admin_account.do">입출금내역</a></li>
-                     					<li><a href="admin_invest.do">투자금지급</a></li>
-                     					<li><a href="adminLoanList.do">대출금지급</a></li>
+                     					<li><a href="adminInvestList.do">투자관리</a></li>
+                     					<li><a href="adminLoanList.do">대출관리</a></li>
                      					<li><a href="admin_member.do">회원관리</a></li>
                      	<%
                      				}
@@ -99,6 +95,7 @@
                      	<%
                         	}
                      	%>
+                     			<li><a href="logout.do">로그아웃</a></li>
                   		</ul>
 					</div>
 				</div>

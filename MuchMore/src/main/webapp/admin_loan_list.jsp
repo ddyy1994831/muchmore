@@ -29,7 +29,6 @@
    						<th>대출자 아이디</th>
    						<th>모집금액</th>
    						<th>대출금액</th>
-   						<th>모집여부</th>
    						<th>승인/지급하기</th>
    					</tr>
  				</thead>
@@ -44,7 +43,6 @@
    						<td><a href = "adminLoanDetail.do?borrower_id=<%=bg.getBorrower_id() %>&goodsVO.goods_num=<%=bg.getGoodsVO().getGoods_num() %>"><%=bg.getGoodsVO().getBorrower_id() %></a></td>
   						<td><fmt:formatNumber value="<%=bg.getGoodsVO().getGoods_invest() %>" type="currency" currencySymbol="￦" /></td>
    						<td><fmt:formatNumber value="<%=bg.getGoodsVO().getGoods_sum() %>" type="currency" currencySymbol="￦" /></td>
-   						<td><%=bg.getGoodsVO().getGoods_status()%></td>
    						<td>
    						<%
    						if(bg.getGoodsVO().getGoods_status().equals("모집완료") && !(bg.getBorrower_payok().equals("지급완료"))) {

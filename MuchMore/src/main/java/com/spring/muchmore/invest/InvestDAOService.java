@@ -58,5 +58,14 @@ public class InvestDAOService implements InvestDAO {
 		investMapper.insertInvest(invest);
 	}
 
+	/*2017-08-02 혜림 : 하나의 상품에 투자한 회원들 리스트*/
+	@Override
+	public List<InvestVO> getInvestListByGoodsNum(int goods_num) {
+		// TODO Auto-generated method stub
+		InvestMapper investMapper = sqlSession.getMapper(InvestMapper.class);
+		List<InvestVO> result = investMapper.getInvestListByGoodsNum(goods_num);
+		return result;
+	}
+
 		
 }

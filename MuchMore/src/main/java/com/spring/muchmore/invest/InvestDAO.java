@@ -18,5 +18,7 @@ public interface InvestDAO {
 	
 	/*2017-07-31 성현 : 투자테이블에 데이터 추가*/
 	public void insertInvest(InvestVO invest);
-
+	
+	/*2017-08-02 혜림 : 하나의 상품에 투자한 회원들 리스트*/
+	public List<InvestVO> getInvestListByGoodsNum(int goods_num);
 }
