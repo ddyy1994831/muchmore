@@ -36,7 +36,7 @@ public class AdminController {
 	/*2017-08-01 성현 : admin - 회원관리 페이지 이동 */
 	@RequestMapping("admin_member.do")
 	public String adminmember(Model model) {
-		List<MemberVO> member = memberDAOService.getMemberList();
+		List<MemberVO> member = memberDAOService.getMemberList(); 
 		model.addAttribute("member", member);
 		return "admin_member";
 	}
