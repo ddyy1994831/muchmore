@@ -53,33 +53,29 @@
    								class = "btn btn-warning btn-xs">승인하기</a>
    						<%
    							}
-   							
-   							else {
-   						%>
-   							<%=bg.getBorrower_status() %>
-   	   					<%
-   							}
    						}
-   							
-   						else {
-   							if(bg.getGoodsVO().getGoods_status().equals("모집완료")) { 
+   						else {   							
+   							if(bg.getGoodsVO().getGoods_status().equals("모집중")){
+   		   					%>
+   		   							<button class="btn btn-primary btn-xs" disabled>지급하기</button>
+   		  					<%
+   		  					}
+   							else if(bg.getGoodsVO().getGoods_status().equals("모집완료")) { 
 	   							if(bg.getBorrower_payok().equals("지급완료")) {
 	   						%>
 	   								<%=bg.getBorrower_payok() %>
 	   						<%
 	   							}
-	   							
+	   						
 	   							else {
 	   						%>
 	   								<input type = "button" class="btn btn-primary btn-xs" 
 	   	   							onclick = "openSend('<%=bg.getBorrower_id() %>','<%=bg.getGoodsVO().getGoods_num() %>')" value = "지급하기">
 	   						<%
 	   							}
-   							}
+   							}							
    							
-   							
-   						}
-   						
+   						}   						
    						%>
 						</td>
  					</tr>

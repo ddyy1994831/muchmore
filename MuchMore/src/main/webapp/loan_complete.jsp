@@ -15,6 +15,7 @@
    		<div class = "col-md-6 col-md-offset-3">
    			<p class="text-center"><h3>서류를 제출하셔야 대출 신청이 완료됩니다.</h3><br/><br/><br/><br/><br/>
    			<p class="text-center"><h3>서류를 제출해주세요</h3><br/><br/><br/><br/><br/>
+   			<p class="text-center"><h3>서류는 마이페이지 - 대출내역 에서 제출 가능합니다.</h3>
    			<a href = "mypage_myloan.do" class = "btn btn-default btn-lg">서류제출페이지</a>
    		</div>
    	</div>

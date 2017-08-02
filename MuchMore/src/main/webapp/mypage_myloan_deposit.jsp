@@ -46,7 +46,9 @@
 			else {
 				alert("'" + <%= monthly_pay %> + "' 이상 입금하세요.");
 			}
+			return false;
 		}
+		
 	}
 </script>
 
@@ -82,9 +84,9 @@
 							</table>
 						</div>
 						<!-- action="mypageMyloanDepositAction.do" -->
-						<form class="form-horizontal" id="loanDepositform" name="loanDepositform" method="post">
+						<form class="form-horizontal" id="loanDepositform" action="mypageMyloanDepositAction.do" name="loanDepositform" method="post">
 						<input type="hidden" id="borrower_id" name="borrower_id" value="<%=borrower.getBorrower_id() %>">
-						<input type="hidden" id="goods_num" name="goods_num" value="<%=borrower.getGoodsVO().getGoods_num()%>">
+						<input type="hidden" id="goodsVO.goods_num" name="goodsVO.goods_num" value="<%=borrower.getGoodsVO().getGoods_num()%>">
 							<fieldset>
 								<div class="form-group">
 									<div class="input-group">
@@ -92,7 +94,7 @@
 											<input type="number" class="form-control" id="deposit_amount" name="deposit_amount" placeholder="만원단위">
 											<%-- <fmt:formatNumber value="deposit_amount" type="currency" currencySymbol="￦" /> --%>
 										<span class="input-group-btn">
-											<button type="submit" class="btn btn-default">입금하기</button>
+											<button type="button" class="btn btn-default" onclick="check_pay();">입금하기</button>
 										</span>
 									</div>
 								</div>

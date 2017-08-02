@@ -26,7 +26,7 @@ function dropout(member_id){
 
 <section class="container">
 	<div class="row" style="height:100%">
-		<div class="span12">
+		<div class="span12">    
 			<div class="col-md-10 col-md-offset-1">
 			
 				<legend><b>회원관리</b></legend>

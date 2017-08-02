@@ -317,6 +317,7 @@ public class MypageController {
 		String borrower_id = (String)session.getAttribute("id");
 		//월납입금액
 		int monthly_pay = borrowerDAOService.getMonthlyDeposit(borrower);
+		System.out.println("월 납입금액 컨트롤러 : " + monthly_pay);
 		//잔액 : 앞으로 남은 대출금액(borrower_balance)
 		int balance = borrowerDAOService.lessMonthlypay(borrower);
 		//나의 가상계좌 잔액

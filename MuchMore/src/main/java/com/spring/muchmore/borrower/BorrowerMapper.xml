@@ -182,7 +182,8 @@
 	<select id="getMonthlyDeposit" parameterType="BorrowerVO" resultType="int">
 		SELECT borrower.borrower_monthlypay
 		FROM borrower, goods
-		WHERE borrower.borrower_id = #{borrower_id} 
+		WHERE borrower.borrower_id = #{borrower_id}
+			and goods.borrower_id = borrower.borrower_id 
 			AND borrower.borrower_status = '상환중'
 			AND goods.goods_num = #{goodsVO.goods_num}
 	</select>
