@@ -17,10 +17,11 @@
 		WHERE moneyinout_holder_id = #{member_id}
 	</select>
 	
-	<!-- 2017-08-01 다예 : 관리자페이지 - muchmore 입출금내역 출력 -->
+	<!-- 2017-08-01 다예 : 관리자페이지 - muchmore 전체 입출금내역 출력 -->
 	<select id="getAdimList" resultMap="MoneyinoutResultMap">
 		SELECT *
 		FROM moneyinout
-		WHERE moneyinout_holder_id = 'muchmore' OR moneyinout_other_id = 'muchmore' AND moneyinout_state IN('입금', '출금')
+		WHERE moneyinout_holder_id = 'muchmore' OR moneyinout_other_id = 'muchmore' 
 	</select>
+	
 </mapper>

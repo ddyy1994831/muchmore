@@ -10,127 +10,82 @@
 		id = (String) session.getAttribute("id");
 	}
 
-	List<MoneyinoutVO> moneyinout_list = (List<MoneyinoutVO>)request.getAttribute("moneyinout_list");
+	List<MoneyinoutVO> theWholeList = (List<MoneyinoutVO>)request.getAttribute("theWholeList");
 %>
 
-<!-- 2017-08-01 다예 : AX5UI grid 사용을 위한 설정 -->
-<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/ax5ui/ax5ui-grid/master/dist/ax5grid.css" />
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <script type="text/javascript" src="https://cdn.rawgit.com/ax5ui/ax5core/master/dist/ax5core.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/ax5ui/ax5ui-grid/master/dist/ax5grid.min.js"></script>
-
-<!-- 2017-08-01 다예 : gird 스크립트 -->
 <script>
-//<![DCATA
-	var moneyGrid = null;
+function myFunction() {
+	var input, filter, table, tr, td, i;
 	
-	$(function() {
-		//Grid 객체 생성
-		moneyGrid = new ax5.ui.grid();
+	input = document.getElementById("myInput");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("myTable");
+	tr = table.getElementsByTagName("tr");
 
-		//Grid 설정 지정
-		moneyGrid.setConfig({
-			target: $('[data-ax5grid = "money-grid"]'),
-			showLineNumber: true,
-			showRowSelector: false,
-//			multipleSelect: false,
-			lineNumberColumnWidth: 40,
-//			rowSelectorColumnWidth: 27,
-			
-			columns: [
-				{key: "date", label: "날짜", align: "center", editor: {type: "date"}},
-	            {key: "type", label: "구분", align: "center",
-					editor: {
-						type: "select", config: {
-							columnKeys: {
-								optionValue: "CD", optionText: "NM"
-							},
-							options: [
-								{CD: "입금", NM: "입금: 입금"},
-								{CD: "출금", NM: "출금: 출금"}
-							]
-						},
-						disabled: function() {
-							//활성화 여부를 item.complete의 값으로 런타임 판단
-							return this.item.complete == "true";
-						}
-					}
-				},
-				{key: "holder", label: "출금자", align: "center", editor: {type: "text"}},
-				{key: "other", label: "입금자", align: "center", editor: {type: "text"}},
-				{key: "price", label: "금액", align: "center", editor: {type: "money"}}
-			],
-			page: {
-				navigationItemCount: 9,
-				height: 30,
-				display: true,
-				firstIcon: '<i class="fa fa-step-backward" aria-hidden="true"></i>',
-				prevIcon: '<i class="fa fa-caret-left" aria-hidden="true"></i>',
-				nextIcon: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-				lastIcon: '<i class="fa fa-step-forward" aria-hidden="true"></i>',
-				onChange: function() {
-					search(this.page.selectPage);
-				}
-			},
-		});
-	});
-	
-	function search(_pageNo) {
-		if($('#SearchForm').attr("method") == "POST") {
-			searchPost(_pageNo);
-		}
-	}
-	
-	function searchPost(_pageNo) {
- 		$('#page').val(_pageNo||0);
-		var sendData = JSON.stringify({date: $('#moneyinout_date').val(), type: $('#moneyinout_state').val(), page: $('#page').val()});
-		console.log(sendData); 
-
-		$.ajax({
-			type: "POST",
-			url: "/searchPost.do",
-			data: sendData,
-			dataType: "xml",
-			contentType: "application/json; charset=UTF-8",
-			async: false,
-			success: function(xml) {
-				moneyGrid.setData({
-					list: data.list,
-					page: {
-						currentPage: _pageNo,
-						pageSize: 10,
-						totalElements: data.total,
-						totalPage: data.totalPages
-					}
-				});
-			},
-			error : function() {
-				alert('통신실패!!');
+	for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[1];
+		
+		if (td) {
+			if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				tr[i].style.display = "";
+			} else {
+				tr[i].style.display = "none";
 			}
-		});
+		}       
 	}
-	
-	function searchType(method) {
-		$('#SearchForm').attr("method", method)
-		console.log($('SearchForm').attr("method"));
-		search(0);
-	}
-//]]>
+}
 </script>
+
 
 <section class="container">
 	<div class="row" style="height:100%">
- 		<form id="SearchForm" name="SearchForm" method="GET" style="display:inline;">
-		<input type="hidden" id="page" name="page" value="" />
-		<label for="type">구분</label>
-		<select id="type" name="type">
-			<option value="">전체 </option>
-			<option value="입금">입금 </option>
-			<option value="출금">출금 </option>
-		</select>
-		</form>
-		&nbsp;&nbsp;
-		<button onclick="searchType('POST');">조회</button>
-		<br> 
-		<div data-ax5grid="money-grid" data-ax5grid-config="{}" style="height:300px;"></div>
+		<div class="span12">
+			<div class="col-md-10 col-md-offset-1">
+			
+			<legend><b>입출금내역</b></legend>
+			
+			<i class="fa fa-search" aria-hidden="true"></i>&nbsp;
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="검색어를 입력하세요">
+		
+			<table id="myTable" class="table table-striped table-condensed table-hover ">
+				<thead>
+					<tr>
+						<th style="text-align: center">날짜</th>
+						<th style="text-align: center">입금/출금</th>
+						<th style="text-align: center">holder</th>
+						<th style="text-align: center">other</th>
+						<th style="text-align: center">금액</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						if(theWholeList != null) {
+					%>
+					<%
+								for(int i=0; i<theWholeList.size(); i++) {
+									MoneyinoutVO moneyinoutVO = (MoneyinoutVO)theWholeList.get(i);
+					%>
+									<tr>
+										<td align="center"><%=moneyinoutVO.getMoneyinout_date() %></td>
+										<td align="center"><%=moneyinoutVO.getMoneyinout_state() %></td>
+										<td align="center"><%=moneyinoutVO.getMoneyinout_holder_id() %></td>
+										<td align="center"><%=moneyinoutVO.getMoneyinout_other_id() %></td>
+										<td align="center"><%=moneyinoutVO.getMoneyinout_money() %></td>
+									</tr>
+					<%
+								}
+						}
+						else {
+					%>
+								<tr>
+									<td colspan="5" align="center">입/출금 내역이 없습니다</td>
+								</tr>
+					<%
+						}
+					%>
+				</tbody>
+			</table>
+			</div>
+		</div>
 	</div>
 </section>

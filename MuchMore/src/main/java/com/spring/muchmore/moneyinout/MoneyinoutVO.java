@@ -9,10 +9,6 @@ public class MoneyinoutVO {
 	private String moneyinout_money;
 	private String moneyinout_state;
 	
-	private int page;
-	private int first;
-	private int last;
-	
 	public String getMoneyinout_holder_id() {
 		return moneyinout_holder_id;
 	}
@@ -43,23 +39,4 @@ public class MoneyinoutVO {
 	public void setMoneyinout_state(String moneyinout_state) {
 		this.moneyinout_state = moneyinout_state;
 	}
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page;
-	}
-	public int getFirst() {
-		return first;
-	}
-	public void setFirst(int first) {
-		this.first = first;
-	}
-	public int getLast() {
-		return last;
-	}
-	public void setLast(int last) {
-		this.last = last;
-	}
-	
 }
