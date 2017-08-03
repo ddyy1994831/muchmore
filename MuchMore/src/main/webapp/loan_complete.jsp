@@ -10,7 +10,7 @@
 	}
 %>
 
-<section class = "container" style = "height:80%;">
+<section class = "container" style = "min-height:80%;">
  	<div class ="row">
 		<div class="container" align="center">
 			<div class="jumbotron">

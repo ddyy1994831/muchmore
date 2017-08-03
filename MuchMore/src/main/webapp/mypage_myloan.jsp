@@ -14,11 +14,7 @@
 %>
 
 <section class="container">
-<<<<<<< HEAD
 	<div class="row" style = "min-height:80%;">
-=======
-	<div class="row" style = "height: 100%;">
->>>>>>> healim
 		<div class = "col-sm-3" id="menu">
 			<ul class="nav nav-pills nav-stacked">
 				<li class=""><a href="mypageMyaccount.do" id="MyAccount" >My Account</a></li>
