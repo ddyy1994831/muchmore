@@ -4,9 +4,9 @@ Code snippet by Hashif (http://hashif.com) for Bootsnipp.com
 Image credits: unsplash.com
 */
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700);
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand','Nanum Gothic', sans-serif;
     font-weight:700;
 }
 
