@@ -9,4 +9,5 @@ public interface MoneyinoutDAO {
 
 	/*2017-08-01 다예 : 관리자페이지 - muchmore 입출금내역 출력*/
 	public List<MoneyinoutVO> getAdimList();
+
 }

@@ -27,6 +27,7 @@ public class MoneyinoutDAOService implements MoneyinoutDAO {
 		// TODO Auto-generated method stub
 		MoneyinoutMapper moneyinoutMapper = sqlSession.getMapper(MoneyinoutMapper.class);
 		List<MoneyinoutVO> result = moneyinoutMapper.getAdimList();
+		System.out.println("MoneyinoutService getAdminList = " + result);
 		
 		return result;
 	}
