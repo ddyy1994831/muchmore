@@ -1,8 +1,10 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 /*    --------------------------------------------------
 	:: General
 	-------------------------------------------------- */
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	color: #353535;
 }
 .content h1 {

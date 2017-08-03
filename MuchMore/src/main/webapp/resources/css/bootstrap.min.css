@@ -1,5 +1,7 @@
-@import
-	url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+/* @import
+	url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"); */
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 	/*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
@@ -27,7 +29,7 @@ html {
 	-webkit-text-size-adjust: 100%;
 }
 
-body {
+body {	
 	margin: 0;
 	padding-top: 100px;
 	padding-bottom: 0px;
@@ -1365,11 +1367,12 @@ html {
 }
 
 body {
-	font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Quicksand","Nanum Gothic", sans-serif;
 	font-size: 13px;
 	line-height: 1.846;
 	color: #666666;
-	background-color: #ffffff
+	background-color: #ffffff;
+	font-weight: 700;
 }
 
 input, button, select, textarea {
