@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String id = null;
 	if (session.getAttribute("id") != null) {
@@ -46,7 +47,7 @@
 								<tr>
 									<td><%=invest.getGoodsVO().getGoods_object()%></td>
 									<td><%=invest.getInvest_date()%></td>
-									<td><%=invest.getInvest_sum()%></td>
+									<td><fmt:formatNumber value="<%=invest.getInvest_sum()%>" type="currency" currencySymbol="£Ü"></fmt:formatNumber></td>
 									<td><%=invest.getGoodsVO().getGoods_rate()%></td>
 									<td><%=invest.getGoodsVO().getGoods_status()%></td>
 								</tr>

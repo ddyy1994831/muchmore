@@ -20,7 +20,7 @@
 
 
 <div class="container">
-	<div class="row" style="height:100%">
+	<div class="row" style="min-height:80%">
 		<section class="content">
 			<h1>투자상품 리스트</h1>			
 					<div class="panel-body">						
@@ -74,7 +74,7 @@
 										</td>
 										<td><%=bg.getGoodsVO().getGoods_status() %></td>
 										<%
-										if ( id == null || bg.getGoodsVO().getGoods_status() != null) {
+										if ( id == null || bg.getGoodsVO().getGoods_status() == null) {
 										%>
 										<td><input type="button" class="btn btn-primary btn-xs" value="투자하기" disabled></td>
 										<%

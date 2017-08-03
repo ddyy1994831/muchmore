@@ -164,7 +164,7 @@
 					
 				</div>
 				<div class="panel-footer text-center">
-					<button type="button" class="btn btn-default" onclick='history.go(-1);'>뒤로</button>
+					<a class = "btn btn-default" href="adminLoanList.do">뒤로</a>
 					
 					<%
 					//버튼이 없는 경우
@@ -184,6 +184,7 @@
 					//}
 					
 					else if(borrower.getBorrower().getGoodsVO().getGoods_status().equals("모집완료")) {
+						
 					%>
 						<button type="submit" class="btn btn-primary"
 						onclick="openSend('<%=borrower.getBorrower().getBorrower_id() %>','<%=borrower.getBorrower().getGoodsVO().getGoods_num() %>')">지급하기</button>
