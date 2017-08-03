@@ -44,7 +44,6 @@ function windowclose(send_form) {
 			<tr class = "text-center" style = "padding-top:10px">
 				<td colspan = "4">
 					<input type = "button" value = "지급하기" class = "btn btn-primary" onclick = "windowclose(this.form)"/>
-					<input type = "button" value = "닫기" class = "btn btn-primary" onclick = "windowclose()"/>
 				</td>
 			</tr>
 		</table>
