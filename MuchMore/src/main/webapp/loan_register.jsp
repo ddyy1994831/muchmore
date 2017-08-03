@@ -21,12 +21,14 @@
 	<div class ="row">
 		<div class="container" align="center">
 			<div class="jumbotron">
-				<h3>고객님의 상세정보를 입력해 주세요</h3><br/><br/>  
-				<h6>①대출/한도 확인->②신용정보확인->③대출 정보 입력-><strong>④상세 정보 입력</strong></h6>    
+				<h3>입력하신 정보와 대출 관련 정보를 확인하신 후 신청을 완료해주세요.</h3><br/><br/>  
+				<h5>①대출/한도 확인⇒②신용정보확인/③상세정보입력⇒<strong>④금리확인 후 신청</strong>⇒⑤서류제출</h5>     
 			</div>      
 		</div>
-	
-		<div class = "row" style = "padding-left:200px;padding-right:200px;">
+	</div>
+		<!-- style = "padding-left:200px;padding-right:200px;" -->
+	<div class = "row">
+		<div class = "col-md-6 col-md-offset-3">  
 			<div class = "panel panel-primary">
 				<div class = "panel-heading">
 					<h4 class = "panel-title">대출 신청 확인</h4>
@@ -98,7 +100,6 @@
 			  				
 			  				<tr>
 			  					<td colspan = "2" class = "text-center">
-			  						<button type="reset" class="btn btn-default">취소</button>
 									<button type="submit" class="btn btn-primary">신청하기</button>
 			  					</td>
 			  				</tr>

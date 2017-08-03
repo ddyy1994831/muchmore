@@ -40,6 +40,15 @@ function check(){
 	return true;
 }
 
+function gNumCheck() {
+	if(event.keyCode >= 48 && event.keyCode <= 57) {
+		return true;
+	}
+	else {
+		event.returnValue = false;
+	}
+}
+
 //[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
 //[0-9] => \d , [^0-9] => \D
 var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
@@ -71,24 +80,25 @@ function setComma(inNum){
 	<div class = "row text-center" >		
 	    <div class="container" align="center">
 			<div class="jumbotron">
-				<h3>고객님의 신용정보를 확인해주세요</h3><br/><br/>  
-				<h6>①대출/한도 확인-><strong>②신용정보확인</strong>->③상세정보입력->④금리확인 후 신청</h6>    
+				<h3>고객님의 상세정보 확인 및 상세정보를 입력해 주세요</h3><br/><br/>  
+				<h5>①대출/한도 확인⇒<strong>②신용정보확인/③상세정보입력</strong>⇒④금리확인 후 신청⇒⑤서류제출</h5>    
 			</div>     
 		</div>
-		
-		<div class="row" style = "padding-left:300px;padding-right:300px;">
+	</div>	
+	 <!-- style = "padding-left:300px;padding-right:300px;" -->
+	<div class="row">
+		<div class = "col-md-6 col-md-offset-3">
 			<br/><br/>
 			<div class="panel panel-warning">
-	  			<div class="panel-heading"><h4 class = "panel-title"><b>신용 등급 조회 결과 확인</b></h4></div>
-	  			<div class="panel-body" style = "padding-left:100px;padding-right:100px">
-	  				<table class="table table-striped" >
-	  					<tr>
-	  						<td>신용등급</td>
+				<div class="panel-heading"><h4 class = "panel-title"><b>신용 등급 조회 결과 확인</b></h4></div>
+				<div class="panel-body" style = "padding-left:100px;padding-right:100px">
+		  			<table class="table table-striped" >
+		  				<tr>
+		  					<td>신용등급</td>
 							<td><%=borrower.getBorrower_credit() %> 등급</td>
-	  					</tr>
+		  				</tr>
 						<tr>
 							<td>대출한도금액</td>
-							
 							<td><fmt:formatNumber value="<%=borrower.getBorrower_limit() %>" type="currency" currencySymbol="￦" /></td>
 						</tr>
 					</table>
@@ -96,14 +106,16 @@ function setComma(inNum){
 			</div>
 			<br/><br/>
 		</div>
-		
-		<!-- 추가정보 입력 받기  -->
-		<div class = "row" style = "padding-left:200px;padding-right:200px">
+	</div>
+	<!-- 추가정보 입력 받기  -->
+	 <!-- style = "padding-left:200px;padding-right:200px" -->
+	<div class = "row">
+		<div class = "col-md-8 col-md-offset-2">
 			<div class = "panel panel-primary">
 				<div class ="panel-heading">
 					<h4 class = "panel-title">상세 정보 입력</h4>
 				</div>
-				
+					
 				<div class = "panel-body">
 					<form class = "form-horizontal" name = "inputbasic" id = "inputbasic" method = "post"
 						onsubmit = "return check();" action = "loanDetail.do">
@@ -121,11 +133,12 @@ function setComma(inNum){
 										value = "<%=id %>">
 								</div>
 							</div>
-								
+									
 							<div class = "form-group">
 								<label for = "goodsVO.goods_sum" class = "col-sm-2 control-label"><b>대출금액</b></label>
 								<div class = "col-sm-3">
-									<input type = "text" onchange = "getNumber(this)" onkeyup = "getNumber(this)" class = "form-control" id = "goodsVO.goods_sum" name = "goodsVO.goods_sum" required>
+									<input type = "text" onchange = "getNumber(this)" onkeyup = "getNumber(this)" class = "form-control" 
+									id = "goodsVO.goods_sum" name = "goodsVO.goods_sum" maxlength = "8" onkeypress = "gNumCheck()" 	required>
 								</div>
 								<div class = "col-sm-3">
 									<input type = "text" class = "form-control" id = "check_sum" name = "check_sum" 
@@ -143,38 +156,38 @@ function setComma(inNum){
 									</select>
 								</div>
 					    	</div>
-					    	
+						    	
 					    	<div class="form-group">
 								<label for="borrower_jobname" class="col-sm-2 control-label"><b>직업명</b></label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="borrower_jobname" placeholder="개발자" name="borrower_jobname" required="required">
 								</div>
 				    		</div>
-				    		
+					    		
 				    		<div class="form-group">
 								<label for="borrower_jobperiod" class="col-sm-2 control-label"><b>재직기간</b></label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="borrower_jobperiod" placeholder="3년2개월" name="borrower_jobperiod" required="required">
 								</div>
 				    		</div>	
-						    	
+							    	
 				    		<div class="form-group">
 								<label class="col-sm-2 control-label"><b>대출 상환일</b></label>
 								<div class="col-sm-4">
 									<div class="radio">
 										<label>
 											<input type="radio" name="borrower_repay_date" id="optionsRadios1" value="5" checked="">
-												매월 5일
+													매월 5일
 										</label>
 									</div>
-								
+									
 									<div class="radio">
 										<label>
 											<input type="radio" name="borrower_repay_date" id="optionsRadios2" value="15">
 												매월 15일
 										</label>
 									</div>
-								
+									
 									<div class="radio">
 										<label>
 											<input type="radio" name="borrower_repay_date" id="optionsRadios3" value="25">
@@ -186,7 +199,7 @@ function setComma(inNum){
 				    		<br/>
 				    		<div class="form-group">
 								<div class="text-center">
-									<button type="reset" class="btn btn-default">취소</button>
+									<button type="reset" class="btn btn-default">다시작성</button>
 									<button type="submit" class="btn btn-primary">지금 확인하기</button>
 								</div>
 				    		</div>

@@ -274,6 +274,15 @@
 			}
 		}).open();
 	}
+	
+	function gNumCheck() {
+		if(event.keyCode >= 48 && event.keyCode <= 57) {
+			return true;
+		}
+		else {
+			event.returnValue = false;
+		}
+	}
 </script>
 
 <section class="container">
@@ -299,7 +308,7 @@
 				<div class="form-group">
 					<label for="member_pw1" class="col-lg-2 control-label">비밀번호</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="member_pw1"
+						<input type="password" class="form-control" id="member_pw1" maxlength = "15"
 							name="member_pw1" placeholder="영문, 숫자 포함 6~10자리 입력">
 					</div>
 				</div>
@@ -308,7 +317,7 @@
 					<label for="member_pw2" class="col-lg-2 control-label">비밀번호
 						확인</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="member_pw2"
+						<input type="password" class="form-control" id="member_pw2" maxlength = "15"
 							name="member_pw2" placeholder="">
 					</div>
 				</div>
@@ -324,12 +333,12 @@
 				<div class="form-group">
 					<label for="input_jumin1" class="col-lg-2 control-label">주민번호</label>
 					<div class="col-lg-4">
-						<input type="text" class="form-control" id="member_jumin1"
+						<input type="text" class="form-control" id="member_jumin1" maxlength="6" onkeypress = "gNumCheck()"
 							name="member_jumin1" placeholder="">
 					</div>
 					<div class="col-lg-1">-</div>
 					<div class="col-lg-4">
-						<input type="password" class="form-control" id="member_jumin2"
+						<input type="password" class="form-control" id="member_jumin2" maxlength="7" onkeypress = "gNumCheck()"
 							name="member_jumin2" placeholder="">
 					</div>
 				</div>
@@ -338,9 +347,9 @@
 				<div class="form-group">
 					<label for="member_phone" class="col-lg-2 control-label">휴대폰번호</label>
 					<div class="col-lg-10">
-						<input type="phone" class="form-control" id="member_phone"
-							maxlength="13" name="member_phone"
-							placeholder="휴대폰 번호를 제대로 입력하세요.('-' 포함 13자리)">
+						<input type="phone" class="form-control" id="member_phone" maxlength = "11" 
+							maxlength="13" name="member_phone" onkeypress = "gNumCheck()"
+							placeholder="휴대폰 번호를 제대로 입력하세요.('-' 제외 11자리)">
 					</div>
 				</div>
 
@@ -375,7 +384,9 @@
 
 				<div class="form-group">
 					<label class="col-lg-2 control-label">개인정보 약관 동의</label>
+					
 					<div class="col-lg-10">
+						<button type="button" class="btn btn-default" id="myBtn1">자세히 보기</button>  
 						<div class="radio">
 							<label> <input type="radio" name="member_agreement"
 								id="optionsRadios1" value="1" checked> 동의합니다.
@@ -388,7 +399,8 @@
 						</div>
 					</div>
 				</div>				
-
+				
+				
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
 						<button type="reset" class="btn btn-default">취소</button>
@@ -399,5 +411,62 @@
 		</form>
 
 	</div>
+	
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">개인정보 제공 동의</h4>
+					<p>귀사와 본인 사이의 (금융)거래와 관련하여 귀사가 본인의 개인정보를 제3자에게 제공하고자 하는 경우, 귀사는 정보통신망 이용촉진 및 정보보호 등에 관한 법률 및 개인정보 보호법 등에 따라 본인의 동의를 얻어야 합니다. 이에 본인은 귀사가 아래의 내용과 같이 본인의 개인정보를 제3자에게 제공하는데 동의합니다.</p>
+				</div>
+				<div class="modal-body">
+					<h4>[개인정보의 제3자 제공에 관한 사항]</h4>
+					<hr/>
+					<ol>
+						<li>
+							<p>개인정보를 제공받는 자</p>
+							<p>머치모아</p>
+						</li>
+						<li>
+							<p>개인정보 이용 목적</p>
+							<p>머치모아(이라 “회사"라 함)이 아래와 같이 수탁자에게 위탁한 업무를 수행하기 위해 이용자의 개인정보를 (주)렌딧에게 제공합니다.</p>
+						</li>
+						<li>
+							<p>제공하는 개인정보 항목</p>
+							<p>성명, 생년월일, 사업자번호, 휴대전화 번호, 은행명, 계좌번호, 예금주명 등</p>
+						</li>
+						<li>
+							<p>개인정보를 제공받은 자의 개인정보 보유 및 이용 기간</p>
+							<p>“여신업체”는 이용자가 투자 신청을 한 날부터 모든 투자가 종료되는 날까지의 기간 동안 이용자의 개인정보를 “회사"에 제공합니다.</p>
+						</li>
+					</ol>
+				</div>
+				<div class="modal-footer">
+					<hr/>
+					<ul  class = "text-left" style = "list-style-type : square">
+						<li>
+							<p>상기 내용이 변동되는 경우 당사 홈페이지(www.lendit.co.kr) 게시 등을 통해 그 내용을 안내 드리겠습니다.</p>
+						</li>
+						<li>
+							<p>귀하는 동의를 거부할 권리가 있으나, 위 사항에 대한 동의가 없을 경우 대출채권에 대한 투자가 불가능할 수 있습니다.</p>
+						</li>
+					</ul>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	 <!-- 자세히보기 버튼-->
+    <script>
+	$(document).ready(function(){
+	    $("#myBtn1").click(function(){
+	        $("#myModal").modal({backdrop: true});
+	    });
+	});
+	</script>
+		
 </section>
 

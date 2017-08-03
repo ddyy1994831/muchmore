@@ -26,20 +26,27 @@ function ajaxTest(url){
 </script>
 
 <section class="container">
-<div class="row" style="height: 120%; padding-left:120px; padding-right:120px;" id="FAQ">
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="#loan" data-toggle="tab">대출</a></li>
-		<li><a href="#invest" data-toggle="tab">투자</a></li>
-		<li><a href="#frequency" data-toggle="tab">자주하는질문</a></li>
-	</ul>
-	<br/>
+	<div class ="row">
+		<div class="container" align="center">
+			<div class="jumbotron">
+				<h1>FAQ</h1>
+			</div>      
+		</div>
+	</div>
+	<div class="row" style="min-height: 80%; padding-left:120px; padding-right:120px;" id="FAQ">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#loan" data-toggle="tab">대출</a></li>
+			<li><a href="#invest" data-toggle="tab">투자</a></li>
+			<li><a href="#frequency" data-toggle="tab">자주하는질문</a></li>
+		</ul>
+		<br/>
 		<div id="Context" class="tab-content">
 			<div class="tab-pane fade active in" id="loan">
 				<div class="panel-group">
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#loan1">MuchMore는 일반 금융사와 어떻게 다른가요?</a>
+          						<a data-toggle="collapse" href="#loan1"><b>MuchMore는 일반 금융사와 어떻게 다른가요?</b></a>
         					</h6>
       					</div>
      					<div id="loan1" class="panel-collapse collapse">
@@ -49,10 +56,11 @@ function ajaxTest(url){
         					</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#loan2">MuchMore는 왜 이자율이 낮은가요?</a>
+          						<a data-toggle="collapse" href="#loan2"><b>MuchMore는 왜 이자율이 낮은가요?</b></a>
         					</h6> 
       					</div>
      					<div id="loan2" class="panel-collapse collapse">
@@ -62,10 +70,11 @@ function ajaxTest(url){
         					</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#loan3">누구나 대출 받을 수 있나요?</a>
+          						<a data-toggle="collapse" href="#loan3"><b>누구나 대출 받을 수 있나요?</b></a>
         					</h6> 
       					</div>
      					<div id="loan3" class="panel-collapse collapse">
@@ -74,10 +83,11 @@ function ajaxTest(url){
         					</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#loan4">대출 진행 과정이 어떻게 되나요?</a>
+          						<a data-toggle="collapse" href="#loan4"><b>대출 진행 과정이 어떻게 되나요?</b></a>
         					</h6> 
       					</div>
      					<div id="loan4" class="panel-collapse collapse">
@@ -86,10 +96,11 @@ function ajaxTest(url){
         					</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#loan5">신용정보 조회 시 신용등급이 내려가나요?</a>
+          						<a data-toggle="collapse" href="#loan5"><b>신용정보 조회 시 신용등급이 내려가나요?</b></a>
         					</h6> 
       					</div>
      					<div id="loan5" class="panel-collapse collapse">
@@ -98,10 +109,11 @@ function ajaxTest(url){
         					</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#loan6">대출 시 신용등급이 내려가나요?</a>
+          						<a data-toggle="collapse" href="#loan6"><b>대출 시 신용등급이 내려가나요?</b></a>
         					</h6> 
       					</div>
      					<div id="loan6" class="panel-collapse collapse">
@@ -124,7 +136,7 @@ function ajaxTest(url){
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#invest1">MuchMore 투자는 어떻게 다른가요?</a>
+          						<a data-toggle="collapse" href="#invest1"><b>MuchMore 투자는 어떻게 다른가요?</b></a>
         					</h6>
       					</div>
      					<div id="invest1" class="panel-collapse collapse">
@@ -134,10 +146,11 @@ function ajaxTest(url){
 							</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#invest2">왜 포트폴리오 방식으로 투자를 진행하나요?</a>
+          						<a data-toggle="collapse" href="#invest2"><b>왜 포트폴리오 방식으로 투자를 진행하나요?</b></a>
         					</h6>
       					</div>
      					<div id="invest2" class="panel-collapse collapse">
@@ -147,10 +160,11 @@ function ajaxTest(url){
 							</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#invest3">원금이 보장되나요?투자 위험이 얼마나 되나요?</a>
+          						<a data-toggle="collapse" href="#invest3"><b>원금이 보장되나요?투자 위험이 얼마나 되나요?</b></a>
         					</h6>
       					</div>
      					<div id="invest3" class="panel-collapse collapse">
@@ -162,10 +176,11 @@ function ajaxTest(url){
 							</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#invest4">MuchMore가 파산하면 어떻게 되나요?</a>
+          						<a data-toggle="collapse" href="#invest4"><b>MuchMore가 파산하면 어떻게 되나요?</b></a>
         					</h6>
       					</div>
      					<div id="invest4" class="panel-collapse collapse">
@@ -175,10 +190,11 @@ function ajaxTest(url){
 							</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#invest5">최소 투자금액은 어떻게 되나요?</a>
+          						<a data-toggle="collapse" href="#invest5"><b>최소 투자금액은 어떻게 되나요?</b></a>
         					</h6>
       					</div>
      					<div id="invest5" class="panel-collapse collapse">
@@ -195,7 +211,7 @@ function ajaxTest(url){
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#frequency1">회원가입은 어떻게 진행되나요?</a>
+          						<a data-toggle="collapse" href="#frequency1"><b>회원가입은 어떻게 진행되나요?</b></a>
         					</h6>
       					</div>
      					<div id="frequency1" class="panel-collapse collapse">
@@ -204,10 +220,11 @@ function ajaxTest(url){
         					</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#frequency2">계정정보는 어떻게 변경할 수 있나요?</a>
+          						<a data-toggle="collapse" href="#frequency2"><b>계정정보는 어떻게 변경할 수 있나요?</b></a>
         					</h6>
       					</div>
      					<div id="frequency2" class="panel-collapse collapse">
@@ -216,10 +233,11 @@ function ajaxTest(url){
         					</div>
       					</div>
     				</div>
+    				<br/>
     				<div class="panel">
      					<div class="panel-heading">
         					<h6 class="panel-title">
-          						<a data-toggle="collapse" href="#frequency3">비밀번호를 분실하였을 경우 어떻게 하나요?</a>
+          						<a data-toggle="collapse" href="#frequency3"><b>비밀번호를 분실하였을 경우 어떻게 하나요?</b></a>
         					</h6>
       					</div>
      					<div id="frequency3" class="panel-collapse collapse">

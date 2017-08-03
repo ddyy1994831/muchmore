@@ -2,6 +2,7 @@
 <%@ page import="java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%	
 	String id = null;
 	if (session.getAttribute("id") != null) {
@@ -51,7 +52,7 @@
 									<td><%=bg.getBorrower_amount() %></td>
 									<td><%=bg.getBorrower_repay_date() %></td>
 									<td><%=bg.getBorrower_monthlypay() %></td>
-									<td><%=bg.getBorrower_balance() %></td>
+									<td><fmt:formatNumber value="<%=bg.getBorrower_balance() %>" type="currency" currencySymbol="£Ü" /></td>
 									<td><%=bg.getBorrower_loanperiod() %></td>
 									<td><%=bg.getBorrower_status() %></td>
 								<%

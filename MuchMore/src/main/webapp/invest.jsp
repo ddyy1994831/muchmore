@@ -74,7 +74,7 @@
 										</td>
 										<td><%=bg.getGoodsVO().getGoods_status() %></td>
 										<%
-										if ( id == null || bg.getGoodsVO().getGoods_status() != null) {
+										if ( id == null || bg.getGoodsVO().getGoods_status() == null) {
 										%>
 										<td><input type="button" class="btn btn-primary btn-xs" value="투자하기" disabled></td>
 										<%
