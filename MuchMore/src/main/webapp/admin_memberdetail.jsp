@@ -109,9 +109,9 @@
 							%>
 							<tr class = "text-center">
 								<td><%=invest.getInvest_date()%></td>
-								<td><%=invest.getInvest_sum()%></td>
+								<td><fmt:formatNumber value="<%=invest.getInvest_sum()%>" type="currency" currencySymbol="£Ü"></fmt:formatNumber></td>
 								<td><%=invest.getGoodsVO().getGoods_num()%></td>
-								<td><%=invest.getInvest_return()%></td>
+								<td><fmt:formatNumber value="<%=invest.getInvest_return()%>" type="currency" currencySymbol="£Ü"></fmt:formatNumber></td>
 								<td><%=invest_status%></td>
 							</tr>
 							<%
