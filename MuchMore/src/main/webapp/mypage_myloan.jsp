@@ -14,7 +14,11 @@
 %>
 
 <section class="container">
+<<<<<<< HEAD
 	<div class="row" style = "min-height:80%;">
+=======
+	<div class="row" style = "height: 100%;">
+>>>>>>> healim
 		<div class = "col-sm-3" id="menu">
 			<ul class="nav nav-pills nav-stacked">
 				<li class=""><a href="mypageMyaccount.do" id="MyAccount" >My Account</a></li>
@@ -52,7 +56,7 @@
 									<td><fmt:formatNumber value="<%=bg.getBorrower_amount() %>" type="currency" currencySymbol="£Ü"></fmt:formatNumber></td>
 									<td><%=bg.getBorrower_repay_date() %></td>
 									<td><fmt:formatNumber value="<%=bg.getBorrower_monthlypay() %>" type="currency" currencySymbol="£Ü"></fmt:formatNumber></td>
-									<td><%=bg.getBorrower_balance() %></td>
+									<td><fmt:formatNumber value="<%=bg.getBorrower_balance() %>" type="currency" currencySymbol="£Ü" /></td>
 									<td><%=bg.getBorrower_loanperiod() %></td>
 									<td><%=bg.getBorrower_status() %></td>
 								<%

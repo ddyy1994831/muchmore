@@ -47,13 +47,13 @@
 				if( bg.getBorrower_status().equals("상환완료")) {
 				%>
 						
-							<a href = "adminInvestMemberList.do?goods_num=<%=bg.getGoodsVO().getGoods_num() %>" class="btn btn-default">지급하기</a>
+							<a href = "adminInvestMemberList.do?goods_num=<%=bg.getGoodsVO().getGoods_num() %>" class="btn btn-default">투자자리스트</a>
 				<%
 						}
 										
 						else {
 				%>
-							<button class="btn btn-default btn-sm" disabled >지급하기</button>
+							<button class="btn btn-default btn-sm" disabled >투자자리스트</button>
 				<%	
 						}
 				%> 

@@ -12,8 +12,8 @@
 	function credit_check() {
 		var x = document.getElementById("myCheck1").checked;
 		var y = document.getElementById("myCheck2").checked;
-		var totalincome = writeform.borrower_totalincome.value;
-		
+		var totalincome = borrowerinfo.borrower_totalincome.value;
+		var amount = borrowerinfo.borrower_amount.value;
 		if(totalincome == "")
 		{
 			alert("연소득 입력란이 비었습니다. 무수입일 경우 0으로 입력해주세요.");
@@ -25,6 +25,12 @@
 	    	alert("약관에 모두 동의하셔야 합니다");
 		    return false;
 	    }
+		
+		if(amount > 5000) {
+			alert("최대 대출 가능 금액은 5000만원입니다.\n5000 이하로 입력해 주세요.");
+			return false;
+		}
+		
 			
 		return true;
 }
@@ -89,15 +95,16 @@ function setComma(inNum){
 	    <div class="container" align="center">
 			<div class="jumbotron">
 				<h3>대출/한도 확인</h3><br/><br/>     
-				<h6><strong>①대출/한도 확인</strong>->②신용정보확인->③대출 정보 입력->④상세 정보 입력</h6> 
+				<h5><strong>①대출/한도 확인</strong>⇒ ②신용정보확인/③대출 정보 입력⇒④상세 정보 입력⇒⑤서류제출</h5>
 			</div>     
 		</div>
 	</div>
 	
 	<br/><br/>
 	<!-- padding-left:200px;padding-right:200px; -->
-	<div class = "row" style = "padding-left:200px;padding-right:200px;">
-	    <!-- 대출 정보 입력 페이지 -->
+	<div class = "row">    
+	    <!-- 대출 정보 입력 페이지 -->  
+	    <div class = "col-md-8 col-md-offset-2">
 	    <div class = "panel panel-primary">
 	    	<div class = "panel-heading">
 	    		<h4 class = "panel-title">기본 정보 입력</h4>
@@ -128,12 +135,12 @@ function setComma(inNum){
 						<div class="form-group">
 							<label for="borrower_totalincome" class="col-sm-2 control-label"><b>연소득</b></label>
 							<div class="col-sm-3">
-								<input type="text" onchange = "getNumber1(this);" onkeyup = "getNumber1(this);" class="form-control" 
-								id="borrower_totalincome" name="borrower_totalincome" placeholder = "만원단위 입력" required style="text-align:right;">
+								<input type="text" onchange = "getNumber1(this);" onkeyup = "getNumber1(this);" class="form-control" maxlength = "7" 
+								id="borrower_totalincome" name="borrower_totalincome" onkeypress = "gNumCheck()" placeholder = "만원단위 입력" required style="text-align:right;">
 							</div>
 							<div class="col-sm-3">
-								<input type = "text" class="form-control" name="check_totalincome" id="check_totalincome" 
-									placeholder = "금액 확인" style="text-align:right;" readonly>
+								<input type = "text" class="form-control" name="check_totalincome" id="check_totalincome" onfocus="javascript:blur();"
+								style="cursor: default;text-align:right;" placeholder = "금액 확인" readonly>
 							</div>
 						</div>
 						
@@ -141,11 +148,11 @@ function setComma(inNum){
 						<div class="form-group">
 							<label for="inputEmail" class="col-sm-2 control-label"><b>희망대출금액</b></label>
 							<div class="col-sm-3">
-								<input type="text" onchange = "getNumber2(this);" onkeyup = "getNumber2(this);" class="form-control" id="borrower_amount"
-								placeholder = "만원단위 입력" required style="text-align:right;">
+								<input type="text" onchange = "getNumber2(this);" onkeyup = "getNumber2(this);" onkeypress = "gNumCheck()" class="form-control" id="borrower_amount"
+								name = "borrower_amount" maxlength = "4" placeholder = "만원단위 입력" required style="text-align:right;">
 							</div>
 							<div class="col-sm-3">
-								<input type="text"  class="form-control" id="check_amount" name = "check_amount" 
+								<input type="text"  class="form-control" id="check_amount" name = "check_amount" onfocus="javascript:blur();" style="cursor: default;"
 									placeholder = "금액 확인"style="text-align:right;" readonly>
 							</div>
 						</div>
@@ -215,7 +222,7 @@ function setComma(inNum){
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal">×</button>
-											<h4 class="modal-title">Modal without Overlay</h4>
+											<h4 class="modal-title">개인(신용)정보 수집/이용 동의서</h4>
 										</div>
 										<div class="modal-body">
 											<p>This modal has no overlay.</p>
@@ -238,6 +245,7 @@ function setComma(inNum){
 						</div>
 					</fieldset>
 				</form>
+			</div>
 			</div>
 		</div>
 	</div>

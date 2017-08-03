@@ -38,9 +38,9 @@
   					<tr>
       					<td><%=invest.getGoodsVO().getGoods_num() %></td>
    						<td><%=invest.getMember_id() %></td>
-      					<td><%=invest.getInvest_sum() %></td>
-      					<td><%=invest.getGoodsVO().getGoods_rate() %></td>
-      					<td><%=invest.getInvest_return() %></td>
+      					<td><fmt:formatNumber value="<%=invest.getInvest_sum() %>" type="currency" currencySymbol="£Ü" /></td>
+      					<td><%=invest.getGoodsVO().getGoods_rate() %>%</td>
+      					<td><fmt:formatNumber value="<%=invest.getInvest_return() %>" type="currency" currencySymbol="£Ü" /></td>
       					<%
    						if(invest.getInvest_payok().equals("¹ÌÁö±Þ")) {
    						%>
