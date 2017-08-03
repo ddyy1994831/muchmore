@@ -60,7 +60,7 @@ function setComma(inNum){
 					<td>금액 확인 : </td>
 					<td>
 						<input type="text" class="form-control col-xs-2" id="check_amount" name ="check_amount" 
-						placeholder="금액 확인!" onfocus="javascript:blur();" style="sursor: default" readonly>
+						placeholder="금액 확인!" onfocus="javascript:blur();" style="cursor: default" readonly>
 					</td>
 				</tr>
 				
