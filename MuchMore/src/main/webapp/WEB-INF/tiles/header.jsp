@@ -76,7 +76,7 @@
                         	if (id != null) {
                         			if (id.equals("muchmore")) {
                      	%>
-                     					<li><a href="admin_account.do">입출금내역</a></li>
+                     					<li><a href="adminAccount.do">입출금내역</a></li>
                      					<li><a href="adminInvestList.do">투자관리</a></li>
                      					<li><a href="adminLoanList.do">대출관리</a></li>
                      					<li><a href="admin_member.do">회원관리</a></li>

@@ -282,20 +282,17 @@ public class AdminController {
 	
 	/*2017-08-01 다예 : 관리자페이지 -입출금내역*/
 	@RequestMapping("/adminAccount.do")
-	public ModelAndView AccountList(HttpServletRequest request, MoneyinoutVO moneyinout) {
-		ModelAndView result = new ModelAndView();
-		
+	public String AccountList(Model model) {
 		List<MoneyinoutVO> moneyinout_list = moneyinoutDAOService.getAdimList();
 		
-		result.addObject("moneyinout_list", moneyinout_list);
-		result.setViewName("admin_account");
+		model.addAttribute("moneyinout_list", moneyinout_list);
 
-		return result;
+		return "admin_account";
 	}
 	
 
 	/*2017-08-02 혜림 : 투자금 지급하기 페이지 이동*/
-	@RequestMapping("adminInvestList.do")
+	@RequestMapping("/adminInvestList.do")
 	public ModelAndView investList() {
 		ModelAndView result = new ModelAndView();
 		
