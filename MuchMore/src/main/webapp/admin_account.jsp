@@ -10,7 +10,7 @@
 		id = (String) session.getAttribute("id");
 	}
 
-	List<MoneyinoutVO> theWholeList = (List<MoneyinoutVO>)request.getAttribute("theWholeList");
+	List<MoneyinoutVO> theWholeList = (List<MoneyinoutVO>)request.getAttribute("moneyinout_list");
 %>
 
 <script>

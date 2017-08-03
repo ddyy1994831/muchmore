@@ -250,5 +250,4 @@ function ajaxTest(url){
 			</div>
 		</div>
 	</div>
->>>>>>> healim
 </section>

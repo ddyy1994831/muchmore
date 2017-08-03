@@ -282,12 +282,16 @@ public class AdminController {
 	
 	/*2017-08-01 다예 : 관리자페이지 -입출금내역*/
 	@RequestMapping("/adminAccount.do")
-	public String AccountList(Model model) {
+	public ModelAndView AccountList(Model model) {
+		System.out.println("dddd");
+		ModelAndView result = new ModelAndView();
 		List<MoneyinoutVO> moneyinout_list = moneyinoutDAOService.getAdimList();
+		System.out.println("moneyinout_list cnt : " +moneyinout_list.size());
+		result.setViewName("admin_account");
+		result.addObject("moneyinout_list", moneyinout_list);
+		/*model.addAttribute("moneyinout_list", moneyinout_list);*/
 		
-		model.addAttribute("moneyinout_list", moneyinout_list);
-
-		return "admin_account";
+		return result;
 	}
 	
 
