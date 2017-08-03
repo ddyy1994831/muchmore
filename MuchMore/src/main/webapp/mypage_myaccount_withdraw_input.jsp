@@ -8,6 +8,15 @@ function windowclose(){
 	self.close();
 }
 
+function gNumCheck() {
+    if(event.keyCode >= 48 && event.keyCode <= 57) {
+       return true;
+    }
+    else {
+       event.returnValue = false;
+    }
+ }
+
 //[] <--문자 범위 [^] <--부정 [0-9] <-- 숫자  
 //[0-9] => \d , [^0-9] => \D
 var rgx1 = /\D/g;  // /[^0-9]/g 와 같은 표현
@@ -42,13 +51,13 @@ function setComma(inNum){
 				<tr>
 					<td>출금할 금액 : </td>
 					<td><input type="text" class="form-control col-xs-2" id="amount" name ="amount"
-					onchange = "getNumber(this)" onkeyup = "getNumber(this)" placeholder = "숫자만 입력 가능!" required ></td>
+					onchange = "getNumber(this)" onkeyup = "getNumber(this)" placeholder = "숫자만 입력 가능!" onkeypress="gNumCheck()" maxlength="8" required ></td>
 				</tr>
 				<tr>
 					<td>금액 확인 : </td>
 					<td>
 						<input type="text" class="form-control col-xs-2" id="check_amount" name ="check_amount" 
-						placeholder="금액 확인!" readonly>
+						placeholder="금액 확인!" onfocus="javascript:blur();" style="sursor: default" readonly>
 					</td>
 				</tr>
 				
