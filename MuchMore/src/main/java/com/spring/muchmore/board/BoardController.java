@@ -140,6 +140,7 @@ public class BoardController {
 		else {
 			System.out.println("비밀번호가 틀린 경우 상세보기 실패");
 			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("EUC-KR");
 			out.println("<script>");
 			out.println("alert('비밀번호가 일치하지 않습니다.');");
 			out.println("history.go(-1)");
@@ -191,10 +192,11 @@ public class BoardController {
 			boardDAOService.boardDelete(getBoard);
 		}
 		else {
-			System.out.println("비밀번호가 틀린 경우 삭제 실패!");
+			System.out.println("비밀번호가 틀린 경우 삭제 실패");
 			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("EUC-KR");
 			out.println("<script>");
-			out.println("alert('삭제 실패');");
+			out.println("alert('비밀번호가 일치하지 않습니다.');");
 			out.println("history.go(-1)");
 			out.println("</script>");
 			out.close();
@@ -272,9 +274,11 @@ public class BoardController {
 			System.out.println("게시글 수정 실패");
 			result.setViewName("redirect:/BoardDetail.do?board_num=" + boardVO.getBoard_num());
 			result.addObject("boardVO", boardVO);
+
 			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("EUC-KR");
 			out.println("<script>");
-			out.println("alert('수정 실패');");
+			out.println("alert('비밀번호가 일치하지 않습니다.');");
 			out.println("history.go(-1)");
 			out.println("</script>");
 			out.close();

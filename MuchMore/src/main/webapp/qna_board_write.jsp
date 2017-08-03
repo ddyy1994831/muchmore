@@ -42,7 +42,7 @@
 </script>
 
 <section class = "container">
-  	<div class = "row" style="height: 100%">
+  	<div class = "row" style="padding-left:120px; padding-right:120px;">
 		<div class="span12">
 			<form id="boardform" name = "boardform" action="BoardWriteAction.do" method="post" class = "form-horizontal">
 				<fieldset>

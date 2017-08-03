@@ -15,7 +15,7 @@
 %>
 
 <section class = "container">
-  	<div class = "row" style="height: 100%">
+  	<div class = "row" style = "min-height:80%; padding-left:120px; padding-right:120px;">
    	<form id="deleteForm" name="deleteForm" action="BoardDeleteAction.do" method="post">
 		<input type="hidden" id="board_num" name="board_num" value="<%=board_num %>">
 		<table class="table table-hover">

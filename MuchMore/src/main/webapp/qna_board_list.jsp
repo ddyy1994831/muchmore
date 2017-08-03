@@ -23,7 +23,7 @@
 %>
 
 <section class = "container">
-  	<div class = "row" style="height: 100%">
+  	<div class = "row" style = "min-height:80%;" >
 		<div style="padding-left:120px;padding-right:120px;">
 			<table class="table table-hover">
 				 <thead>
@@ -88,7 +88,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td align="center" colspan="5">
+							<td align="center" colspan="4">
 								<ul class="pagination pagination-sm">
 								<%
 									if(nowpage <= 1) {
@@ -129,6 +129,9 @@
 								%>
 								</ul>
 							</td>
+							<td style = "vertical-align:middle">
+								<a href="BoardWriteForm.do" class="btn btn-primary">글쓰기</a>
+							</td>
 						</tr>
 					</tfoot>
 			<%
@@ -142,15 +145,17 @@
 								<font size="2">등록된 글이 없습니다.</font>
 							</td>
 						</tr>
+						<tr>
+							<td colspan = "5" align="right">
+								<a href="BoardWriteForm.do" class="btn btn-primary">글쓰기</a>
+							</td>
+						</tr>
 					</tbody>
 			<%
 				}
 			%>
 			</table>
+			
 		</div>
-	</div>
-	
-	<div class="row">
-		<a href="BoardWriteForm.do" class="btn btn-primary">글쓰기</a>
 	</div>
 </section>

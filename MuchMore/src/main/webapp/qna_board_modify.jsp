@@ -30,7 +30,7 @@
 </script>
 
 <section class = "container">
-  	<div class = "row" style="height: 100%">
+  	<div class = "row" style = "min-height:80%; padding-left:120px; padding-right:120px;">
    	<form action="BoardModifyAction.do" method = "post" name = "modifyform" id="modifyform">
 	<input type="hidden" id="board_num" name="board_num" value="<%=boardVO.getBoard_num() %>">
 		<table class="table table-hover">

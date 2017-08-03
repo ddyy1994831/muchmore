@@ -26,7 +26,7 @@ function ajaxTest(url){
 </script>
 
 <section class="container">
-<div class="row" style="height: 100%;" id="FAQ">
+<div class="row" style = "min-height:80%;" id="FAQ">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#loan" data-toggle="tab">대출</a></li>
 		<li><a href="#invest" data-toggle="tab">투자</a></li>

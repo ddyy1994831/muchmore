@@ -26,7 +26,7 @@
 </script>
 
 <section class = "container">
-  	<div class = "row" style="height: 100%">
+  	<div class = "row" style = "min-height:80%; padding-left:120px; padding-right:120px;">
     <form action="BoardReplyAction.do" method="post" name="boardform" id="boardform">
     <input type="hidden" name="board_num" value = "<%=boardVO.getBoard_num() %>">
     <input type="hidden" name="board_ref" value="<%=boardVO.getBoard_num() %>">

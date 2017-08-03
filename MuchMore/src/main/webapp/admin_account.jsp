@@ -38,7 +38,7 @@ function myFunction() {
 
 
 <section class="container">
-	<div class="row" style="height:100%">
+	<div class="row" style = "min-height:80%;">
 		<div class="span12">
 			<div class="col-md-10 col-md-offset-1">
 			

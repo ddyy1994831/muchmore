@@ -16,7 +16,7 @@
 %>
 
 <section class = "container">
-  	<div class = "row" style="height: 100%">
+  	<div class = "row" style = "min-height:80%; padding-left:120px; padding-right:120px;">
     <table class = "table table-hover">
     	<tbody>
     		<tr>
@@ -48,6 +48,17 @@
 				<%
 					/*2017-07-30 다예 : 게시글을 볼때 접속자가 muchmore라면 해당 게시글에 대해 답변, 삭제, 목록이동만 할 수 있다. */
 					if(id.equals("muchmore")) {
+						if(writer.equals("muchmore")) {
+				%>
+	    				<div class="col-lg-9 col-lg-offset-1 text-center">
+	    					<a href="./BoardModifyForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">수정</a>
+	    					<a href="./BoardReplyForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">답변</a>
+	    					<a href="./BoardDeleteForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">삭제</a>
+	    					<a href="./BoardList.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">목록</a>
+	   					</div>
+	    		<%
+	    				}
+						else {
 				%>
 						<div class="col-lg-9 col-lg-offset-1 text-center">
     						<a href="./BoardReplyForm.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">답변</a>
@@ -55,7 +66,8 @@
     						<a href="./BoardList.do?board_num=<%=boardVO.getBoard_num()%>" class="btn btn-default">목록</a>
     					</div>
     			<%	
-    				}
+    					}
+					}
 					/*2017-07-30 다예 : 게시글을 볼때 접속자가 일반회원이라면  */
 					else {
 						/*2017-07-31 다예 : 게시글이 muchmore의 글이라면 해당 게시글에 대해 삭제, 목록이동만 할 수 있다. */
