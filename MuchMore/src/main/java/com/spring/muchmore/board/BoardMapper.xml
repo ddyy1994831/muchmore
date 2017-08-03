@@ -32,6 +32,7 @@
 			  		FROM board
 			  		ORDER BY board_ref DESC, board_seq ASC))
 		WHERE rnum <![CDATA[ >= ]]> #{startrow, javaType=int} AND rnum <![CDATA[ <= ]]> #{endrow, javaType=int}
+		ORDER BY board_num ASC
 	</select>
 	
 	

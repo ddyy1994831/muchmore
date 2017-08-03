@@ -7,8 +7,19 @@
 function windowclose(){
 	var bank = registeraccount.choice_bank.value;
 	var real_account = registeraccount.real_account.value;
+	if(real_account == "") {
+		registeraccount.registbtn.disabled = 'disabled';
+	}
+	else{
 	opener.location.href = "mypageRegisterAccountAction.do?real_account="+real_account+"&bank="+bank;
+	}
 	self.close();
+}
+
+function blankCheck() {
+	if(registeraccount.real_account.value == "") {
+    	alert("'-'을 포함한 계좌번호를 입력해주세요");
+	}
 }
 </script>
 
@@ -31,12 +42,12 @@ function windowclose(){
 			<tr>
 				<td>계좌번호</td>
 				<td>
-					<input type="text" class="form-control" id="real_account" name = "real_account" placeholder="계좌번호">
+					<input type="text" class="form-control" id="real_account" name = "real_account" placeholder="'-'을 포함한 계좌번호" onfocusout="blankCheck()" required>
 				</td>
 			</tr>
 			<tr>
 				<td colspan = "2" class = "text-center">
-					<button type = "button" onclick = "windowclose()" class="btn btn-primary">등록하기</button>
+					<button type = "button" id="registbtn" name="registbtn" onclick = "windowclose()" class="btn btn-primary">등록하기</button>
 				</td>
 			</tr>
 		</table>
