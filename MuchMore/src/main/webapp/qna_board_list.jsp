@@ -76,6 +76,11 @@
 								<%
 										}
 									}
+									else {
+								%>
+										<%=boardVO.getBoard_title() %>
+								<%
+									}
 								%>
 								</td>
 								<td><%=boardVO.getMember_id() %></td>
