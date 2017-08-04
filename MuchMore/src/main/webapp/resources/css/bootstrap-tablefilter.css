@@ -1,10 +1,11 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700);
 
 /*    --------------------------------------------------
 	:: General
 	-------------------------------------------------- */
 body {
-	font-family: 'Nanum Gothic', sans-serif;
+	font-family: "Quicksand","Nanum Gothic", sans-serif;
 	color: #353535;
 }
 .content h1 {

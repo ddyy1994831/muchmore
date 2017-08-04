@@ -286,130 +286,156 @@
 </script>
 
 <section class="container">
+	<div class = "row text-center" >		
+	    <div class="container" align="center">
+			<div class="jumbotron">
+				<h3>회원가입</h3><br/><br/>  
+			</div>     
+		</div>
+	</div>	
 	<div class="row">
-		<form id="joinform" name="joinform" class="form-horizontal"
-			action="joinAction.do" method="post" onsubmit="return check()">
-			<fieldset>
-				<legend>회원가입</legend>
-				<div class="form-group">
-					<label for="member_id" class="col-lg-2 control-label">아이디</label>
-					<div class="col-lg-9">
-						<input id="member_id" type="text"
-							placeholder="영문, 숫자 포함 8~12자리 입력" name="member_id"
-							class="form-control" onkeydown="inputIdChk()">
-					</div>
-					<div class="col-lg-1">
-						<input type="button" id="checkId" name="checkId"
-							class="btn btn-primary" value="아이디 중복체크" onclick="check_Id();" />
-						<input type="hidden" name="idDuplication" value="idUncheck" />
-					</div>
+		<div class = "col-md-8 col-md-offset-2">
+			<div class = "panel panel-primary">
+				<div class = "panel-heading">
+					<h4 class = "panel-title">회원가입</h4>    
 				</div>
-
-				<div class="form-group">
-					<label for="member_pw1" class="col-lg-2 control-label">비밀번호</label>
-					<div class="col-lg-10">
-						<input type="password" class="form-control" id="member_pw1" maxlength = "15"
-							name="member_pw1" placeholder="영문, 숫자 포함 6~10자리 입력">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="member_pw2" class="col-lg-2 control-label">비밀번호
-						확인</label>
-					<div class="col-lg-10">
-						<input type="password" class="form-control" id="member_pw2" maxlength = "15"
-							name="member_pw2" placeholder="">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="member_name" class="col-lg-2 control-label">이름</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="member_name"
-							name="member_name" placeholder="이름">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="input_jumin1" class="col-lg-2 control-label">주민번호</label>
-					<div class="col-lg-4">
-						<input type="text" class="form-control" id="member_jumin1" maxlength="6" onkeypress = "gNumCheck()"
-							name="member_jumin1" placeholder="">
-					</div>
-					<div class="col-lg-1">-</div>
-					<div class="col-lg-4">
-						<input type="password" class="form-control" id="member_jumin2" maxlength="7" onkeypress = "gNumCheck()"
-							name="member_jumin2" placeholder="">
-					</div>
-				</div>
-
-
-				<div class="form-group">
-					<label for="member_phone" class="col-lg-2 control-label">휴대폰번호</label>
-					<div class="col-lg-10">
-						<input type="phone" class="form-control" id="member_phone" maxlength = "11" 
-							maxlength="13" name="member_phone" onkeypress = "gNumCheck()"
-							placeholder="휴대폰 번호를 제대로 입력하세요.('-' 제외 11자리)">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="member_email" class="col-lg-2 control-label">이메일</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="member_email"
-							name="member_email"
-							placeholder="@이하 주소를 모두 입력해주세요.(예) abc@naver.com)">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="input_addr1" class="col-lg-2 control-label">주소</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="member_zipcode"
-							name="member_zipcode" placeholder=""> <input
-							type="button" class="btn btn-primary btn-sm" value="우편번호 검색"
-							onclick="sample6_execDaumPostcode()"><br />
-						<br /> <input type="text" class="form-control" id="member_addr1"
-							name="member_addr1" placeholder="">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="input_addr2" class="col-lg-2 control-label">상세주소</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="member_addr2"
-							name="member_addr2" placeholder="">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-lg-2 control-label">개인정보 약관 동의</label>
-					
-					<div class="col-lg-10">
-						<button type="button" class="btn btn-default" id="myBtn1">자세히 보기</button>  
-						<div class="radio">
-							<label> <input type="radio" name="member_agreement"
-								id="optionsRadios1" value="1" checked> 동의합니다.
-							</label>
-						</div>
-						<div class="radio">
-							<label> <input type="radio" name="member_agreement"
-								id="optionsRadios2" value="0"> 동의하지 않습니다.
-							</label>
-						</div>
-					</div>
-				</div>				
-				
-				
-				<div class="form-group">
-					<div class="col-lg-10 col-lg-offset-2">
-						<button type="reset" class="btn btn-default">취소</button>
-						<button type="submit" class="btn btn-primary">다음</button>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-
+			
+				<div class = "panel-body">
+					<form id="joinform" name="joinform" class="form-horizontal"
+						action="joinAction.do" method="post" onsubmit="return check()">
+						<fieldset>
+							<div class="form-group">
+								<label for="member_id" class="col-sm-3 control-label">아이디</label>
+								<div class="col-sm-4">     
+									<input id="member_id" type="text"
+										placeholder="영문, 숫자 포함 8~12자리 입력" name="member_id"
+										class="form-control" onkeydown="inputIdChk()">
+								</div>
+								<div class="col-sm-3">
+									<input type="button" id="checkId" name="checkId"
+										class="btn btn-primary" value="아이디 중복체크" onclick="check_Id();" />
+									<input type="hidden" name="idDuplication" value="idUncheck" />
+								</div>
+							</div>
+	
+							<div class="form-group">
+								<label for="member_pw1" class="col-sm-3 control-label">비밀번호</label>
+								<div class="col-sm-4">
+									<input type="password" class="form-control" id="member_pw1" maxlength = "15"
+										name="member_pw1" placeholder="영문, 숫자 포함 6~10자리 입력">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label for="member_pw2" class="col-sm-3 control-label">비밀번호
+									확인</label>
+								<div class="col-sm-4">
+									<input type="password" class="form-control" id="member_pw2" maxlength = "15"
+										name="member_pw2" placeholder="">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label for="member_name" class="col-sm-3 control-label">이름</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="member_name"
+										name="member_name" placeholder="이름">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label for="input_jumin1" class="col-sm-3 control-label">주민번호</label>
+								<div class = "form-inline">
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="member_jumin1" maxlength="6" onkeypress = "gNumCheck()"
+											name="member_jumin1" placeholder="">-
+										<input type="password" class="form-control" id="member_jumin2" maxlength="7" onkeypress = "gNumCheck()"
+											name="member_jumin2" placeholder="">
+									</div>
+								</div>
+								<!-- <div class="col-lg-1">-</div>
+								<div class="col-sm-4">
+									<input type="password" class="form-control" id="member_jumin2" maxlength="7" onkeypress = "gNumCheck()"
+										name="member_jumin2" placeholder="">
+								</div> -->
+							</div>
+			
+		
+							<div class="form-group">
+								<label for="member_phone" class="col-sm-3 control-label">휴대폰번호</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="member_phone" maxlength = "11" 
+										maxlength="13" name="member_phone" onkeypress = "gNumCheck()"
+										placeholder="휴대폰 번호를 제대로 입력하세요.('-' 제외 11자리)">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label for="member_email" class="col-sm-3 control-label">이메일</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="member_email"
+										name="member_email"
+										placeholder="@이하 주소를 모두 입력해주세요.(예) abc@naver.com)">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label for="input_addr1" class="col-sm-3 control-label">주소</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="member_zipcode"
+										name="member_zipcode" placeholder="">
+								</div>
+								<div class="col-sm-4"> 
+									<input type="button" class="btn btn-primary btn-sm" value="우편번호 검색"
+										onclick="sample6_execDaumPostcode()">
+								</div>
+							</div>
+							
+							<div class = "form-group">
+								<label for = "member_addr1" class = "col-sm-3 control-label">기본주소</label>
+								<div class = "col-sm-6">
+									<input type="text" class="form-control" id="member_addr1"
+										name="member_addr1" placeholder="">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label for="input_addr2" class="col-sm-3 control-label">상세주소</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="member_addr2"
+										name="member_addr2" placeholder="">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label class="col-sm-3 control-label">가입 약관 동의</label>
+								<div class="col-sm-5">
+									<button type="button" class="btn btn-default" id="myBtn1">자세히 보기</button>  
+									<div class="radio">
+										<label> <input type="radio" name="member_agreement"
+											id="optionsRadios1" value="1" checked> 동의합니다.
+										</label>
+									</div>
+									<div class="radio">
+										<label> <input type="radio" name="member_agreement"
+											id="optionsRadios2" value="0"> 동의하지 않습니다.
+										</label>
+									</div>
+								</div>
+							</div>				
+						
+						
+							<div class="form-group">
+								<div class="text-center">
+									<button type="reset" class="btn btn-default">취소</button>
+									<button type="submit" class="btn btn-primary">다음</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+			</div>
+		</div>
+	</div>
 	</div>
 	
 	<div class="modal fade" id="myModal" role="dialog">
@@ -445,9 +471,9 @@
 				</div>
 				<div class="modal-footer">
 					<hr/>
-					<ul  class = "text-left" style = "list-style-type : square">
+					<ul class = "text-left" style = "list-style-type : square">
 						<li>
-							<p>상기 내용이 변동되는 경우 당사 홈페이지(www.lendit.co.kr) 게시 등을 통해 그 내용을 안내 드리겠습니다.</p>
+							<p>상기 내용이 변동되는 경우 당사 홈페이지(www.muchmore.com) 게시 등을 통해 그 내용을 안내 드리겠습니다.</p>
 						</li>
 						<li>
 							<p>귀하는 동의를 거부할 권리가 있으나, 위 사항에 대한 동의가 없을 경우 대출채권에 대한 투자가 불가능할 수 있습니다.</p>

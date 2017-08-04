@@ -84,6 +84,7 @@
                      				}
                         			else {
                      	%>
+                     					<li><a href="logout.do">·Î±×¾Æ¿ô</a></li>
                     					<li><a href="mypage_main.do">My Page</a></li>
                      	<%
                         			}
@@ -95,7 +96,7 @@
                      	<%
                         	}
                      	%>
-                     			<li><a href="logout.do">·Î±×¾Æ¿ô</a></li>
+                     			
                   		</ul>
 					</div>
 				</div>

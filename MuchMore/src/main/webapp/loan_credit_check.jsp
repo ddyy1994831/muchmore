@@ -203,12 +203,64 @@ function setComma(inNum){
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">Modal with Dark Overlay</h4>
+											<h4 class="modal-title">개인(신용)정보 수집·이용 동의서</h4>
+											<p>
+											머치모아(이하 “귀사”라 함)와 본인 사이의 (금융)거래와 관련하여 귀사가 본인의 개인(신용)정보를 수집 · 이용하고자 하는 경우,
+											 귀사는 정보통신망 이용촉진 및 정보보호 등에 관한 법률 및 개인정보 보호법, 신용정보의 이용 및 보호에 관한 법률 등에 따라 본인의 동의를 얻어야 합니다. 
+											 이에 본인은 귀사가 아래의 내용과 같이 본인의 개인(신용)정보를 수집 · 이용하는데 동의합니다.
+											</p>
+											
 										</div>
 										<div class="modal-body">
-											<p>This modal has a dark overlay.</p>
+											<h4>[개인(신용)정보의 수집 · 이용 목적]</h4>
+											<hr/>    
+											<ul style = "list-style-type : square">
+												<li>
+													<p>
+													귀사는 이용자 및 대부금융회사 사이의 (금융)거래 중개와 관련하여, 
+													대부금융사로의 개인(신용)정보전달 및 대출중개수수료 정산 등 대부중개 관련 제반 업무 수행을 위한 목적으로 이용자의 개인(신용)정보를 수집 이용합니다.
+													</p>
+												</li>
+											</ul>
+											
+											<br/>
+											
+											<h4>[개인(신용)정보의 수집 · 이용 항목]</h4>
+											<hr/>
+											<ul style = "list-style-type : square">
+												<li>
+													<p>개인식별정보 : 성명, 생년월일, 성별, 전자우편, 직장정보, 휴대전화번호 등 연락처</p>
+												</li>
+												<li>
+													<p>접속일시, IP주소, 이용 전화번호 등 전자금융거래법에 따른 수집정보(전자금융거래 한함)</p>
+												</li>
+											</ul>
+											
+											<br/>
+											
+											<h4>[개인(신용)정보의 보유 · 이용 기간]</h4>
+											
+											<hr/>
+											<ul style = "list-style-type : square">
+												<li>
+													<p>
+													귀사는 이용자가 동의한 날로부터, 귀사가 중개한 대부금융회사에게 이용자의 개인(신용)정보를 제공한 후 2개월 이내까지의 기간 동안 이용자의 개인(신용)정보를 보유 및 이용합니다. 
+													단, 귀사는 이용자가 개인(신용)정보의 수집 및 이용에 대한 동의를 철회하는 경우 해당 개인(신용)정보를 지체없이 파기합니다.
+													귀사는 관계 법령의 규정에 의하여 별도 규정이 명시되어 있는 경우 관계법령에서 정한 일정한 기간 동안 관련정보를 보관합니다.
+													</p>
+												</li>
+											</ul>
 										</div>
+										<hr/>
 										<div class="modal-footer">
+											<ul class = "text-left" style = "list-style-type : square">
+												<li>
+													<p>상기 내용이 변동되는 경우 머치모아 홈페이지(www.muchmore.com) 게시 등을 통해 그 내용을 안내 드리겠습니다.</p>
+												</li>
+												<li>
+													<p>귀하는 개인(신용)정보 수집동의를 거부할 권리가 있으나, 위 정보는 서비스 제공에 필수적으로 필요한 정보이므로, 동의를 거부하실 경우 거래의 설정 또는 유지가 불가능할 수 있음을 알려드립니다.</p>
+												</li>												
+											</ul>
 											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 										</div>
 									</div>
@@ -222,13 +274,63 @@ function setComma(inNum){
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal">×</button>
-											<h4 class="modal-title">개인(신용)정보 수집/이용 동의서</h4>
+											<h4 class="modal-title">개인(신용)정보 제공 동의서</h4>
+											<p>
+												머치모아(이하 “귀사”라 함)와 본인 사이의 (금융)거래 중개와 관련하여 귀사가 본인의 개인(신용)정보를 제3자에게 제공하고자 하는 경우, 
+												귀사는 정보통신망 이용촉진 및 정보보호 등에 관한 법률 및 개인정보 보호법 등에 따라 본인의 동의를 얻어야 합니다. 
+												이에 본인은 귀사가 아래의 내용과 같이 본인의 개인(신용)정보를 제3자에게 제공하는데 동의합니다.
+											</p>
+											<hr/>
 										</div>
 										<div class="modal-body">
-											<p>This modal has no overlay.</p>
-											<p><strong>Note:</strong> You cannot click outside of this modal to close it.</p>
+											<h4>[개인정보의 제3자 제공에 관한 사항]	</h4>
+											<hr/>
+											<ul>
+												<li>
+													<p>개인정보를 제공받는 자 : 머치모아</p>
+												</li>
+											</ul>
+											<br/>
+											
+											<h4>[개인정보 이용 목적]</h4>
+											<ul>
+												<li>
+													<p>머치모아는 다음과 같은 이용 목적으로 귀사로부터 이용자의 개인정보를 제공받습니다.</p>
+												</li>
+												<li>
+													<p>머치모아 : 이용자를 위한 온라인 대출정보 중개(이용자와 머치모아 사이의 대출계약에 따른 대출채권과 관련하여, 투자자와 머치모아 간 대출채권의 원리금수취권 양수도 거래를 위한 중개 및 지원)</p>
+												</li>
+												<li>
+													<p>머치모아 : 이용자와의 여신(금융)거래관계의 설정여부 판단 및 설정 · 체결 · 유지 · 이행 · 관리(통계, 모형 개발 등 포함) 등 ㈜렌딧소셜대부 및 머치모아와 이용자 사이의 (금융)거래와 관련하여 귀사가 수행하여야 하는 제반 업무 수행</p>
+												</li>
+											</ul>
+											<br/>
+											<h4>[제공하는 개인정보 항목]</h4>
+											<hr/>
+											<ul>
+												<li>
+													<p>개인식별정보: 성명, 생년월일, 성별, 전자우편, 직장정보, 휴대전화번호 등 연락처</p>
+												</li>
+											</ul>
+											<br/>
+											<h4>[개인정보를 제공받는 자의 개인정보 보유 및 이용 기간]</h4>
+											<hr/>
+											<ul>
+												<li>
+													<p>귀사는 이용자가 동의한 날로부터 목적달성시까지 이용자의 개인(신용)정보를 제공합니다.</p>
+												</li>
+											</ul>
 										</div>
+										<hr/>
 										<div class="modal-footer">
+											<ul class = "text-left" style = "list-style-type : square" >
+												<li>
+													<p>상기 내용이 변동되는 경우 머치모아 홈페이지(www.muchmore.com) 게시 등을 통해 그 내용을 안내 드리겠습니다.</p>
+												</li>
+												<li>
+													<p>귀하는 동의를 거부할 권리가 있으나, 위 사항에 대한 동의가 없을 경우 거래의 설정 또는 유지가 불가능할 수 있습니다.</p>
+												</li>
+											</ul>							
 											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 										</div>
 									</div>
