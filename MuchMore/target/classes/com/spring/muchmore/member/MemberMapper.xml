@@ -100,7 +100,7 @@
 	</select>
 	 
 	<!-- 2017-07-29 혜림 : 회원 정보 전체 가져오기. -->
-	<select id="getMember" resultType="MemberVO" parameterType = "MemberVO">
+	<select id="getMember" resultType="MemberVO" parameterType = "String">
 		SELECT *
 		FROM member
 		WHERE member_id = #{member_id}
@@ -122,12 +122,12 @@
 	
 	<!-- 2017-07-29 성현 : 회원정보 수정 -->
 	<update id="updateMember" parameterType="MemberVO">
-	UPDATE member
-	SET
-	member_pw1=#{member_pw1}, member_pw2=#{member_pw2}, 
-	member_zipcode=#{member_zipcode}, member_addr1=#{member_addr1}, member_addr2=#{member_addr2},
-	member_email=#{member_email}
-	WHERE member_id=#{member_id}
+		UPDATE member
+		SET
+		member_pw1=#{member_pw1}, member_pw2=#{member_pw2}, 
+		member_zipcode=#{member_zipcode}, member_addr1=#{member_addr1}, member_addr2=#{member_addr2},
+		member_email=#{member_email}
+		WHERE member_id=#{member_id}
 	</update>
 	
 	<!-- 2017-07-30 혜림 : 회원정보와 계좌정보 가져오기 -->
@@ -137,5 +137,16 @@
 		WHERE member.member_id = account.member_id
 			and member.member_id = #{member_id}
 	</select>
+	
+	<!-- 2017-08-01 성현 : 회원 목록 가져오기(List타입) -->
+	<select id="getMemberList" resultMap="MemberResultMap">
+		SELECT * FROM member ORDER BY member_id
+	</select>
+	
+	<!-- 2017-08-01 성현 : 회원 삭제하기 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM member 
+		WHERE member_id = #{member_id}
+	</delete>
 	
 </mapper>
