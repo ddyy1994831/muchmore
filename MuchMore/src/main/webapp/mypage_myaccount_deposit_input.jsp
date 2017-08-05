@@ -4,7 +4,13 @@
 <script>
 function windowclose(){
 	var amount = depositform.amount.value;
-	opener.location.href = "mypageMyaccountDepositAction.do?amount="+amount;
+	if(amount == "") {
+		alert("입금할 금액을 입력해주세요.");
+		return false;
+	}
+	else{
+		opener.location.href = "mypageMyaccountDepositAction.do?amount="+amount;
+	}
 	self.close();
 }
 
@@ -67,7 +73,7 @@ function setComma(inNum){
 				<tr class = "text-center">
 					<td colspan = "2">
 						<br/>
-						<button type = "button" onclick="windowclose()" class="btn btn-primary">입금하기</button>
+						<button type = "button" id="depositbtn" name="depositbtn" onclick="windowclose()" class="btn btn-primary">입금하기</button>
 					</td>
 				</tr>
 			</table>
