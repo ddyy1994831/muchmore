@@ -80,10 +80,12 @@
                      					<li><a href="adminInvestList.do">투자관리</a></li>
                      					<li><a href="adminLoanList.do">대출관리</a></li>
                      					<li><a href="admin_member.do">회원관리</a></li>
+                     					<li><a href="logout.do">로그아웃</a></li>
                      	<%
                      				}
                         			else {
                      	%>
+                     					<li><a href="logout.do">로그아웃</a></li>
                     					<li><a href="mypage_main.do">My Page</a></li>
                      	<%
                         			}
@@ -95,7 +97,7 @@
                      	<%
                         	}
                      	%>
-                     			<li><a href="logout.do">로그아웃</a></li>
+                     			
                   		</ul>
 					</div>
 				</div>

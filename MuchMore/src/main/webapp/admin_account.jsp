@@ -14,26 +14,45 @@
 %>
 
 <script>
-function myFunction() {
-	var input, filter, table, tr, td, i;
-	
-	input = document.getElementById("myInput");
-	filter = input.value.toUpperCase();
-	table = document.getElementById("myTable");
-	tr = table.getElementsByTagName("tr");
+(function(document) {
+	'use strict';
 
-	for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[1];
-		
-		if (td) {
-			if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-				tr[i].style.display = "";
-			} else {
-				tr[i].style.display = "none";
+	var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		function _onInputEvent(e) {
+			_input = e.target;
+			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+			Arr.forEach.call(tables, function(table) {
+				Arr.forEach.call(table.tBodies, function(tbody) {
+					Arr.forEach.call(tbody.rows, _filter);
+				});
+			});
+		}
+
+		function _filter(row) {
+			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		}
+
+		return {
+			init: function() {
+				var inputs = document.getElementsByClassName('light-table-filter');
+				Arr.forEach.call(inputs, function(input) {
+					input.oninput = _onInputEvent;
+				});
 			}
-		}       
-	}
-}
+		};
+	})(Array.prototype);
+
+	document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+			LightTableFilter.init();
+		}
+	});
+
+})(document);
 </script>
 
 
@@ -45,19 +64,19 @@ function myFunction() {
 			<legend><b>입출금내역</b></legend>
 			
 			<i class="fa fa-search" aria-hidden="true"></i>&nbsp;
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="검색어를 입력하세요">
+			<input type="text" class="light-table-filter" data-table="table" placeholder="검색어를 입력하세요" />
 		
-			<table id="myTable" class="table table-striped table-condensed table-hover ">
+			<table class="table table-striped table-condensed table-hover ">
 				<thead>
-					<tr>
-						<th style="text-align: center">날짜</th>
-						<th style="text-align: center">입금/출금</th>
-						<th style="text-align: center">holder</th>
-						<th style="text-align: center">other</th>
-						<th style="text-align: center">금액</th>
-					</tr>
-				</thead>
-				<tbody>
+						<tr>
+							<th style="text-align: center">날짜</th>
+							<th style="text-align: center">입금/출금</th>
+							<th style="text-align: center">holder</th>
+							<th style="text-align: center">other</th>
+							<th style="text-align: center">금액</th>
+						</tr>
+					</thead>
+					<tbody>
 					<%
 						if(theWholeList != null) {
 					%>
@@ -83,8 +102,8 @@ function myFunction() {
 					<%
 						}
 					%>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

@@ -15,4 +15,53 @@
 		<put-attribute name="content" value="/{1}.jsp"/>
 	</definition>
 	
+	<!-- 팝업 레이아웃 -->
+	<definition name="popup_layout" template="/WEB-INF/tiles/layout/popup_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/popup_header.jsp"/>
+		<put-attribute name="content" value=""/>
+	</definition>
+	
+	<definition name="admin_memberdropout" extends="popup_layout">
+		<put-attribute name="content" value="/admin_memberdropout.jsp"/>
+	</definition>
+
+	<definition name="admin_loan_send" extends="popup_layout">
+		<put-attribute name="content" value="/admin_loan_send.jsp"/>
+	</definition>
+	
+	<definition name="admin_loan_send" extends="popup_layout">
+		<put-attribute name="content" value="/admin_loan_send.jsp"/>
+	</definition>
+	
+	<definition name="login_find_id" extends="popup_layout">
+		<put-attribute name="content" value="/login_find_id.jsp"/>
+	</definition>
+	
+	<definition name="login_find_id_ok" extends="popup_layout">
+		<put-attribute name="content" value="/login_find_id_ok.jsp"/>
+	</definition>
+	
+	<definition name="login_find_pw" extends="popup_layout">
+		<put-attribute name="content" value="/login_find_pw.jsp"/>
+	</definition>
+	
+	<definition name="login_find_pw_ok" extends="popup_layout">
+		<put-attribute name="content" value="/login_find_pw_ok.jsp"/>
+	</definition>
+	
+	<definition name="join_chkId" extends="popup_layout">
+		<put-attribute name="content" value="/join_chkId.jsp"/>
+	</definition>
+	
+	<definition name="mypage_myaccount_deposit_input" extends="popup_layout">
+		<put-attribute name="content" value="/mypage_myaccount_deposit_input.jsp"/>
+	</definition>
+	
+	<definition name="mypage_myaccount_withdraw_input" extends="popup_layout">
+		<put-attribute name="content" value="/mypage_myaccount_withdraw_input.jsp"/>
+	</definition>
+	
+	<definition name="mypage_myaccount_register_account" extends="popup_layout">
+		<put-attribute name="content" value="/mypage_myaccount_register_account.jsp"/>
+	</definition>
 </tiles-definitions>
