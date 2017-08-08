@@ -21,7 +21,7 @@
 			return false;
 		}
 		else if(modifyform.board_password.value == ""){
-			alert("비밀번호를 입력하세요.");
+			alert("비밀번호를 확인하세요.");
 			return false;
 		}
 			

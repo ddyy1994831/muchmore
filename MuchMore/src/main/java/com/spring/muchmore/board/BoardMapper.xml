@@ -32,7 +32,6 @@
 			  		FROM board
 			  		ORDER BY board_ref DESC, board_seq ASC))
 		WHERE rnum <![CDATA[ >= ]]> #{startrow, javaType=int} AND rnum <![CDATA[ <= ]]> #{endrow, javaType=int}
-		ORDER BY board_num ASC
 	</select>
 	
 	
@@ -88,7 +87,7 @@
 	<select id="getDetail" resultMap="BoardResultMap" parameterType="com.spring.muchmore.board.BoardVO">
 		SELECT *
 		FROM board
-		WHERE board_num=#{board_num}
+		WHERE board_num=#{board_num, javaType=int}
 	</select>
 	
 	<!-- 2017-07-30 다예 : 게시글 수정 -->

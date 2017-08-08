@@ -10,7 +10,7 @@
 %>
 
 <script type="text/javascript">
-function ajaxTest(url){
+function ajaxTab(url){
     $.ajax({
       type : "GET",
       url : url,
