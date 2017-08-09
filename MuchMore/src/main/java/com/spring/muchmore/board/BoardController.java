@@ -19,7 +19,7 @@ public class BoardController {
 	@Autowired
 	private BoardDAOService boardDAOService;
 	
-	/*2017-07-30 ´Ù¿¹ : Board Å×ÀÌºí¿¡ ÀÖ´Â µ¥ÀÌÅÍ ¸®½ºÆ® ­‹·Â*/
+	/* ´Ù¿¹ : Board Å×ÀÌºí¿¡ ÀÖ´Â µ¥ÀÌÅÍ ¸®½ºÆ® ­‹·Â*/
 	@RequestMapping("/BoardList.do")
 	public ModelAndView main(Model model, HttpServletRequest request) {
 		System.out.println("BoardController-/BoardList.do");
@@ -66,7 +66,7 @@ public class BoardController {
 		return result;
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_list¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ - ±Û¾²±â ÆûÀ¸·Î ÀÌµ¿*/
+	/* ´Ù¿¹ : qna_board_list¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ - ±Û¾²±â ÆûÀ¸·Î ÀÌµ¿*/
 	@RequestMapping("/BoardWriteForm.do")
 	public ModelAndView insert_form(HttpSession session) {
 		System.out.println("BoardController-/BoardWriteForm.do");
@@ -83,7 +83,7 @@ public class BoardController {
 		return result;
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_writer¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ - ±Û¾²±â insert*/
+	/* ´Ù¿¹ : qna_board_writer¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ - ±Û¾²±â insert*/
 	@RequestMapping("/BoardWriteAction.do")
 	public String insert(HttpServletRequest request) {
 		System.out.println("BoardController-/BoardWriteAction.do");
@@ -106,7 +106,7 @@ public class BoardController {
 		return "redirect:/BoardList.do";
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_view_check·Î ÀÌµ¿*/
+	/* ´Ù¿¹ : qna_board_view_check·Î ÀÌµ¿*/
 	@RequestMapping("/BoardViewCheck.do")
 	public String view_checkForm(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardViewCheck.do");
@@ -124,7 +124,7 @@ public class BoardController {
 		}
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_view_check - ÀÔ·Â¹ŞÀº ºñ¹Ğ¹øÈ£¿Í µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ºñ¹Ğ¹øÈ£ ºñ±³ ÈÄ °Ô½Ã±Û »ó¼¼º¸±â*/
+	/* ´Ù¿¹ : qna_board_view_check - ÀÔ·Â¹ŞÀº ºñ¹Ğ¹øÈ£¿Í µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ºñ¹Ğ¹øÈ£ ºñ±³ ÈÄ °Ô½Ã±Û »ó¼¼º¸±â*/
 	@RequestMapping("/BoardViewAction.do")
 	public String viewCheck(BoardVO boardVO, HttpServletResponse response) throws Exception {
 		System.out.println("BoardController-/BoardViewAction.do");
@@ -151,7 +151,7 @@ public class BoardController {
 		}
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : °Ô½Ã±Û »ó¼¼º¸±â*/
+	/* ´Ù¿¹ : °Ô½Ã±Û »ó¼¼º¸±â*/
 	@RequestMapping("/BoardDetail.do")
 	public ModelAndView detail(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardDetail.do");
@@ -170,7 +170,7 @@ public class BoardController {
 		return result;
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_delete·Î ÀÌµ¿*/
+	/* ´Ù¿¹ : qna_board_delete·Î ÀÌµ¿*/
 	@RequestMapping("/BoardDeleteForm.do")
 	public String delete_form() {
 		System.out.println("BoardController-/BoardDeleteForm.do");
@@ -178,7 +178,7 @@ public class BoardController {
 		return "qna_board_delete";
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_delete - ÀÔ·Â¹ŞÀº ºñ¹Ğ¹øÈ£¿Í µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ºñ¹Ğ¹øÈ£ ºñ±³ ÈÄ »èÁ¦ Ã³¸®*/
+	/* ´Ù¿¹ : qna_board_delete - ÀÔ·Â¹ŞÀº ºñ¹Ğ¹øÈ£¿Í µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ºñ¹Ğ¹øÈ£ ºñ±³ ÈÄ »èÁ¦ Ã³¸®*/
 	@RequestMapping("/BoardDeleteAction.do")
 	public String delete(BoardVO boardVO, HttpServletResponse response) throws Exception {
 		System.out.println("BoardController-/BoardDeleteAction.do");
@@ -207,7 +207,7 @@ public class BoardController {
 		return "redirect:/BoardList.do";
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_reply·Î ÀÌµ¿*/
+	/* ´Ù¿¹ : qna_board_reply·Î ÀÌµ¿*/
 	@RequestMapping("/BoardReplyForm.do")
 	public ModelAndView reply_form(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardReplyForm.do");
@@ -221,7 +221,7 @@ public class BoardController {
 		return result;
 	}
 
-	/*2017-07-30 ´Ù¿¹ : qna_board_reply - ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®*/
+	/* ´Ù¿¹ : qna_board_reply - ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®*/
 	@RequestMapping("/BoardReplyAction.do")
 	public ModelAndView reply(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardReplyAction.do");
@@ -235,7 +235,7 @@ public class BoardController {
 		return result;
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_modify·Î ÀÌµ¿*/
+	/* ´Ù¿¹ : qna_board_modify·Î ÀÌµ¿*/
 	@RequestMapping("/BoardModifyForm.do")
 	public ModelAndView modify_form(BoardVO boardVO) {
 		System.out.println("BoardController-/BoardModifyForm.do");
@@ -249,7 +249,7 @@ public class BoardController {
 		return result;
 	}
 	
-	/*2017-07-30 ´Ù¿¹ : qna_board_modify - ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®*/
+	/* ´Ù¿¹ : qna_board_modify - ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®*/
 	@RequestMapping("/BoardModifyAction.do")
 	public ModelAndView modify(BoardVO boardVO, HttpServletResponse response) throws Exception {
 		System.out.println("BoardController-/BoardModifyAction.do");
@@ -287,7 +287,7 @@ public class BoardController {
 		return result;
 	}
 	
-	/*2017-07-31 ´Ù¿¹ : faq ÀÌµ¿- ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®*/
+	/* ´Ù¿¹ : faq ÀÌµ¿- ÀÔ·Â¹ŞÀº µ¥ÀÌÅÍÃ³¸®*/
 	@RequestMapping("FAQ.do")
 	public String faq() {
 		return "faq";

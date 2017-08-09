@@ -26,7 +26,7 @@
 		<result property = "goods_date" column="goods_date"/>
 	</resultMap>	
 	
-	<!-- 2017-07-30 성현 : 개인 투자  내역 가져오기(List타입) -->
+	<!-- 성현 : 개인 투자  내역 가져오기(List타입) -->
 	<select id="getInvestById" parameterType="String" resultMap="InvestResultMap">
 		SELECT *
 		FROM invest invest, goods goods
@@ -34,7 +34,7 @@
 		and invest.member_id = #{member_id}
 	</select>
 	
-	<!-- 2017-07-31 성현 : 해당 상품에 대한 총 투자금액 -->
+	<!-- 성현 : 해당 상품에 대한 총 투자금액 -->
 	<select id="getTotalInvestSum" parameterType="int" resultType="int">
 		SELECT
 		nvl(sum(invest_sum), 0)
@@ -42,7 +42,7 @@
 		WHERE goods_num = #{goods_num}
 	</select>
 	
-	<!-- 2017-07-31 성현 : 사용자의 투자횟수 구하기 -->
+	<!-- 성현 : 사용자의 투자횟수 구하기 -->
 	<select id="getInvestCountById" parameterType="String" resultType="int">
 		SELECT nvl(count(*), 0)
 		FROM invest
@@ -50,14 +50,14 @@
 		member_id = #{member_id}
 	</select>
 	
-	<!-- 2017-08-01 성현 : 사용자의 투자횟수 중 투자금 지급이 완료된 횟수 -->
+	<!-- 성현 : 사용자의 투자횟수 중 투자금 지급이 완료된 횟수 -->
 	<select id="getInvestCountByIdComplete" resultType="int" parameterType="String">
 		SELECT nvl(count(*), 0)
 		FROM invest
 		WHERE invest_payok = '지급완료' AND member_id = #{member_id}
 	</select>
 	
-	<!-- 2017-07-31 성현 : 투자테이블에 데이터 추가 -->
+	<!-- 성현 : 투자테이블에 데이터 추가 -->
 	<insert id="insertInvest" parameterType="com.spring.muchmore.invest.InvestVO">
 		INSERT INTO
 		invest(
@@ -75,7 +75,7 @@
 		)
 	</insert>
 	
-	<!-- 2017-08-02 혜림 : 하나의 상품에 투자한 회원들 리스트 -->
+	<!-- 혜림 : 하나의 상품에 투자한 회원들 리스트 -->
 	<select id = "getInvestListByGoodsNum" parameterType="int" resultMap = "InvestResultMap">
 		SELECT *
 		FROM invest, goods
@@ -83,7 +83,7 @@
 			and goods.goods_num = #{goods_num}
 	</select>
 	
-	<!-- 2017-08-02 혜림 : 투자금 반환 상태 업데이트 -->
+	<!-- 혜림 : 투자금 반환 상태 업데이트 -->
 	<update id = "updateInvest" parameterType="InvestVO">
 		UPDATE invest
 		SET invest_payok = #{invest_payok}
@@ -92,7 +92,7 @@
 	</update>
 	
 	
-	<!-- 2017-08-02 혜림 : 해당 회원이 해당 상품에 투자한 정보 가져오기 -->
+	<!-- 혜림 : 해당 회원이 해당 상품에 투자한 정보 가져오기 -->
 	<select id="getInvestByIdGoodsNum" parameterType="InvestVO" resultMap="InvestResultMap">
 		SELECT *
 		FROM invest

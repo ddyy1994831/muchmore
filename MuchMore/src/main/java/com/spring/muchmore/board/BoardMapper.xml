@@ -17,13 +17,13 @@
 		<result property="board_pw_check" column="board_pw_check" />
 	</resultMap>
 	
-	<!-- 2017-07-30 다예 : Board테이블에 있는 데이터 리스트 개수 출력 -->
+	<!-- 다예 : Board테이블에 있는 데이터 리스트 개수 출력 -->
 	<select id="getListCount" resultType="int">
 		SELECT count(*)
 		FROM board
 	</select>
 	
-	<!-- 2017-07-30 다예 : Board테이블에 있는 데이터 리스트 출력 -->
+	<!-- 다예 : Board테이블에 있는 데이터 리스트 출력 -->
 	<select id="getBoardList" resultMap="BoardResultMap" parameterType="hashmap">
 		SELECT *
 		FROM (SELECT rownum rnum, board_num, member_id, board_title, board_password,
@@ -35,13 +35,13 @@
 	</select>
 	
 	
-	<!-- 2017-07-30 다예 : 게시글 insert시 새로운 board_num계산 -->
+	<!-- 다예 : 게시글 insert시 새로운 board_num계산 -->
 	<select id="getMaxBoardnum" resultType="int">
 		SELECT max(board_num)
 		FROM board
 	</select>
 	
-	<!-- 2017-07-30 다예 : 게시글 쓰기 -->
+	<!-- 다예 : 게시글 쓰기 -->
 	<insert id="boardInsert" parameterType="com.spring.muchmore.board.BoardVO">
 		INSERT INTO board(board_num, member_id, board_title, board_password, board_date, board_readcount, board_content,
 							board_ref, board_lev, board_seq, board_pw_check)
@@ -59,7 +59,7 @@
 				#{board_pw_check, javaType=int})
 	</insert>
 	
-	<!-- 2017-07-30 다예 : 게시글 답변 쓰기 -->
+	<!-- 다예 : 게시글 답변 쓰기 -->
 	<insert id="boardReply" parameterType="com.spring.muchmore.board.BoardVO">
 		INSERT INTO board(board_num, member_id, board_title, board_password, board_date, board_readcount, board_content,
 							board_ref, board_lev, board_seq, board_pw_check)
@@ -77,34 +77,34 @@
 				#{board_pw_check})
 	</insert>
 	
-	<!-- 2017-07-30 다예 : 넘겨받은 board_num을 찾아 해당 행 삭제  -->
+	<!-- 다예 : 넘겨받은 board_num을 찾아 해당 행 삭제  -->
 	<delete id="boardDelete">
 		DELETE FROM board
 		WHERE board_num=#{board_num}
 	</delete>
 	
-	<!-- 2017-07-30 다예 : 넘겨받은 board_num을 찾아 해당 행 출력 -->
+	<!-- 다예 : 넘겨받은 board_num을 찾아 해당 행 출력 -->
 	<select id="getDetail" resultMap="BoardResultMap" parameterType="com.spring.muchmore.board.BoardVO">
 		SELECT *
 		FROM board
 		WHERE board_num=#{board_num, javaType=int}
 	</select>
 	
-	<!-- 2017-07-30 다예 : 게시글 수정 -->
+	<!-- 다예 : 게시글 수정 -->
 	<update id="boardModify" parameterType="com.spring.muchmore.board.BoardVO">
 		UPDATE board
 		SET board_title=#{board_title}, board_content=#{board_content}, board_pw_check=#{board_pw_check}
 		WHERE board_num=#{board_num}
 	</update>
 	
-	<!-- 2017-07-30 다예 : 조회수 증가 -->
+	<!-- 다예 : 조회수 증가 -->
 	<update id="setReadCountUpdate" parameterType="com.spring.muchmore.board.BoardVO">
 		UPDATE board
 		SET board_readcount=#{board_readcount}+1
 		WHERE board_num=#{board_num}
 	</update>
 	
-	<!-- 2017-07-30 다예 : 답변순위처리 계산 -->
+	<!-- 다예 : 답변순위처리 계산 -->
 	<update id="boardReplyUpdate" parameterType="com.spring.muchmore.board.BoardVO">
 		UPDATE board
 		SET board_seq=#{board_seq}+1

@@ -12,7 +12,7 @@ public class MoneyinoutDAOService implements MoneyinoutDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	/*2017-07-30 혜림 : 회원 입출금 내역 조회*/
+	/*혜림 : 회원 입출금 내역 조회*/
 	@Override
 	public List<MoneyinoutVO> selectMoneyinoutById(String id) {
 		// TODO Auto-generated method stub
@@ -21,7 +21,7 @@ public class MoneyinoutDAOService implements MoneyinoutDAO {
 		return result;
 	}
 	
-	/*2017-08-01 다예 : 관리자페이지 - muchmore 입출금내역 출력*/
+	/*다예 : 관리자페이지 - muchmore 입출금내역 출력*/
 	@Override
 	public List<MoneyinoutVO> getAdimList() {
 		// TODO Auto-generated method stub

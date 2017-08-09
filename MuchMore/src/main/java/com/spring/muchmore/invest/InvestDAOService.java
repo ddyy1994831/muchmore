@@ -14,7 +14,7 @@ public class InvestDAOService implements InvestDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	/* 2017-07-30 성현 : 개인 투자  내역 가져오기(List타입) */
+	/*성현 : 개인 투자  내역 가져오기(List타입)*/
 	@Override
 	public List<InvestVO> getInvestById(String id) {
 		// TODO Auto-generated method stub
@@ -23,7 +23,7 @@ public class InvestDAOService implements InvestDAO {
 		return invest;
 	}
 
-	/*2017-07-31 성현 : 해당 상품에 대한 총 투자금액*/
+	/*성현 : 해당 상품에 대한 총 투자금액*/
 	@Override
 	public int getTotalInvestSum(int goods_num) {
 		// TODO Auto-generated method stub
@@ -32,7 +32,7 @@ public class InvestDAOService implements InvestDAO {
 		return cnt;
 	}
 
-	/*2017-07-31 성현 : 사용자의 투자횟수 구하기*/
+	/*성현 : 사용자의 투자횟수 구하기*/
 	@Override
 	public int getInvestCountById(String id) {
 		// TODO Auto-generated method stub
@@ -41,7 +41,7 @@ public class InvestDAOService implements InvestDAO {
 		return cnt;
 	}
 	
-	/*2017-08-01 성현 : 사용자의 투자횟수 중 투자금 지급이 완료된 횟수*/
+	/*성현 : 사용자의 투자횟수 중 투자금 지급이 완료된 횟수*/
 	@Override
 	public int getInvestCountByIdComplete(String id) {
 		// TODO Auto-generated method stub
@@ -50,7 +50,7 @@ public class InvestDAOService implements InvestDAO {
 		return cnt;
 	}
 	
-	/*2017-07-31 성현 : 투자테이블에 데이터 추가*/
+	/*성현 : 투자테이블에 데이터 추가*/
 	@Override
 	public void insertInvest(InvestVO invest){
 		// TODO Auto-generated method stub
@@ -58,7 +58,7 @@ public class InvestDAOService implements InvestDAO {
 		investMapper.insertInvest(invest);
 	}
 
-	/*2017-08-02 혜림 : 하나의 상품에 투자한 회원들 리스트*/
+	/*혜림 : 하나의 상품에 투자한 회원들 리스트*/
 	@Override
 	public List<InvestVO> getInvestListByGoodsNum(int goods_num) {
 		// TODO Auto-generated method stub
@@ -67,7 +67,7 @@ public class InvestDAOService implements InvestDAO {
 		return result;
 	}
 
-	/*2017-08-02 혜림 : 투자금 반환 상태 업데이트*/
+	/*혜림 : 투자금 반환 상태 업데이트*/
 	@Override
 	public void updateInvest(InvestVO invest) {
 		// TODO Auto-generated method stub
@@ -75,7 +75,7 @@ public class InvestDAOService implements InvestDAO {
 		investMapper.updateInvest(invest);
 	}
 
-	/*2017-08-02 혜림 : 해당 회원이 해당 상품에 투자한 정보 가져오기*/
+	/*혜림 : 해당 회원이 해당 상품에 투자한 정보 가져오기*/
 	@Override
 	public InvestVO getInvestByIdGoodsNum(InvestVO invest) {
 		// TODO Auto-generated method stub

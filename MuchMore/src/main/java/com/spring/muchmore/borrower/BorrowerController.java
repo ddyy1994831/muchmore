@@ -14,7 +14,7 @@ public class BorrowerController {
 	@Autowired
 	private BorrowerDAOService borrowerDAOService;
 	
-	/*2017-07-29 혜림 : 대출하기 메인페이지 이동*/
+	/*혜림 : 대출하기 메인페이지 이동*/
 	@RequestMapping("loan.do")
 	public ModelAndView loan(HttpSession session) {
 		ModelAndView result = new ModelAndView();
@@ -37,13 +37,13 @@ public class BorrowerController {
 		return result ;
 	}
 	
-	/*2017-07-29 혜림 : 대출하기 신용 정보 페이이지로 이동*/
+	/*혜림 : 대출하기 신용 정보 페이이지로 이동*/
 	@RequestMapping("loanCreditCheck.do")
 	public String creditCheck() {
 		return "loan_credit_check";
 	}
 	
-	/*2017-07-29 혜림 : 대출하기 신용 정보 조회하고 결과 확인 & 정보 입력*/
+	/*혜림 : 대출하기 신용 정보 조회하고 결과 확인 & 정보 입력*/
 	@RequestMapping("loanCreditCheckAction.do")
 	public ModelAndView creditCheckAction(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();
@@ -94,7 +94,7 @@ public class BorrowerController {
 		return result;
 	}
 	
-	/*2017-07-29 혜림 : 대출하기 정보입력하고 대출금리 확인 페이지로 이동하기*/
+	/*혜림 : 대출하기 정보입력하고 대출금리 확인 페이지로 이동하기*/
 	@RequestMapping("loanDetail.do")
 	public ModelAndView loanBasic(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();
@@ -128,7 +128,7 @@ public class BorrowerController {
 		return result;
 	}
 	
-	/*2017-07-29 혜림 : 대출 신청 정보 확인하고 대출신청하기 : 테이블에 데이터 삽입*/
+	/*혜림 : 대출 신청 정보 확인하고 대출신청하기 : 테이블에 데이터 삽입*/
 	@RequestMapping("loanRegisterAction.do")
 	public ModelAndView loanRegister(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();

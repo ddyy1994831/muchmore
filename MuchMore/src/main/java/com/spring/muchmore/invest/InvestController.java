@@ -29,7 +29,7 @@ public class InvestController {
 	@Autowired
 	private MemberDAOService memberDAOService;
 	
-	// 2017-07-29 성현 : 투자하기 페이지 이동
+	/*성현 : 투자하기 페이지 이동*/
 	@RequestMapping("invest.do")
 	public ModelAndView invest(HttpSession session, MemberVO member){
 		ModelAndView result = new ModelAndView();
@@ -51,7 +51,7 @@ public class InvestController {
 		return result;
 	}
 	
-	//2017-07-31 성현 : 투자하기-상품상세보기 이동
+	/*성현 : 투자하기-상품상세보기 이동*/
 	@RequestMapping("invest_detail.do")
 	public ModelAndView invest_detail(BorrowerVO borrower, HttpServletResponse response, HttpSession session)
 			throws IOException {
@@ -103,7 +103,7 @@ public class InvestController {
 		return result;
 	}
 	
-	//2017-07-31 성현 : 투자하기 금액 결제 폼으로 이동
+	/*성현 : 투자하기 금액 결제 폼으로 이동*/
 	@RequestMapping("invest_investform.do")
 	public ModelAndView invest_investform(BorrowerVO borrower, HttpServletResponse response, HttpSession session)
 			throws IOException {
@@ -130,7 +130,7 @@ public class InvestController {
 		return result;
 	}
 	
-	//2017-07-31 성현 : 투자하기 버튼 클릭
+	/*성현 : 투자하기 버튼 클릭*/
 	@RequestMapping("invest_investResult.do")
 	public String invest_investAction(HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			InvestVO invest, BorrowerVO borrower) throws IOException {

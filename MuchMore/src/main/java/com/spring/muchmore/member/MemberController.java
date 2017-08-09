@@ -21,20 +21,20 @@ public class MemberController {
 	private MemberDAOService memberDAOService;
 	
 
-	//성현 2017-07-28 : 회원가입 페이지 이동
+	/*성현 : 회원가입 페이지 이동*/
 	@RequestMapping("join.do")
 	public String join(){
 		return "join";
 	}
 	
-	//성현 2017-07-29 : 회원가입 데이터 입력
+	/*성현 : 회원가입 데이터 입력*/
 	@RequestMapping("joinAction.do")
 	public String joinAction(Model model, MemberVO member){
 		memberDAOService.insertMember(member);
 		return "join_result";
 	}
 		
-	//성현 2017-07-29 : 회원가입 아이디 중복체크
+	/*성현 : 회원가입 아이디 중복체크*/
 	@RequestMapping("joinCheckId.do")
 	public String joinCheckId(Model model, HttpServletRequest request) {
 
@@ -49,7 +49,7 @@ public class MemberController {
 	}
 
 
-	// 2017-07-29 혜림 : 로그인 페이지로 이동
+	/*혜림 : 로그인 페이지로 이동*/
 	@RequestMapping("login.do")
 	public String login() {
 		System.out.println("MemberController-loginform()");
@@ -57,7 +57,7 @@ public class MemberController {
 	}
 
 	
-	// 2017-07-29 혜림 : 로그인 Action
+	/*혜림 : 로그인 Action*/
 	@RequestMapping("loginAction.do")
 	public ModelAndView loginAction(MemberVO member, HttpSession session, HttpServletResponse response) throws IOException {
 		ModelAndView result = new ModelAndView();
@@ -104,7 +104,7 @@ public class MemberController {
 		return result; 
 	}
 	
-	// 2017-07-29 혜림 : 아이디 찾기 페이지로 이동
+	/*혜림 : 아이디 찾기 페이지로 이동*/
 	@RequestMapping("loginFindId.do")
 	public String findId() {
 		return "login_find_id";
@@ -123,12 +123,14 @@ public class MemberController {
 		result.setViewName("login_find_id_ok");
 		return result;
 	}
-	// 2017-07-29 혜림 : 비밀번호 찾기 페이지로 이동
+	
+	/*혜림 : 비밀번호 찾기 페이지로 이동*/
 	@RequestMapping("loginFindPw.do")
 	public String findPw() {
 		return "login_find_pw";
 	}
-	// 2017-07-29 혜림 : 비밀번호 찾기 Action
+	
+	/*혜림 : 비밀번호 찾기 Action*/
 	@RequestMapping("loginFindPwAction.do")
 	public ModelAndView findPwAction(MemberVO member) {
 		ModelAndView result = new ModelAndView();		
@@ -141,13 +143,13 @@ public class MemberController {
 		return result;
 	}
 	
-	/* 2017-07-29 메인페이지로 이동*/
+	/*메인페이지로 이동*/
 	@RequestMapping("home.do")
 	public String home() {
 		return "home";
 	}
 	
-	/* 2017-07-29 : 혜림 : 로그아웃*/
+	/*혜림 : 로그아웃*/
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");

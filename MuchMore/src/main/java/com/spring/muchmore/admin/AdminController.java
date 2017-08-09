@@ -47,7 +47,7 @@ public class AdminController {
 	@Autowired
 	private GoodsDAOService goodsDAOService;
 	
-	/*2017-08-01 성현 : admin - 회원관리 페이지 이동 */
+	/*성현 : admin - 회원관리 페이지 이동 */
 	@RequestMapping("admin_member.do")
 	public String adminmember(Model model) {
 		List<MemberVO> member = memberDAOService.getMemberList(); 
@@ -55,7 +55,7 @@ public class AdminController {
 		return "admin_member";
 	}
 	
-	/*2017-08-01 성현 : admin - 회원관리 상세보기 페이지 이동*/
+	/*성현 : admin - 회원관리 상세보기 페이지 이동*/
 	@RequestMapping("admin_memberdetail.do")
 	public ModelAndView adminmemberdetail(HttpServletRequest request) {
 		ModelAndView result = new ModelAndView();
@@ -88,7 +88,7 @@ public class AdminController {
 	}
 
 	
-	/* 2017-08-01 혜림 : 대출금 지급 페이지로 이동*/
+	/*혜림 : 대출금 지급 페이지로 이동*/
 	@RequestMapping("adminLoanList.do")
 	public ModelAndView loanList() {
 		ModelAndView result = new ModelAndView();
@@ -101,7 +101,7 @@ public class AdminController {
 		return result;
 	}
 	
-	/*2017-08-01 혜림 : 대출금 지급 새로운 창 띄우기*/
+	/*혜림 : 대출금 지급 새로운 창 띄우기*/
 	@RequestMapping("adminLoanSend.do")
 	public ModelAndView loanSend(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();
@@ -122,7 +122,7 @@ public class AdminController {
 	}
 	
 
-	/* 2017-08-01 혜림 : 대출금 지급 Action */
+	/*혜림 : 대출금 지급 Action */
 	@RequestMapping("adminLoanSendAction.do")
 	public String loanSendAction(BorrowerVO borrower) {
 		
@@ -159,7 +159,7 @@ public class AdminController {
 		return "redirect:/adminLoanList.do";
 	}
 
-	/* 성현 admin page : 회원관리 페이지 - 탈퇴 open url */
+	/* 성현 : admin page 회원관리 페이지 - 탈퇴 open url */
 	@RequestMapping("admin_memberdropout.do")
 	public ModelAndView adminmemberdropout(MemberVO member, Model model) {
 		ModelAndView result = new ModelAndView();
@@ -185,7 +185,7 @@ public class AdminController {
 		return result;
 	}
 
-	/* 성현 admin page : 탈퇴 버튼 클릭 후 탈퇴 작동 */
+	/* 성현 : admin page 탈퇴 버튼 클릭 후 탈퇴 작동 */
 	@RequestMapping("admin_member_dropoutAction.do")
 	public String adminmemberdropoutaction(HttpServletRequest request, Model model) {
 
@@ -197,7 +197,7 @@ public class AdminController {
 
 	}
 	
-	/* 2017-08-01 혜림 : 대출금 지급페이지 회원아이디 클릭 : 자세히 보기 */
+	/* 혜림 : 대출금 지급페이지 회원아이디 클릭 : 자세히 보기 */
 	@RequestMapping("adminLoanDetail.do")
 	public ModelAndView loanDetail(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();
@@ -212,15 +212,13 @@ public class AdminController {
 		return result;
 	}
 	
-	/* 2017-08-01 혜림 : 제출 서류 다운로드 */
+	/* 혜림 : 제출 서류 다운로드 */
 	@RequestMapping("loanFileDownload.do")
 	public void loanFileDownloadAction(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("EUC-KR");
 
 		String of = request.getParameter("of"); // 서버에 업로드되면서 바뀐 파일 이름
 		String of2 = request.getParameter("of2"); // 실제 업로드할 때 사용했던 파일 이름
-		// System.out.println("/fileDownload?of=" + of);
-		// System.out.println(of);
 
 		// 웹사이트 루트디렉토리의 실제 디스크상의 경로 알아내기.
 		// String uploadPath =
@@ -263,7 +261,7 @@ public class AdminController {
 		sout.close();
 	}
 	
-	/*2017-08-01 혜림 : 대출 서류 심사 승인하기 */
+	/* 혜림 : 대출 서류 심사 승인하기 */
 	@RequestMapping("loanApproval.do")
 	public String loanApprovalAction(BorrowerVO borrower) {
 		
@@ -280,13 +278,13 @@ public class AdminController {
 		return "redirect:/adminLoanDetail.do?borrower_id="+borrower.getBorrower_id()+"&goodsVO.goods_num="+borrower.getGoodsVO().getGoods_num();
 	}
 	
-	/*2017-08-01 다예 : 관리자페이지 -입출금내역*/
+	/* 다예 : 관리자페이지 -입출금내역*/
 	@RequestMapping("/adminAccount.do")
 	public ModelAndView AccountList(Model model) {
 		System.out.println("dddd");
 		ModelAndView result = new ModelAndView();
 		List<MoneyinoutVO> moneyinout_list = moneyinoutDAOService.getAdimList();
-		System.out.println("moneyinout_list cnt : " +moneyinout_list.size());
+
 		result.setViewName("admin_account");
 		result.addObject("moneyinout_list", moneyinout_list);
 		/*model.addAttribute("moneyinout_list", moneyinout_list);*/
@@ -295,7 +293,7 @@ public class AdminController {
 	}
 	
 
-	/*2017-08-02 혜림 : 투자금 지급하기 페이지 이동*/
+	/* 혜림 : 투자금 지급하기 페이지 이동*/
 	@RequestMapping("/adminInvestList.do")
 	public ModelAndView investList() {
 		ModelAndView result = new ModelAndView();
@@ -307,7 +305,7 @@ public class AdminController {
 		return result;
 	}
 	
-	/*2017-08-02 혜림 : 해당 상품에 투자한 회원들 리스트 페이지로 이동*/
+	/* 혜림 : 해당 상품에 투자한 회원들 리스트 페이지로 이동*/
 	@RequestMapping("adminInvestMemberList.do")
 	public ModelAndView investMemberList(GoodsVO goods) {
 		ModelAndView result = new ModelAndView();
@@ -319,7 +317,7 @@ public class AdminController {
 		return result;
 	}
 	
-	/*2017-08-02 혜림 : 투자금 상환하기*/
+	/* 다예 : 투자금 상환하기*/
 	@RequestMapping("adminInvestSendAction.do")
 	public String investSendAction(InvestVO invest) {
 		

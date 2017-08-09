@@ -4,7 +4,7 @@
 	
 <mapper namespace="com.spring.muchmore.goods.GoodsMapper">
 
-<!-- 2017-07-30 성현 : 상품 테이블 -->
+	<!-- 성현 : 상품 테이블 -->
 	<resultMap type = "GoodsVO" id ="GoodsResultMap">
 		<result property = "goods_num" column="goods_num"/>
 		<result property = "goods_sum" column="goods_sum"/>
@@ -16,14 +16,14 @@
 		<result property = "goods_date" column="goods_date"/>
 	</resultMap>
 	
-	<!-- 2017-08-02 혜림 : 상품 가져오기 -->
+	<!-- 혜림 : 상품 가져오기 -->
 	<select id = "getGoods" parameterType="GoodsVO" resultMap="GoodsResultMap">
 		SELECT *
 		FROM goods
 		WHERE goods_num = #{goods_num}
 	</select>
 	
-	<!-- 2017-08-02 혜림 : 상품 상태 업데이트 -->
+	<!-- 혜림 : 상품 상태 업데이트 -->
 	<update id = "updateGoodsStatus" parameterType="GoodsVO">
 		UPDATE goods
 		SET goods_status = #{goods_status}

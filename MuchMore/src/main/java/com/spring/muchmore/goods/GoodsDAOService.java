@@ -9,7 +9,7 @@ public class GoodsDAOService implements GoodsDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	/*2017-08-02 혜림 : 상품 가져오기*/
+	/*혜림 : 상품 가져오기*/
 	@Override
 	public GoodsVO getGoods(GoodsVO goods) {
 		// TODO Auto-generated method stub
@@ -18,7 +18,7 @@ public class GoodsDAOService implements GoodsDAO {
 		return result;
 	}
 
-	/*2017-08-02 혜림 : 상품 상태 업데이트*/
+	/*혜림 : 상품 상태 업데이트*/
 	@Override
 	public void updateGoodsStatus(GoodsVO goods) {
 		// TODO Auto-generated method stub

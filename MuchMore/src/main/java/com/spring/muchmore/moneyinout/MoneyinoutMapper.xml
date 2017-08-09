@@ -10,7 +10,7 @@
 		<result property="moneyinout_state" column="moneyinout_state"/>
 	</resultMap>
 	
-	<!-- 2017-07-30 혜림 : 회원 입출금 내역 조회 : 파라미터 : id-->
+	<!-- 혜림 : 회원 입출금 내역 조회 : 파라미터 : id-->
 	<select id = "selectMoneyinoutById" parameterType="String" resultMap="MoneyinoutResultMap">
 		SELECT *
 		FROM moneyinout
@@ -18,7 +18,7 @@
 		ORDER BY moneyinout_date asc
 	</select>
 	
-	<!-- 2017-08-01 다예 : 관리자페이지 - muchmore 전체 입출금내역 출력 -->
+	<!-- 다예 : 관리자페이지 - muchmore 전체 입출금내역 출력 -->
 	<select id="getAdimList" resultMap="MoneyinoutResultMap">
 		SELECT *
 		FROM moneyinout

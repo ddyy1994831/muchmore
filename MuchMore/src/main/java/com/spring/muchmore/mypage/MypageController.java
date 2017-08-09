@@ -50,19 +50,19 @@ public class MypageController {
 	@Autowired
 	private AccountDAOService accountDAOService;
 	
-	//2017-07-29 성현 : 메인화면 이동
+	/* 성현 : 메인화면 이동*/
 	@RequestMapping("mypage_main.do")
 	public String mypage_main(){
 		return "mypage_main";
 	}
 	
-	//2017-07-29 성현 : 회원정보수정 비밀번호입력 화면 이동
+	/*성현 : 회원정보수정 비밀번호입력 화면 이동*/
 	@RequestMapping("mypage_memberupdate.do")
 	public String mypage_memberupdate(){
 		return "mypage_memberupdate";
 	}
 	
-	//2017-07-29 성현 : 회원정보수정 비밀번호입력 후 입력폼으로 이동
+	/*성현 : 회원정보수정 비밀번호입력 후 입력폼으로 이동*/
 	@RequestMapping("mypage_memberupdateform.do")
 	public ModelAndView memberUpdate(HttpSession session, MemberVO member, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -90,14 +90,14 @@ public class MypageController {
 		return result;
 	}
 	
-	//2017-07-29 성현 : 회원정보 수정하기 버튼 클릭
+	/*성현 : 회원정보 수정하기 버튼 클릭*/
 	@RequestMapping("mypage_memberupdatesuccess.do")
 	public String memberUpdateSuccess(MemberVO member) {
 		memberDAOService.updateMember(member);
 		return "mypage_memberupdatesuccess";
 	}
 	
-	//2017-07-03 혜림 : 대출 내역 화면으로 이동
+	/*혜림 : 대출 내역 화면으로 이동*/
 	@RequestMapping("mypage_myloan.do")
 	public ModelAndView mypage_myloan(HttpSession session) {
 		
@@ -115,7 +115,7 @@ public class MypageController {
 		return result;
 	}
 	
-	/*2017-07-03 혜림 : 대출 내역 화면에서 서류제출 페이지로 이동*/
+	/*혜림 : 대출 내역 화면에서 서류제출 페이지로 이동*/
 	@RequestMapping("mypage_myloan_fileUpload.do")
 	public ModelAndView myloanFileUpload(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();
@@ -130,7 +130,7 @@ public class MypageController {
 		return result;
 	}
 	
-	/*2017-07-03 혜림 : 서류 upload Action*/
+	/*혜림 : 서류 upload Action*/
 	@RequestMapping("mypage_myloan_fileUploadAction.do")
 	public String myloanFileUploadAction(MultipartHttpServletRequest request) throws Exception {
 		
@@ -174,7 +174,7 @@ public class MypageController {
 		return "redirect:/mypage_myloan.do";
 	}
 	
-	/*2017-07-29 성현 : 마이페이지 투자내역 으로 이동*/
+	/*성현 : 마이페이지 투자내역 으로 이동*/
 	@RequestMapping("mypage_myinvest.do")
 	public ModelAndView mypage_investinfo(Model model, HttpSession session) {
 		ModelAndView result = new ModelAndView();
@@ -188,7 +188,7 @@ public class MypageController {
 		return result;
 	}
 	
-	/*2017-07-30 혜림 : mypage_myaccount로 이동*/
+	/*혜림 : mypage_myaccount로 이동*/
 	@RequestMapping("mypageMyaccount.do")
 	public ModelAndView mypageMyaccount(HttpSession session) {
 		ModelAndView result = new ModelAndView();
@@ -207,14 +207,14 @@ public class MypageController {
 		return result;
 	}
 	
-	/*2017-07-31 혜림 : mypage에서 myacccount탭에서 가상계좌로 입금하기 : 금액 입력 페이지로 이동*/
+	/*혜림 : mypage에서 myacccount탭에서 가상계좌로 입금하기 : 금액 입력 페이지로 이동*/
 	@RequestMapping("mypageMyaccountDeposit.do")
 	public String Depoist() {
 		
 		return "mypage_myaccount_deposit_input";
 	}
 	
-	/*2017-07-31 혜림 : 입금하기 기능*/
+	/*혜림 : 입금하기 기능*/
 	@RequestMapping("mypageMyaccountDepositAction.do")
 	public String DepositAction(HttpServletRequest request, HttpSession session) {
 		
@@ -238,13 +238,13 @@ public class MypageController {
 		return "redirect:/mypageMyaccount.do";
 	}
 	
-	/*2017-07-31 혜림 : 가상계좌 등록하기 새 창*/
+	/*혜림 : 가상계좌 등록하기 새 창*/
 	@RequestMapping("mypageRegisterAccount.do")
 	public String registerAccount() {
 		return "mypage_myaccount_register_account";
 	}
 	
-	/*2017-07-31 혜림 : 실계좌 등록하기 기능*/
+	/*혜림 : 실계좌 등록하기 기능*/
 	@RequestMapping("mypageRegisterAccountAction.do")
 	public String registerAccountAction(HttpSession session, HttpServletRequest request) throws Exception {
 		String bank = (String)request.getParameter("bank");
@@ -280,13 +280,13 @@ public class MypageController {
 		return "redirect:/mypageMyaccount.do";
 	}
 	
-	/*2017-07-31 혜림 : 출금하기 금액 입력 새 창 페이지 이동*/
+	/*혜림 : 출금하기 금액 입력 새 창 페이지 이동*/
 	@RequestMapping("mypageMyaccountWithdraw.do")
 	public String Withdraw() {
 		return "mypage_myaccount_withdraw_input";
 	}
 
-	/*2017-07-31 혜림 : 출금하기 기능*/
+	/*혜림 : 출금하기 기능*/
 	@RequestMapping("mypageMyaccountWithdrawAction.do")
 	public String WithdrawAction(HttpSession session, HttpServletRequest request) {
 		
@@ -308,7 +308,7 @@ public class MypageController {
 		return "redirect:/mypageMyaccount.do";
 	}
 	
-	/* 2017-08-01 다예 : mypage_myloan에서 대출금 상환 */
+	/*다예 : mypage_myloan에서 대출금 상환 */
 	@RequestMapping("/mypageMyloanDeposit.do")
 	public ModelAndView myloanDeposit(BorrowerVO borrower, HttpSession session) {
 		ModelAndView result = new ModelAndView();
@@ -335,7 +335,7 @@ public class MypageController {
 		return result;
 	}
 	
-	/*2017-08-01 성현 : 대출금 상환 action*/
+	/*다예 : 대출금 상환 action*/
 	@RequestMapping("/mypageMyloanDepositAction.do")
 	public String mypage_loan_income_result(HttpSession session, HttpServletRequest request, BorrowerVO borrower) {
 		

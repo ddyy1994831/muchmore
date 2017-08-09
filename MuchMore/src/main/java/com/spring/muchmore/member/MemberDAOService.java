@@ -15,7 +15,7 @@ public class MemberDAOService implements MemberDAO {
 	private SqlSession sqlSession;
 
 
-	//2017-07-29 성현 : 회원가입
+	/*성현 : 회원가입*/
 	@Override
 	public void insertMember(MemberVO member) {
 		// TODO Auto-generated method stub
@@ -33,7 +33,7 @@ public class MemberDAOService implements MemberDAO {
 		memberMapper.createVirtualAccount(param);
 	}
 
-	//2017-07-29 성현 : 회원가입 시 회원 중복 체크
+	/*성현 : 회원가입 시 회원 중복 체크*/
 	@Override
 	public int checkId(String id) {
 		// TODO Auto-generated method stub
@@ -43,7 +43,7 @@ public class MemberDAOService implements MemberDAO {
 	}
 	
 
-	/*2017-07-29 혜림 : 회원 정보 전체 가져오기.*/
+	/*혜림 : 회원 정보 전체 가져오기.*/
 	@Override
 	public MemberVO getMember(String member_id) {
 		// TODO Auto-generated method stub
@@ -53,7 +53,7 @@ public class MemberDAOService implements MemberDAO {
 		return result;
 	}
 
-	/*2017-07-29 혜림 : 아이디 찾기 : 이름과 이메일을 입력하면 아이디 return*/
+	/*혜림 : 아이디 찾기 : 이름과 이메일을 입력하면 아이디 return*/
 	@Override
 	public String findId(MemberVO member) {
 		// TODO Auto-generated method stub
@@ -63,7 +63,7 @@ public class MemberDAOService implements MemberDAO {
 		return foundid;
 	}
 
-	/*2017-07-29 혜림 : 비밀번호 찾기 : 아이디, 이름, 이메일을 입력하면 비밀번호 return*/
+	/*혜림 : 비밀번호 찾기 : 아이디, 이름, 이메일을 입력하면 비밀번호 return*/
 	@Override
 	public String findPw(MemberVO member) {
 		// TODO Auto-generated method stub
@@ -73,7 +73,7 @@ public class MemberDAOService implements MemberDAO {
 		return foundpw;
 	}
 
-	//2017-07-29 성현 : 회원정보 수정
+	/*성현 : 회원정보 수정*/
 	@Override
 	public void updateMember(MemberVO member) {
 		// TODO Auto-generated method stub
@@ -81,7 +81,7 @@ public class MemberDAOService implements MemberDAO {
 		memberMapper.updateMember(member);
 	}
 
-	/*2017-07-30 혜림 : 회원정보와 계좌정보 가져오기*/ 
+	/*혜림 : 회원정보와 계좌정보 가져오기*/ 
 	@Override
 	public MemberVO getMemberAccountById(String member_id) {
 		// TODO Auto-generated method stub
@@ -90,7 +90,7 @@ public class MemberDAOService implements MemberDAO {
 		return result;
 	}
 
-	/*2017-08-01 성현 : 회원목록 가져오기(List타입)*/
+	/*성현 : 회원목록 가져오기(List타입)*/
 	@Override
 	public List<MemberVO> getMemberList() {
 		// TODO Auto-generated method stub
@@ -99,7 +99,7 @@ public class MemberDAOService implements MemberDAO {
 		return memberlist;
 	}
 
-	/*2017-08-01 성현 : 회원삭제*/
+	/*성현 : 회원삭제*/
 	@Override
 	public void deleteMember(String id) {
 		// TODO Auto-generated method stub

@@ -14,7 +14,7 @@ public class BoardDAOService implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	/*2017-07-30 다예 : Board테이블에 있는 데이터 리스트 개수 출력*/
+	/* 다예 : Board테이블에 있는 데이터 리스트 개수 출력*/
 	@Override
 	public int getListCount() {
 		// TODO Auto-generated method stub
@@ -26,7 +26,7 @@ public class BoardDAOService implements BoardDAO {
 		return cnt;
 	}
 
-	/*2017-07-30 다예 : Board테이블에 있는 데이터 리스트 출력*/
+	/* 다예 : Board테이블에 있는 데이터 리스트 출력*/
 	@Override
 	public List<BoardVO> getBoardList(int page, int limit) {
 		// TODO Auto-generated method stub
@@ -47,7 +47,7 @@ public class BoardDAOService implements BoardDAO {
 		return boardList;
 	}
 
-	/*2017-07-30 다예 : board_num을 넘겨받아 해당 게시글 상세보기*/
+	/* 다예 : board_num을 넘겨받아 해당 게시글 상세보기*/
 	@Override
 	public BoardVO getDetail(BoardVO boardVO) {
 		// TODO Auto-generated method stub
@@ -61,7 +61,7 @@ public class BoardDAOService implements BoardDAO {
 		return boardVO_result;
 	}
 
-	/*2017-07-30 다예 : 게시글 쓰기*/
+	/* 다예 : 게시글 쓰기*/
 	@Override
 	public void boardInsert(BoardVO boardVO) {
 		// TODO Auto-generated method stub
@@ -85,7 +85,7 @@ public class BoardDAOService implements BoardDAO {
 		System.out.println("글쓰기 성공!");
 	}
 
-	/*2017-07-30 다예 : 게시글 답글달기*/
+	/* 다예 : 게시글 답글달기*/
 	@Override
 	public BoardVO boardReply(BoardVO boardVO) {
 		// TODO Auto-generated method stub
@@ -120,7 +120,7 @@ public class BoardDAOService implements BoardDAO {
 		return boardVO;
 	}
 
-	/*2017-07-30 다예 : 게시글 수정*/
+	/* 다예 : 게시글 수정*/
 	@Override
 	public void boardModify(BoardVO boardVO) {
 		// TODO Auto-generated method stub
@@ -132,7 +132,7 @@ public class BoardDAOService implements BoardDAO {
 		System.out.println("수정 완료!");
 	}
 
-	/*2017-07-30 다예 : board_num을 넘겨받아 게시글 삭제*/
+	/* 다예 : board_num을 넘겨받아 게시글 삭제*/
 	@Override
 	public void boardDelete(BoardVO boardVO) {
 		// TODO Auto-generated method stub
@@ -144,7 +144,7 @@ public class BoardDAOService implements BoardDAO {
 		System.out.println("삭제 완료!");
 	}
 
-	/*2017-07-30 다예 : 조회수 증가*/
+	/* 다예 : 조회수 증가*/
 	@Override
 	public void setReadCountUpdate(BoardVO boardVO) {
 		// TODO Auto-generated method stub
@@ -156,7 +156,7 @@ public class BoardDAOService implements BoardDAO {
 		System.out.println("조회수 증가 완료!");
 	}
 
-	/*2017-07-30 다예 : 게시글 insert시 새로운 board_num계산*/
+	/* 다예 : 게시글 insert시 새로운 board_num계산*/
 	@Override
 	public int getMaxBoardnum() {
 		// TODO Auto-generated method stub

@@ -56,7 +56,7 @@
 		<result property="account_balance" column="account_balance"/>
 	</resultMap>
 	
-	<!-- 2017-07-29 성현 : 회원 가입 -->
+	<!-- 성현 : 회원 가입 -->
 	<insert id="insertMember" parameterType="com.spring.muchmore.member.MemberVO">
 	INSERT INTO member(member_id,
 	member_pw1,
@@ -84,14 +84,14 @@
 	#{member_agreement})
 	</insert>
 	
-	<!-- 2017-07-29 성현 : 회원 가입시 가상계좌 생성 -->
+	<!-- 성현 : 회원 가입시 가상계좌 생성 -->
 	<insert id="createVirtualAccount" parameterType="hashmap">
 		INSERT INTO
 		account(member_id, account_virtual)
 		VALUES(#{member_id}, #{account_virtual})
 	</insert>
 	
-	<!-- 2017-07-29 성현 : 회원가입 아이디 중복체크 시 회원 중복 체크 -->
+	<!-- 성현 : 회원가입 아이디 중복체크 시 회원 중복 체크 -->
 	<select id="checkId" resultType="int" parameterType="String">
 		SELECT
 		nvl(count(*),0)
@@ -99,28 +99,28 @@
 		WHERE member_id = #{member_id}
 	</select>
 	 
-	<!-- 2017-07-29 혜림 : 회원 정보 전체 가져오기. -->
+	<!-- 혜림 : 회원 정보 전체 가져오기. -->
 	<select id="getMember" resultType="MemberVO" parameterType = "String">
 		SELECT *
 		FROM member
 		WHERE member_id = #{member_id}
 	</select>
 	
-	<!-- 2017-07-29 혜림 : 아이디 찾기 : 이름과 이메일을 입력하면 아이디 return -->
+	<!-- 혜림 : 아이디 찾기 : 이름과 이메일을 입력하면 아이디 return -->
 	<select id = "findId" resultType="String" parameterType="MemberVO">
 		SELECT member_id
 		FROM member
 		WHERE member_name = #{member_name} and member_email = #{member_email}
 	</select>
 	
-	<!-- 2017-07-29 혜림 : 비밀번호 찾기 : 아이디, 이름, 이메일을 입력하면 비밀번호 return -->
+	<!-- 혜림 : 비밀번호 찾기 : 아이디, 이름, 이메일을 입력하면 비밀번호 return -->
 	<select id = "findPw" resultType = "String" parameterType="MemberVO">
 		SELECT member_pw1
 		FROM member
 		WHERE member_id = #{member_id} and member_name = #{member_name} and member_email = #{member_email}
 	</select>
 	
-	<!-- 2017-07-29 성현 : 회원정보 수정 -->
+	<!-- 성현 : 회원정보 수정 -->
 	<update id="updateMember" parameterType="MemberVO">
 		UPDATE member
 		SET
@@ -130,7 +130,7 @@
 		WHERE member_id=#{member_id}
 	</update>
 	
-	<!-- 2017-07-30 혜림 : 회원정보와 계좌정보 가져오기 -->
+	<!-- 혜림 : 회원정보와 계좌정보 가져오기 -->
 	<select id = "getMemberAccountById" parameterType="String" resultMap="MemberResultMap">
 		SELECT *
 		FROM member, account
@@ -138,12 +138,12 @@
 			and member.member_id = #{member_id}
 	</select>
 	
-	<!-- 2017-08-01 성현 : 회원 목록 가져오기(List타입) -->
+	<!-- 성현 : 회원 목록 가져오기(List타입) -->
 	<select id="getMemberList" resultMap="MemberResultMap">
 		SELECT * FROM member ORDER BY member_id
 	</select>
 	
-	<!-- 2017-08-01 성현 : 회원 삭제하기 -->
+	<!-- 성현 : 회원 삭제하기 -->
 	<delete id="deleteMember" parameterType="String">
 		DELETE FROM member 
 		WHERE member_id = #{member_id}
