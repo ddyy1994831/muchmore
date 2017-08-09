@@ -15,8 +15,8 @@
 
 	List<BorrowerVO> borrower_list = (List<BorrowerVO>) request.getAttribute("borrower_list");
 	List<InvestVO> invest_list = (List<InvestVO>) request.getAttribute("invest_list");
-	String member_id = (String) request.getAttribute("id");
 	
+	String member_id = (String) request.getAttribute("member_id");
 	int borrower_id_total = (Integer) request.getAttribute("borrower_id_total");
 	int borrower_id_complete = (Integer) request.getAttribute("borrower_id_complete");
 	int invest_id_total = (Integer) request.getAttribute("invest_id_total");

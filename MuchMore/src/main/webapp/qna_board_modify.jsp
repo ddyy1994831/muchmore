@@ -63,7 +63,7 @@
 					<td align="center">비밀번호</td>
     				<td>
     					<div align="left">
-    						<input type="checkbox" id="board_pw_check" name="board_pw_check" value="1">비밀글여부
+    						<input type="checkbox" id="board_pw_check" name="board_pw_check" value="1">비밀글확인
 							<input type="password" class="form-control" id="board_password" name = "board_password" value="<%= boardVO.getBoard_password() %>">
     					</div>	
     				</td>
