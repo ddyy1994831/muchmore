@@ -219,18 +219,11 @@ public class AdminController {
 
 		String of = request.getParameter("of"); // 서버에 업로드되면서 바뀐 파일 이름
 		String of2 = request.getParameter("of2"); // 실제 업로드할 때 사용했던 파일 이름
-		// System.out.println("/fileDownload?of=" + of);
-		// System.out.println(of);
-
+	
 		// 웹사이트 루트디렉토리의 실제 디스크상의 경로 알아내기.
-		// String uploadPath =
-		// request.getSession().getServletContext().getRealPath("/upload");
-		// String fullPath = uploadPath + "/" + of;
 		String uploadPath = "C:\\hk0327\\upload\\";
 		String fullPath = uploadPath + of;
 
-		// System.out.println("path : " + uploadPath);
-		// System.out.println("fullPath :" + fullPath);
 		File downloadFile = new File(fullPath);
 
 		// 파일 다운로드를 위해 컨텐츠 타입을 application/download 설정
@@ -241,14 +234,7 @@ public class AdminController {
 
 		// 다운로드 창을 띄우기 위한 헤더 조작
 		response.setHeader("Content-Disposition", "attachment;filename=" + new String(of2.getBytes(), "ISO8859-1"));
-
 		response.setHeader("Content-Transfer-Encoding", "binary");
-
-		// Content-dispostion 속성
-		// 1) "Content-disposition: attachment" 브라우저 인식 파일 확장자를 포함해 모든 확장자의 파일들에
-		// 대해 다운로드 시 무조건 "파일 다운로드" 대화상자가 뜨도록 하는 헤더 속성.
-		// 2) "Content-disposition: inline" 브라우저 인식 파일확장자를 가진 파일들에 대해서는 웹 브라우저
-		// 상에서 바로 파일을 열고 그 외의 파일들에 대해서는 "파일 다운로드" 대화상자가 뜨도록 하는 헤더 속성.
 
 		FileInputStream fin = new FileInputStream(downloadFile);
 		ServletOutputStream sout = response.getOutputStream();

@@ -10,19 +10,19 @@
 		id = (String)session.getAttribute("id");
 	}
 %>
-    <script>
-	    function openConfirmId(loginform) {
-			var url = "loginFindId.do";
-			open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
-					"scrollbars=no,resizeable=no,width=450px,height=420");
-		}
+<script>
+    function openConfirmId(loginform) {
+	var url = "loginFindId.do";
+	open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
+		"scrollbars=no,resizeable=no,width=450px,height=420");
+	}
 	    
-	    function openConfirmPw(loginform) {
-			var url = "loginFindPw.do";
-			open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
-					"scrollbars=no,resizeable=no,width=450px,height=450");
-		}
-    </script>
+	function openConfirmPw(loginform) {
+		var url = "loginFindPw.do";
+		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
+				"scrollbars=no,resizeable=no,width=450px,height=450");
+	}
+</script>
 
 <section class="container">
 	<div class="row" style = "height:80%">

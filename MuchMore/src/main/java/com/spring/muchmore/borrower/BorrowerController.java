@@ -47,17 +47,14 @@ public class BorrowerController {
 	@RequestMapping("loanCreditCheckAction.do")
 	public ModelAndView creditCheckAction(BorrowerVO borrower) {
 		ModelAndView result = new ModelAndView();
-		System.out.println("신용등급 조회 : 총소득 : " +borrower.getBorrower_totalincome());
-		System.out.println("신용등급 조회 : 직업구분 : " +borrower.getBorrower_jobbiz());
 
 		// "원" 단위로 맞추기
 		borrower.setBorrower_totalincome(borrower.getBorrower_totalincome() * 10000);
+		
 		//신용등급 구하기
 		//신용등급 결과
 		String creditResult = borrowerDAOService.creditCheck(borrower);
-		//신용등급이 잘 나왔는지 확인 
-		System.out.println("신용등급 조회 결과 : " +creditResult);
-		
+			
 		int borrower_limit = 0;
 		
 		//직업 구분별로 총 대출 한도금액 계산이 다름.
@@ -78,14 +75,10 @@ public class BorrowerController {
 		}
 		
 		//대출가능 금액은 5000만원 까지 
-		//대출 한도 금액 계산이 5000만원이 넘으면 5000만원으로 바꾸주기
 		if(borrower_limit > 50000000) {
 			borrower_limit = 50000000;
 		}
-		
-		//대출한도금액 확인
-		System.out.println("대출한도금액 확인 : " +borrower_limit);
-		
+
 		borrower.setBorrower_credit(creditResult);
 		borrower.setBorrower_limit(borrower_limit);
 		
