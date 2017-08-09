@@ -28,26 +28,28 @@
 			<form class = "form-horizontal" id = "findform" name = "findform" action = "loginFindIdAction.do" 
 				method = "post" onsubmit="return check()">
 				<fieldset>
-					<legend>아이디 찾기</legend>
-					<div class="form-group">
-						<label for="member_name" class="col-lg-2 control-label">이름</label>
-						<div class="col-lg-10">
-							<input type="text" class="form-control" id="member_name" name = "member_name" placeholder="이름" required>
-						</div>
-					</div>
+				<legend>아이디 찾기</legend>
+					<table class = "table">
+						<tr>
+							<td>이름</td>
+							<td>
+								<input type="text" class="form-control" id="member_name" name = "member_name" placeholder="이름" required>
+							</td>
+						</tr>
 						
-					<div class="form-group">
-						<label for="member_email" class="col-lg-2 control-label">이메일</label>
-						<div class="col-lg-10">
-							<input type="email" class="form-control" id="member_email" name = "member_email" placeholder="이메일" required>
-						</div>
-					</div>
-				
-					<div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
-							<button type="submit" class="btn btn-primary">아이디찾기</button>
-						</div>
-					</div>
+						<tr>
+							<td>이메일</td>
+							<td>
+								<input type="email" class="form-control" id="member_email" name = "member_email" placeholder="이메일" required>
+							</td>
+						</tr>
+						
+						<tr class = "text-center">
+							<td colspan = "2">
+								<button type="submit" class="btn btn-primary">아이디찾기</button>
+							</td>
+						</tr>				
+					</table>
 				</fieldset>
 			</form>
     	</div>

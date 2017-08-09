@@ -15,33 +15,32 @@
 <section class = "container">
    	<div class = "row">
    		<div class = "col-sm col-md-4">
-			<form>
-				<fieldset>
-					<legend>아이디 찾기</legend>
-					<div class = "form-group">
-						<div class="col-lg-10">
-							<%
-							if(foundid == null) {
-							%>
-							<font size = "2"><b>존재하지 않는 회원입니다.</b></font>
-							<%
-							}
-									
-							else {
-							%>
-								<font size = "2"><b>아이디  : </b><%=foundid %></font>
-							<%
-							}
-							%>
-						</div>
-					</div>
-						
-					<div class = "form-group">
-						<hr/><br/>
-						<input type = "button" value = "닫기" class = "btn btn-primary" onclick = "windowclose()"/>
-					</div>
-				</fieldset>
-			</form>    			
+			<legend>아이디 찾기</legend>
+			<table class = "table">
+				<tr>
+					<%
+					if(foundid == null) {
+					%>
+					<td colspan = "2">
+						<font size = "2"><b>존재하지 않는 회원입니다.</b></font>
+					</td>
+					<%
+					}
+					
+					else {
+					%>
+					<td>아이디</td>
+					<td><font size = "2"><b>아이디  : </b><%=foundid %></font></td>
+					<%
+					}
+					%>
+				</tr>
+				<tr class = "text-center">
+					<td colspan = "2">
+						<a href = "windowclose()" class = "btn btn-primary">닫기</a>
+					</td>
+				</tr>
+			</table>
     	</div>
     </div>
 </section>
