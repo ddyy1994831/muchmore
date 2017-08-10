@@ -5423,7 +5423,10 @@ a.badge:hover, a.badge:focus {
 	padding-bottom: 30px;
 	margin-bottom: 30px;
 	color: inherit;
-	background-color: #f5f5f5
+	background-color: #f5f5f5;
+	background-image: linear-gradient(rgba(255,255,255,0.6),rgba(255,255,255,0)),url(../image/watercolor640.jpg); 
+	background-size:100% 100%;
+	background-repeat:no-repeat;
 }
 
 .jumbotron h1, .jumbotron .h1 {

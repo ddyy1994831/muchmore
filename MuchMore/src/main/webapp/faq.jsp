@@ -28,7 +28,8 @@ function ajaxTab(url){
 <section class="container">
 	<div class ="row">
 		<div class="container" align="center">
-			<div class="jumbotron">
+			<div class="jumbotron" style = "height:230px">
+				<img src = "./resources/image/qna2.png" width = "150px" height = "150px" align = "right">
 				<h1>FAQ</h1>
 			</div>      
 		</div>
