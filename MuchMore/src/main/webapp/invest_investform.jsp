@@ -3,7 +3,7 @@
 <%@page import="com.spring.muchmore.borrower.BorrowerVO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.*"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
 
@@ -90,7 +90,7 @@
 								<div class="panel-body">
 									<div class="col-xs-6" style="font-size:12pt">총 투자금액</div>
 									<div class="col-xs-6 text-right">
-										<input type="text" id="invest_sum" name="invest_sum" value="0" size="10" readOnly>만원 
+										<input type="text" id="invest_sum" name="invest_sum" value="0" size="10" readOnly>원 
 									</div>
 									<div class="col-xs-12">
 										<div class = "center-block pull-right">									 

@@ -119,10 +119,40 @@
 </div>
 </body>
 
-    <section class = "container">
-    	<div class = "row" style="height:80%">
-    		<div class = "span12">
-    			<h3><%=id %>로 로그인하셨습니다.</h3>
-    		</div>
+<section class = "container" style="min-height:80%">
+	<div class = "row" style = "padding-top:50px">
+		<div class="col-md-4 text-center">
+			<img class="img-circle" src="./resources/image/main_circle1.png">
+			<h4>국내 1등 P2P금융 플랫폼</h4>
+			<p>항상 고객을 생각하는 마음으로 1등을 지키겠습니다.</p>
+			<p><a class="btn btn-default" href="join.do">JOIN US</a></p>
     	</div>
-    </section> 
+	    <div class="col-md-4 text-center">
+			<img class="img-circle" src="./resources/image/main_circle2.png">
+			<h4>국내 최대 대출규모</h4>
+			<p>500만 이상의 대출규모를 자랑하는 머치모아</p>
+			<p><a class="btn btn-default" href="loan.do">CHECK YOUR CREDIT</a></p>
+	    </div>
+	    <div class="col-md-4 text-center">
+			<img class="img-circle" src="./resources/image/main_circle3.png">
+			<h4>국내 최고 투자수익률</h4>
+			<p>운영 비용 최소화로 고객의 투자수익을 극대화하겠습니다.</p>
+			<p><a class="btn btn-default" href="invest.do">LET'S INVEST</a></p>
+		</div>
+	</div>
+	
+	<div class = "row" style = "padding-top:50px; padding-bottom:100px;">
+		<div class = "text-center">
+			<img src="./resources/image/muchmore_logo.png" align = "middle">
+			<br/><br/><br/>
+			<h4>머치모아는</h4><br/>
+			<h5>기대보다 높은 서비스를</h5>
+			<h5>기대보다 높은 수익을</h5>
+			<h5>기대보다 높은 만족감을 드리기 위해 노력합니다.</h5><br/>
+			<p>Much more than you expected.</p>
+		</div>
+	</div>
+	
+</section> 
+    
+   
