@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page import="com.spring.muchmore.moneyinout.MoneyinoutVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
@@ -161,4 +162,5 @@
 			</div>
 		</div>
 	</div>
+
 </section>

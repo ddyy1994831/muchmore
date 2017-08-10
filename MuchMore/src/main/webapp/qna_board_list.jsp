@@ -25,7 +25,8 @@
 <section class = "container">
   	<div class = "row" style = "min-height:80%;" >
 	  	<div class="container" align="center">
-				<div class="jumbotron">
+				<div class="jumbotron" style = "height:230px">
+					<img src = "./resources/image/qna2.png" width = "150px" height = "150px" align = "right">
 					<h1>Q&A</h1>
 				</div>      
 		</div>

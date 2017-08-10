@@ -20,9 +20,13 @@
 
 
 <div class="container">
-	<div class="row" style="min-height:80%">
+	<div class="row" style="min-height:100%">
 		<section class="content">
-			<h1>투자상품 리스트</h1>			
+			<div class="jumbotron text-center" style = "height:230px">
+				<img src = "./resources/image/invest.png" width = "150px" height = "150px" align = "right">
+				<h1>투자상품 리스트</h1>
+				<p></p>
+			</div>			
 					<div class="panel-body">						
 						<div class="table-container">
 							<table class="table table-filter text-center">								

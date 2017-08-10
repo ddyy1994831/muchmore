@@ -41,8 +41,9 @@
 <section class = "container">
 	<div class = "row" >
     	<!-- 대출 메인 페이지 -->
-	    <div class="jumbotron text-center">
-			<h1>머치모어 대출 신청</h1>
+	    <div class="jumbotron text-center" style = "height:230px">
+	    	<img src = "./resources/image/loan.png" width = "150px" height = "150px" align = "right">
+			<h1>대출 신청</h1>
 			<p>지금 바로 대출금 한도를 확인해보세요!</p> 
 		</div>
 	
@@ -98,7 +99,7 @@
     		//상환완료하지 않은 회원
     		if( borrower_cnt != 0) {
     	%>
-    			<button type="button" class="btn btn-primary btn-lg" disabled>대출/한도 확인하기</button>
+    			<button type="button" class="btn btn-primary btn-lg" disabled>신용도/대출한도 확인하기</button>
     			<br/><br/>
     			<div class="text-center text-danger" style="font-size: 13pt;padding-top:25px;padding-bottom:50px">
 					<strong><%=msg%></strong>
@@ -111,7 +112,7 @@
     		//상환 완료 한 회원 or 대출 서비스 이용이 처음인 회원
     		else {
     	%>
-    			<button type="button" class="btn btn-primary btn-lg" onclick="enter_check()">대출/한도 확인하기</button>
+    			<button type="button" class="btn btn-primary btn-lg" onclick="enter_check()">신용도/대출한도 확인하기</button>
     			
     	<%
     		}
@@ -119,7 +120,7 @@
 	
 		else{
 		%>
-			<button type="button" class="btn btn-primary btn-lg" onclick="location.href='login.do'">로그인 페이지로 이동</button>
+			<button type="button" class="btn btn-primary btn-lg" onclick="location.href='login.do'">로그인</button>
 		<%
 		} 
 		%>
