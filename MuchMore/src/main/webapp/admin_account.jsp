@@ -11,6 +11,11 @@
 	}
 
 	List<MoneyinoutVO> theWholeList = (List<MoneyinoutVO>)request.getAttribute("moneyinout_list");
+	int listcount = ((Integer)request.getAttribute("listcount")).intValue();
+	int nowpage = ((Integer)request.getAttribute("page")).intValue();
+	int maxpage = ((Integer)request.getAttribute("maxpage")).intValue();
+	int startpage = ((Integer)request.getAttribute("startpage")).intValue();
+	int endpage = ((Integer)request.getAttribute("endpage")).intValue();
 %>
 
 <script>
@@ -93,16 +98,65 @@
 									</tr>
 					<%
 								}
+					%>
+					</tbody>
+					<tfoot>
+								<tr>
+									<td align="center" colspan="5">
+										<ul class="pagination pagination-sm">
+										<%
+											if(nowpage <= 1) {
+										%>
+												<li class="disabled"><a href="#">&laquo;</a></li>
+										<%
+											}
+											else { 
+										%>
+												<li><a href="adminAccount.do?page=<%=nowpage-1 %>">&laquo;</a></li>
+										<%
+											}
+										
+											for(int a=startpage; a<=endpage; a++) {
+												//현재 보고 있는 페이지는 링크를 걸 필요가 없다.
+												if(a == nowpage) {
+										%>
+													<li class="active"><a href="#"><%=a %></a></li>
+										<%
+												}
+												else {
+										%>
+													<li><a href="adminAccount.do?page=<%=a %>"><%=a %></a></li>
+										<%
+												}
+											}
+											
+											if(nowpage >= maxpage) {
+										%>
+												<li class="disabled"><a href="#">&raquo;</a></li>
+										<%
+											}
+											else {
+										%>
+												<li><a href="adminAccount.do?page=<%=nowpage+1%>">&raquo;</a></li>
+										<%
+											}
+										%>
+									</ul>
+								</td>
+							</tr>
+						</tfoot>
+					<%
 						}
 						else {
 					%>
+						<tbody>
 								<tr>
 									<td colspan="5" align="center">입/출금 내역이 없습니다</td>
 								</tr>
+						</tbody>
 					<%
 						}
 					%>
-					</tbody>
 				</table>
 			</div>
 		</div>

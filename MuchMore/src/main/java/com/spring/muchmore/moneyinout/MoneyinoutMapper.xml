@@ -21,7 +21,16 @@
 	<!-- 다예 : 관리자페이지 - muchmore 전체 입출금내역 출력 -->
 	<select id="getAdimList" resultMap="MoneyinoutResultMap">
 		SELECT *
-		FROM moneyinout
-		WHERE moneyinout_holder_id = 'muchmore' OR moneyinout_other_id = 'muchmore' 
+		FROM (SELECT rownum rnum, moneyinout_holder_id, moneyinout_other_id, moneyinout_date, moneyinout_money, moneyinout_state
+			  FROM moneyinout
+			  WHERE moneyinout_holder_id = 'muchmore')
+		WHERE rnum <![CDATA[ >= ]]> #{startrow, javaType=int} AND rnum <![CDATA[ <= ]]> #{endrow, javaType=int}
 	</select>	
+	
+	<!-- 다예 : 관리자페이지 - moneyinout 개수 -->
+	<select id="getAdminListCount" resultType="int">
+		SELECT count(*)
+		FROM moneyinout
+		WHERE moneyinout_holder_id = 'muchmore'
+	</select>
 </mapper>

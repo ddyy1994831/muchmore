@@ -1,5 +1,6 @@
 package com.spring.muchmore.moneyinout;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface MoneyinoutMapper {
@@ -8,6 +9,8 @@ public interface MoneyinoutMapper {
 	public List<MoneyinoutVO> selectMoneyinoutById(String id);
 	
 	/*다예 : 관리자페이지 - muchmore 입출금내역 출력*/
-	public List<MoneyinoutVO> getAdimList();
+	public List<MoneyinoutVO> getAdimList(HashMap<String, Integer> param);
 
+	/*다예 : 관리자페이지 - moneyinout 개수*/
+	public int getAdminListCount();
 }

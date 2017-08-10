@@ -280,14 +280,37 @@ public class AdminController {
 	
 	/* 다예 : 관리자페이지 -입출금내역*/
 	@RequestMapping("/adminAccount.do")
-	public ModelAndView AccountList(Model model) {
-		System.out.println("dddd");
+	public ModelAndView AccountList(Model model, HttpServletRequest request) {
+		System.out.println("AdminController - adminAccount.do");
 		ModelAndView result = new ModelAndView();
-		List<MoneyinoutVO> moneyinout_list = moneyinoutDAOService.getAdimList();
+		List<MoneyinoutVO> moneyinout_list = null;
+		
+		int page = 1;
+		int limit = 10;
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		int listcount = moneyinoutDAOService.getAdminListCount();
+		moneyinout_list = moneyinoutDAOService.getAdimList(page, limit);
+		
+		int maxpage = (int) ((double) listcount / limit + 0.95);
+		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+		int endpage = startpage + 10 - 1;
+		
+		if(endpage > maxpage) {
+			endpage = maxpage;
+		}
 
-		result.setViewName("admin_account");
+		result.addObject("page", page);
+		result.addObject("maxpage", maxpage);
+		result.addObject("startpage", startpage);
+		result.addObject("endpage", endpage);
+		result.addObject("listcount", listcount);
 		result.addObject("moneyinout_list", moneyinout_list);
-		/*model.addAttribute("moneyinout_list", moneyinout_list);*/
+		
+		result.setViewName("admin_account");
 		
 		return result;
 	}
