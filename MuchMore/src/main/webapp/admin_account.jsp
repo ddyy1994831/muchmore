@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 <%@page import="com.spring.muchmore.moneyinout.MoneyinoutVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
 
@@ -95,7 +95,7 @@
 										<td align="center"><%=moneyinoutVO.getMoneyinout_state() %></td>
 										<td align="center"><%=moneyinoutVO.getMoneyinout_holder_id() %></td>
 										<td align="center"><%=moneyinoutVO.getMoneyinout_other_id() %></td>
-										<td align="center"><%=moneyinoutVO.getMoneyinout_money() %></td>
+										<td align="center"><fmt:formatNumber value="<%=moneyinoutVO.getMoneyinout_money() %>" type="currency" currencySymbol="£Ü"></fmt:formatNumber></td>
 									</tr>
 					<%
 								}

@@ -161,7 +161,7 @@
 	<!-- 다예 : 대출 상환이 될 때마다 잔액 변경(borrower_balance 변경) -->
 	<update id="updateBorrowerBalance" parameterType="BorrowerVO">
 		UPDATE borrower
-		SET borrower_balance = borrower_balance - (SELECT moneyinout_money 
+		SET borrower_balance = borrower_balance + (SELECT moneyinout_money 
 													FROM (SELECT rownum rnum, moneyinout_date, moneyinout_holder_id,
 																moneyinout_other_id, moneyinout_money, moneyinout_state
 														  FROM moneyinout

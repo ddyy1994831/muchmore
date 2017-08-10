@@ -17,11 +17,9 @@
 
 <script>
 	function openSend(borrower_id, goods_num) {
-		alert(borrower_id);
-		alert(goods_num);
 		var url = "adminLoanSend.do?borrower_id=" + borrower_id +"&goodsVO.goods_num=" +goods_num;
 		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no," +
-			"scrollbars=no,resizeable=no,width=450px,height=300");
+			"scrollbars=no,resizeable=no,width=400px,height=400px");
 	}
 </script>
 

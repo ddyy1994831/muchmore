@@ -30,14 +30,14 @@
 					else {
 					%>
 					<td>아이디</td>
-					<td><font size = "2"><b>아이디  : </b><%=foundid %></font></td>
+					<td><font size = "2"><%=foundid %></font></td>
 					<%
 					}
 					%>
 				</tr>
 				<tr class = "text-center">
 					<td colspan = "2">
-						<a href = "windowclose()" class = "btn btn-primary">닫기</a>
+						<button onclick = "windowclose();" class = "btn btn-primary">닫기</button>
 					</td>
 				</tr>
 			</table>
