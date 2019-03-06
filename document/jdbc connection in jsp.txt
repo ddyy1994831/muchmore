@@ -1,0 +1,58 @@
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSP Page</title>
+</head>
+
+<body>
+
+//Declaration
+   <%!
+       Statement stmt = null;
+       Connection con = null;
+       ResultSet rs = null;
+       StringBuffer sb = new StringBuffer("");
+   %>
+
+//JDBC Code
+    <%
+            try{  
+
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+
+ con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",
+"system","system");  
+
+
+ stmt=con.createStatement();  
+
+
+ rs=stmt.executeQuery("select * from Employee");  
+
+while(rs.next())  
+{
+out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+}
+
+  stmt.execute("insert into Employee values(4,'John','Finance')");
+  rs=stmt.executeQuery("select * from Employee");  
+
+ while(rs.next())  
+{
+ sb.append(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3)); 
+ sb.append("</UL>"); 
+}
+
+out.println(sb);
+con.close();    
+} //try block ends
+catch(Exception e)
+{ System.out.println(e);} 
+    %>
+//code ends
+</body>
+</html>
